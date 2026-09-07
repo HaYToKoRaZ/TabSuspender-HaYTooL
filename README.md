@@ -7,7 +7,7 @@
   *Reclaim your browser's memory with intelligent tab sleeping & cloud sync.*
 
   <p align="center">
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.5-brightgreen?style=for-the-badge&logo=github" alt="Release v2.5"/></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.6-brightgreen?style=for-the-badge&logo=github" alt="Release v2.6"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
     <a href="https://developer.chrome.com/docs/extensions/mv3/"><img src="https://img.shields.io/badge/Manifest-V3-orange?style=for-the-badge&logo=googlechrome" alt="Manifest V3"/></a>
     <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/"><img src="https://img.shields.io/badge/Web_Site-Live_Demo-purple?style=for-the-badge&logo=safari" alt="Website Demo"/></a>
@@ -88,7 +88,7 @@
 6. Eklenti simgesini sabitlemek için yapboz ikonuna tıklayıp **TabSuspender HaYTooL**'u sabitleyin.
 
 ### Yöntem 2: Hazır WebStore ZIP Paketini Kullanma
-- Projenin `.agents/dist/` klasöründe yer alan en son `TabSuspender-HaYTooL-v2.5-WebStore.zip` paketini doğrudan mağaza panellerine yükleyebilir veya arşivden çıkartıp yükleyebilirsiniz.
+- Projenin `.agents/dist/` klasöründe veya GitHub Releases sayfasında yer alan en son `TabSuspender-HaYTooL-v2.6.zip` paketini doğrudan mağaza panellerine yükleyebilir veya arşivden çıkartıp yükleyebilirsiniz.
 
 ---
 

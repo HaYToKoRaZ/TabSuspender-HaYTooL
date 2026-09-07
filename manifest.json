@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TabSuspender HaYTooL",
-  "version": "2.5",
+  "version": "2.6",
   "description": "Reclaim Chrome's memory! TabSuspender HaYTooL auto/manually suspends inactive tabs, boosting performance.",
   "homepage_url": "https://haytokoraz.github.io/TabSuspender-HaYTooL/",
   "icons": {
