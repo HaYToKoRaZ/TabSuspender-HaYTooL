@@ -812,6 +812,129 @@
       word-break: break-all;
     }
 
+    /* Screenshots Gallery Section */
+    .screenshots-section {
+      margin-bottom: 90px;
+    }
+
+    .screenshot-lang-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .screenshot-lang-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 9px 22px;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .screenshot-lang-btn:hover {
+      border-color: var(--accent-cat);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .screenshot-lang-btn.active {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: var(--accent-cat);
+      color: #fef08a;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
+    }
+
+    .screenshots-deck {
+      display: none;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .screenshots-deck.active {
+      display: grid;
+      animation: fadeInDeck 0.35s ease-out;
+    }
+
+    @keyframes fadeInDeck {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .screenshot-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      transition: transform var(--transition-normal), border-color var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .screenshot-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .screenshot-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+
+    .screenshot-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .screenshot-img-box {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #080c14;
+      cursor: zoom-in;
+      position: relative;
+    }
+
+    .screenshot-img-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .screenshot-card:hover .screenshot-img-box img {
+      transform: scale(1.02);
+    }
+
+    .screenshot-footer {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .screenshots-deck {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* FAQ Section */
     .faq-grid {
       max-width: 800px;
@@ -943,6 +1066,7 @@
           <li><a href="#stores" data-i18n="navStores">Mağazalar</a></li>
           <li><a href="#cat-intro" data-i18n="navCat">Kedi Teması</a></li>
           <li><a href="#features" data-i18n="navFeatures">Özellikler</a></li>
+          <li><a href="#screenshots" data-i18n="navScreenshots">Ekran Görüntüleri</a></li>
           <li><a href="#install" data-i18n="navInstall">Kurulum</a></li>
           <li><a href="#faq" data-i18n="navFaq">S.S.S</a></li>
         </ul>
@@ -1253,6 +1377,82 @@
     </div>
   </section>
 
+  <!-- Screenshots Gallery Section -->
+  <section id="screenshots" class="container screenshots-section">
+    <div class="section-title">
+      <h2 data-i18n="galleryTitle">📸 Uygulama Arayüzü & Ekran Görüntüleri</h2>
+      <p data-i18n="galleryDesc">Modern, dengeli ve kullanıcı dostu arayüzün gerçek ekran görüntüleri.</p>
+    </div>
+
+    <!-- Language Selector for Screenshots -->
+    <div class="screenshot-lang-nav">
+      <button class="screenshot-lang-btn active" id="btnShotTR" onclick="switchScreenshotDeck('tr')">
+        🇹🇷 <span data-i18n="shotBtnTR">Türkçe Arayüz</span>
+      </button>
+      <button class="screenshot-lang-btn" id="btnShotEN" onclick="switchScreenshotDeck('en')">
+        🇬🇧 <span data-i18n="shotBtnEN">English Interface</span>
+      </button>
+    </div>
+
+    <!-- Turkish Screenshots Deck -->
+    <div class="screenshots-deck active" id="deckTR">
+      <div class="screenshot-card">
+        <div class="screenshot-header">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f8fafc;">⚙️ Gelişmiş Ayarlar Kontrol Paneli</h3>
+          <span class="screenshot-badge">options.html</span>
+        </div>
+        <div class="screenshot-img-box" onclick="window.open('assets/screenshots/turkce-ayarlar.png', '_blank')">
+          <img src="assets/screenshots/turkce-ayarlar.png" alt="TabSuspender HaYTooL Türkçe Ayarlar Paneli" loading="lazy">
+        </div>
+        <div class="screenshot-footer">
+          Otomatik askıya alma süreleri, 5 uyuyan hayvan maskotu canlı önizlemesi, GitHub Gist bulut eşitlemesi ve 5 renk teması ayarları.
+        </div>
+      </div>
+
+      <div class="screenshot-card">
+        <div class="screenshot-header">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f8fafc;">🖱️ Hızlı Yönetim Açılır Menüsü</h3>
+          <span class="screenshot-badge">popup.html</span>
+        </div>
+        <div class="screenshot-img-box" onclick="window.open('assets/screenshots/turkce-popup.png', '_blank')">
+          <img src="assets/screenshots/turkce-popup.png" alt="TabSuspender HaYTooL Türkçe Popup Menüsü" loading="lazy">
+        </div>
+        <div class="screenshot-footer">
+          Sekmeleri anında tek tıkla uyutma, toplu uyandırma ve açık sekmeleri durum rozetleriyle izleme.
+        </div>
+      </div>
+    </div>
+
+    <!-- English Screenshots Deck -->
+    <div class="screenshots-deck" id="deckEN">
+      <div class="screenshot-card">
+        <div class="screenshot-header">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f8fafc;">⚙️ Advanced Settings Dashboard</h3>
+          <span class="screenshot-badge">options.html</span>
+        </div>
+        <div class="screenshot-img-box" onclick="window.open('assets/screenshots/ingilizce-ayarlar.png', '_blank')">
+          <img src="assets/screenshots/ingilizce-ayarlar.png" alt="TabSuspender HaYTooL English Settings Dashboard" loading="lazy">
+        </div>
+        <div class="screenshot-footer">
+          Auto-suspend duration timer, live preview for 5 sleeping animal mascots, GitHub Gist cloud synchronization, and 5 color themes.
+        </div>
+      </div>
+
+      <div class="screenshot-card">
+        <div class="screenshot-header">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f8fafc;">🖱️ Quick Popup Manager</h3>
+          <span class="screenshot-badge">popup.html</span>
+        </div>
+        <div class="screenshot-img-box" onclick="window.open('assets/screenshots/ingilizce-popup.png', '_blank')">
+          <img src="assets/screenshots/ingilizce-popup.png" alt="TabSuspender HaYTooL English Popup Manager" loading="lazy">
+        </div>
+        <div class="screenshot-footer">
+          Instant one-click tab suspension, bulk wake-up, and real-time tab status badges.
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section id="faq" class="container">
     <div class="section-title">
@@ -1313,8 +1513,13 @@
         navStores: "Mağazalar",
         navCat: "Kedi Teması",
         navFeatures: "Özellikler",
+        navScreenshots: "Ekran Görüntüleri",
         navInstall: "Kurulum",
         navFaq: "S.S.S",
+        galleryTitle: "📸 Uygulama Arayüzü & Ekran Görüntüleri",
+        galleryDesc: "Modern, dengeli ve kullanıcı dostu arayüzün gerçek ekran görüntüleri.",
+        shotBtnTR: "Türkçe Arayüz",
+        shotBtnEN: "English Interface",
         heroBadge: "Sekmeleriniz Yumuşacık Bir Kedi Gibi Uyusun",
         heroTitle: "Sekmeleriniz Mışıl Mışıl Uyurken, <br><span class=\"cat-highlight\">RAM Tüketiminiz Sıfırlansın</span>",
         heroDesc: "TabSuspender HaYTooL, arka planda unutulan onlarca sekmeyi dinlenme sepetine alır. Bilgisayarınızın nefes almasını sağlar, fan gürültüsünü keser ve pil ömrünü uzatır.",
@@ -1378,8 +1583,13 @@
         navStores: "Stores",
         navCat: "Cat Theme",
         navFeatures: "Features",
+        navScreenshots: "Screenshots",
         navInstall: "Installation",
         navFaq: "FAQ",
+        galleryTitle: "📸 Interface & Live Screenshots",
+        galleryDesc: "Authentic preview of the modern, balanced, and privacy-first UI.",
+        shotBtnTR: "Türkçe Arayüz",
+        shotBtnEN: "English Interface",
         heroBadge: "Let Your Tabs Sleep Like a Soft Purring Kitten",
         heroTitle: "While Your Tabs Nap Gently, <br><span class=\"cat-highlight\">Your RAM Usage Drops to Zero</span>",
         heroDesc: "TabSuspender HaYTooL gently puts idle background tabs to sleep in their cozy basket. Reclaim memory, eliminate fan noise, and extend battery life.",
@@ -1465,6 +1675,26 @@
       document.getElementById('btnLangTR').classList.toggle('active', lang === 'tr');
       document.getElementById('btnLangEN').classList.toggle('active', lang === 'en');
       document.documentElement.lang = lang;
+
+      // Also switch screenshot deck to match site language
+      switchScreenshotDeck(lang);
+    }
+
+    function switchScreenshotDeck(lang) {
+      const isTR = lang === 'tr';
+      const deckTR = document.getElementById('deckTR');
+      const deckEN = document.getElementById('deckEN');
+      const btnTR = document.getElementById('btnShotTR');
+      const btnEN = document.getElementById('btnShotEN');
+
+      if (deckTR && deckEN) {
+        deckTR.classList.toggle('active', isTR);
+        deckEN.classList.toggle('active', !isTR);
+      }
+      if (btnTR && btnEN) {
+        btnTR.classList.toggle('active', isTR);
+        btnEN.classList.toggle('active', !isTR);
+      }
     }
 
     document.getElementById('btnLangTR').addEventListener('click', () => setLanguage('tr'));
