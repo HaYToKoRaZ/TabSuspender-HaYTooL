@@ -1,0 +1,68 @@
+name: Release Extension
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract extension version & name from manifest.json
+        id: extract_meta
+        run: |
+          VERSION=$(node -p "require('./manifest.json').version")
+          NAME="TabSuspender-HaYTooL"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "zip_name=${NAME}-v${VERSION}.zip" >> $GITHUB_OUTPUT
+
+      - name: Create Web Store Zip Package
+        run: |
+          # Package all extension files excluding git, github and markdown files
+          zip -r "${{ steps.extract_meta.outputs.zip_name }}" . \
+            -x "*.git*" \
+            -x ".github/*" \
+            -x "*.zip" \
+            -x "*.crx" \
+            -x "README.md" \
+            -x ".gitignore"
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ steps.extract_meta.outputs.version }}"
+          name: "${{ steps.extract_meta.outputs.name }} v${{ steps.extract_meta.outputs.version }}"
+          body: |
+            ## 🚀 ${{ steps.extract_meta.outputs.name }} v${{ steps.extract_meta.outputs.version }}
+
+            Otomatik olarak paketlenmiş Chromium uzantı ZIP paketi.
+            
+            ### 📦 İndirme:
+            - **${{ steps.extract_meta.outputs.zip_name }}** dosyasını indirip arşivden çıkartarak veya doğrudan Chrome / Edge / Brave / Helium tarayıcılarında kullanabilirsiniz.
+            
+            ### ✨ Öne Çıkan Özellikler:
+            - Manifest V3 & Ultra Hafif mimari
+            - Çift Modlu Uyutma (Görsel Bilgi Sayfası + Native Discard)
+            - 5 Dinamik Tema (Açık, Koyu, Discord, YouTube, Matrix)
+            - Vektörel Uyuyan Hayvan Maskotları & Canlı Önizleme
+            - Akıllı RAM Tasarrufu Bildirimi
+            - GitHub Gist Bulut Eşitleme
+            - %100 Çift Dilli (TR & EN)
+          files: "${{ steps.extract_meta.outputs.zip_name }}"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
