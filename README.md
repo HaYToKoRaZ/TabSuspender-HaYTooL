@@ -7,7 +7,7 @@
   *Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
 
   <p align="center">
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.6-brightgreen?style=for-the-badge&logo=github" alt="Release v2.6"/></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.7-brightgreen?style=for-the-badge&logo=github" alt="Release v2.7"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
     <a href="https://developer.chrome.com/docs/extensions/mv3/"><img src="https://img.shields.io/badge/Manifest-V3-orange?style=for-the-badge&logo=googlechrome" alt="Manifest V3"/></a>
     <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/"><img src="https://img.shields.io/badge/Web_Site-Live_Demo-purple?style=for-the-badge&logo=safari" alt="Website Demo"/></a>
@@ -40,7 +40,7 @@
 - **🎨 5 Dynamic Themes:** Tailored for Light, Dark, Discord (Blurple), YouTube (OLED Black & Red), and Matrix (Phosphor Green).
 - **🔔 Aggregated RAM Savings Toast:** Shows live estimated memory savings when multiple tabs are put to sleep.
 - **🔒 100% Offline-First & Privacy:** Zero remote telemetry, zero third-party tracking scripts. All operations run locally inside your browser sandbox.
-- **🌍 Bilingual Architecture:** Native English (EN) and Turkish (TR) support with dynamic real-time switching.
+- **🌍 Native Store `_locales` & Bilingual:** Full Microsoft Edge Add-ons & Chrome Web Store `_locales` compatibility (EN & TR) with dynamic in-app language switching.
 
 ### 📦 Installation Guide
 
@@ -56,7 +56,7 @@
 6. Pin **TabSuspender HaYTooL** from your browser extensions puzzle icon.
 
 #### Method 2: Use Pre-Packaged Release ZIP
-- Download the latest `TabSuspender-HaYTooL-v2.6.zip` directly from our [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) page and load it unpacked.
+- Download the latest `TabSuspender-HaYTooL-v2.7.zip` directly from our [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) page and load it unpacked.
 
 ### ⌨️ Keyboard Shortcuts
 1. Open `chrome://extensions/shortcuts` in your browser.

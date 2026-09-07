@@ -1,0 +1,395 @@
+{
+  "appName": {
+    "message": "TabSuspender HaYTooL"
+  },
+  "settingsTitle": {
+    "message": "TabSuspender HaYTooL Ayarları"
+  },
+  "saveButton": {
+    "message": "Ayarları Kaydet"
+  },
+  "settingsSaved": {
+    "message": "Ayarlar başarıyla kaydedildi!"
+  },
+  "resetButton": {
+    "message": "Varsayılan Ayarlara Dön"
+  },
+  "resetSuccess": {
+    "message": "Varsayılan ayarlar yüklendi!"
+  },
+  "resetConfirm": {
+    "message": "Tüm ayarları varsayılan değerlerine sıfırlamak istediğinizden emin misiniz?"
+  },
+  "sectionAutoSuspend": {
+    "message": "Otomatik Askıya Alma (Uyutma)"
+  },
+  "sectionExclusions": {
+    "message": "Asla Askıya Alınmayacak Sekmeler"
+  },
+  "sectionRestore": {
+    "message": "Otomatik Uyandırma (Geri Yükleme)"
+  },
+  "sectionAppearance": {
+    "message": "Görünüm, Entegrasyon ve Dil"
+  },
+  "sectionWhitelist": {
+    "message": "Asla Uyutulmayacak Siteler (Beyaz Liste)"
+  },
+  "sectionShortcuts": {
+    "message": "Klavye Kısayolları"
+  },
+  "sectionAbout": {
+    "message": "Hakkında ve Bağlantılar"
+  },
+  "disableAutoSuspension": {
+    "message": "Otomatik uyutmayı tamamen devre dışı bırak"
+  },
+  "suspendAfterLabel": {
+    "message": "Sekmeleri şu süre boşta kalınca uyut:"
+  },
+  "sec": {
+    "message": "saniye"
+  },
+  "min": {
+    "message": "dakika"
+  },
+  "hours": {
+    "message": "saat"
+  },
+  "neverSuspendPinned": {
+    "message": "Sabitlenmiş sekmeler (Pinned)"
+  },
+  "neverSuspendActive": {
+    "message": "Her penceredeki aktif (ön plandaki) sekme"
+  },
+  "neverSuspendAudio": {
+    "message": "Ses çalan sekmeler (Müzik / Video)"
+  },
+  "neverSuspendOffline": {
+    "message": "İnternet bağlantısı yokken (Çevrimdışı)"
+  },
+  "autoUnsuspendOnView": {
+    "message": "Sekmeye tıklandığında / bakıldığında otomatik uyandır"
+  },
+  "iconClickActionLabel": {
+    "message": "Eklenti simgesine tıklandığında yapılacak işlem:"
+  },
+  "iconClickSuspendOthers": {
+    "message": "Diğer tüm sekmeleri hemen uyut (Aktif sekme hariç)"
+  },
+  "iconClickPopup": {
+    "message": "Açılır menüyü (Popup) göster"
+  },
+  "themeLabel": {
+    "message": "Tema:"
+  },
+  "themeLight": {
+    "message": "Açık Tema (Light)"
+  },
+  "themeDark": {
+    "message": "Koyu Tema (Dark)"
+  },
+  "themeDiscord": {
+    "message": "Discord (Blurple Moru & Koyu)"
+  },
+  "themeYouTube": {
+    "message": "YouTube (OLED Siyahı & Kırmızı)"
+  },
+  "themeMatrix": {
+    "message": "Matrix (Hacker Yeşili & Terminal)"
+  },
+  "languageLabel": {
+    "message": "Dil / Language:"
+  },
+  "addContextMenu": {
+    "message": "Sağ tık menüsüne \"Bu Sekmeyi Uyut\" seçeneğini ekle"
+  },
+  "whitelistHint": {
+    "message": "Her satıra bir adres yazın. * joker karakterini destekler (örn: *.reddit.com/* veya mail.google.com)."
+  },
+  "whitelistPlaceholder": {
+    "message": "örn: https://mail.google.com veya *.reddit.com/*"
+  },
+  "shortcutsDesc": {
+    "message": "Tarayıcı güvenliği nedeniyle kısayol tuşları Chrome'un özel kısayol yönetim sayfasından atanır."
+  },
+  "shortcutsBtn": {
+    "message": "Chrome Kısayollar Sayfasını Aç"
+  },
+  "shortcutsNote": {
+    "message": "\"TabSuspender HaYTooL\" eklentisini bulup kalem simgesine tıklayarak istediğiniz tuşları atayın."
+  },
+  "sectionGist": {
+    "message": "Bulut & GitHub Gist Eşitlemesi"
+  },
+  "gistDesc": {
+    "message": "Farklı tarayıcılar (Chrome, Edge, Helium, Brave vb.) arasında ayarlarınızı ve beyaz listenizi GitHub Gist üzerinden tek tıkla eşitleyin."
+  },
+  "githubTokenLabel": {
+    "message": "GitHub Kişisel Erişim Belirteci (Token):"
+  },
+  "githubTokenPlaceholder": {
+    "message": "ghp_xxxxxxxxxxxxxxxxxxxx ('gist' izni gerekir)"
+  },
+  "gistIdLabel": {
+    "message": "Gist Kimliği (Gist ID - İlk yedeklemede boş kalabilir):"
+  },
+  "gistIdPlaceholder": {
+    "message": "İlk yedeklemede otomatik üretilir veya var olanı yapıştırın"
+  },
+  "btnBackupGist": {
+    "message": "Gist'e Yükle (Yedek Al)"
+  },
+  "btnRestoreGist": {
+    "message": "Gist'ten İndir (Geri Yükle)"
+  },
+  "btnListGists": {
+    "message": "📋 Yedek Geçmişini Gör & Seç"
+  },
+  "selectBackupPrompt": {
+    "message": "Geri yüklenecek yedeği seçin:"
+  },
+  "backupListLoading": {
+    "message": "GitHub'daki yedekleriniz taranıyor..."
+  },
+  "backupListEmpty": {
+    "message": "GitHub hesabınızda kayıtlı bir TabSuspender yedeği bulunamadı."
+  },
+  "gistConnected": {
+    "message": "GitHub Bağlantısı Aktif"
+  },
+  "gistLogoutBtn": {
+    "message": "Çıkış Yap / Bağlantıyı Kes"
+  },
+  "gistLogoutConfirm": {
+    "message": "GitHub bağlantısını kesmek ve kayıtlı Token / Gist ID'yi temizlemek istediğinizden emin misiniz?"
+  },
+  "gistLoggedOutSuccess": {
+    "message": "GitHub oturumu başarıyla kapatıldı."
+  },
+  "gistBackupSuccess": {
+    "message": "Ayarlar ve Beyaz Liste GitHub Gist'e başarıyla yüklendi!"
+  },
+  "gistRestoreSuccess": {
+    "message": "Ayarlar ve Beyaz Liste Gist'ten başarıyla geri yüklendi!"
+  },
+  "gistSearching": {
+    "message": "GitHub'daki yedekler taranıyor..."
+  },
+  "gistNotFound": {
+    "message": "GitHub hesabınızda kayıtlı bir TabSuspender yedeği bulunamadı."
+  },
+  "gistErrorNoToken": {
+    "message": "Lütfen 'gist' yetkisine sahip geçerli bir GitHub Token girin."
+  },
+  "gistErrorNoId": {
+    "message": "Lütfen bir Gist ID girin ya da yedekleri listelemek için Token'ınızı yazın."
+  },
+  "gistHelpLink": {
+    "message": "GitHub Token oluştur (Tarihli otomatik isimle)"
+  },
+  "btnExportFile": {
+    "message": "JSON Dosyası İndir"
+  },
+  "btnImportFile": {
+    "message": "JSON Dosyası Yükle"
+  },
+  "developer": {
+    "message": "by HaYTo"
+  },
+  "officialSite": {
+    "message": "Resmi Web Sitesi"
+  },
+  "portal": {
+    "message": "HaYTooL PoRTaL"
+  },
+  "githubRepo": {
+    "message": "GitHub Deposu"
+  },
+  "supportFeedback": {
+    "message": "Destek ve Geri Bildirim:"
+  },
+  "loadingTabs": {
+    "message": "Sekmeler taranıyor..."
+  },
+  "noTabs": {
+    "message": "Bu pencerede açık sekme bulunamadı."
+  },
+  "suspendAll": {
+    "message": "Tümünü Uyut"
+  },
+  "suspendOthers": {
+    "message": "Diğerlerini Uyut"
+  },
+  "unsuspendAll": {
+    "message": "Tümünü Uyandır"
+  },
+  "unsuspendInBackground": {
+    "message": "Sekmeyi arka planda uyandır"
+  },
+  "suspendBtn": {
+    "message": "Uyut"
+  },
+  "unsuspendBtn": {
+    "message": "Uyandır"
+  },
+  "currentTabMarker": {
+    "message": "(Aktif)"
+  },
+  "tabSuspendedTitle": {
+    "message": "Sekme Uyku Modunda!"
+  },
+  "tabSuspendedDesc": {
+    "message": "Bu sekme bellek (RAM) tasarrufu sağlamak için askıya alındı."
+  },
+  "restoreHint": {
+    "message": "Sekmeyi uyandırmak için sayfada herhangi bir yere tıklayın."
+  },
+  "restoreHintClickOnly": {
+    "message": "Sekmeyi uyandırmak için ekranda herhangi bir yere tıklayın."
+  },
+  "whitelistBtn": {
+    "message": "Bu Siteyi Asla Uyutma"
+  },
+  "untitledTab": {
+    "message": "Başlıksız Sekme"
+  },
+  "contextSuspendTab": {
+    "message": "Bu Sekmeyi Uyut"
+  },
+  "contextWhitelistSite": {
+    "message": "Bu Siteyi Asla Uyutma"
+  },
+  "sectionSuspensionMethod": {
+    "message": "Askıya Alma Yöntemi (Uyutma Modu)"
+  },
+  "suspensionMethodLabel": {
+    "message": "Sekmeler nasıl uyutulsun:"
+  },
+  "suspensionMethodPage": {
+    "message": "Görsel Bilgi Sayfası Göster (Varsayılan - Başlık, ikon ve buton içerir)"
+  },
+  "suspensionMethodDiscard": {
+    "message": "Sayfa Göstermeden Doğrudan Uyut (Native Discard - URL değişmeden sessizce uyutur)"
+  },
+  "suspensionMethodHint": {
+    "message": "Doğrudan uyutma modu, sekmeyi özel sayfaya yönlendirmeden tarayıcı seviyesinde dondurur ve RAM'i anında boşaltır."
+  },
+  "restoreTriggerLabel": {
+    "message": "Uyandırma Tetikleyicisi:"
+  },
+  "restoreTriggerAuto": {
+    "message": "Sekmeye geçildiğinde / tıklandığında otomatik uyandır"
+  },
+  "restoreTriggerClick": {
+    "message": "Yalnızca sayfaya tıklandığında uyandır (Sekmeye bakılsa bile uyanmasın)"
+  },
+  "restoreTriggerHint": {
+    "message": "'Yalnızca sayfaya tıklandığında' seçilirse, sekmeye geçseniz bile ekranda bir yere tıklayana kadar sekme uykuda kalır."
+  },
+  "unsuspendDelayLabel": {
+    "message": "Otomatik Uyandırma Gecikmesi:"
+  },
+  "delayInstant": {
+    "message": "Anında (0 saniye)"
+  },
+  "delay1Sec": {
+    "message": "1 saniye"
+  },
+  "delay2Sec": {
+    "message": "2 saniye"
+  },
+  "delay3Sec": {
+    "message": "3 saniye"
+  },
+  "delay5Sec": {
+    "message": "5 saniye"
+  },
+  "unsuspendDelayHint": {
+    "message": "Sekmeler arasında hızlıca gezinirken sekmelerin yanlışlıkla açılmasını engeller."
+  },
+  "sectionNotifications": {
+    "message": "Bildirimler ve Geri Bildirim"
+  },
+  "showRamToastLabel": {
+    "message": "Sekmeler uyutulduğunda RAM kazancı bildirimini göster"
+  },
+  "showRamToastHint": {
+    "message": "Sekme uyutulduğunda ekranda tahmini kazanılan RAM miktarını belirten şık bir bildirim gösterir."
+  },
+  "ramToastSingle": {
+    "message": "🌙 Sekme uyutuldu! ~{ram} MB RAM tasarrufu sağlandı."
+  },
+  "ramToastMultiple": {
+    "message": "🌙 {count} sekme uyutuldu! ~{ram} MB RAM tasarrufu sağlandı."
+  },
+  "animalThemeLabel": {
+    "message": "Uyuyan Hayvan Maskotu:"
+  },
+  "animalCat": {
+    "message": "🐱 Sarı Tekir Kedi (Sıcak & Rahat)"
+  },
+  "animalCatDark": {
+    "message": "🐈‍⬛ Kara Kedi & Hilal Ay"
+  },
+  "animalDog": {
+    "message": "🐶 Uyuyan Köpekçik (Sadık)"
+  },
+  "animalPanda": {
+    "message": "🐼 Uyuyan Panda (Huzurlu Bambu)"
+  },
+  "animalKoala": {
+    "message": "🐨 Uyuyan Koala (Ağaç Dalı)"
+  },
+  "animalNone": {
+    "message": "🚫 Maskotsuz (Sade & Minimal)"
+  },
+  "animalDescCat": {
+    "message": "Askıya alınan sekmelerde huzurla kıvrılıp uyuyarak RAM tasarrufunuzu izler."
+  },
+  "animalDescCatDark": {
+    "message": "Gece hilalinin altında sessizce uyuyan gizemli ve şık kara kedi."
+  },
+  "animalDescDog": {
+    "message": "Siz sekmeyi geri yükleyene kadar mışıl mışıl uyuyan sadık dostunuz."
+  },
+  "animalDescPanda": {
+    "message": "Yeşil bambuların arasında huzur ve dinginlikle uyuyan sevimli panda."
+  },
+  "animalDescKoala": {
+    "message": "Okaliptüs dalına sarılıp tatlı rüyalara dalan sakin koala."
+  },
+  "animalDescNone": {
+    "message": "Hiçbir hayvan görseli olmadan son derece sade ve minimal görünüm."
+  },
+  "animalThemeHint": {
+    "message": "Askıya alınan sekmelerde gösterilecek sevimli uyuyan hayvan arkadaşınızı seçin."
+  },
+  "suspendedMemorySavedBadge": {
+    "message": "Kazanılan Bellek: ~120 MB"
+  },
+  "suspendedSinceText": {
+    "message": "Tarayıcınızın hızını ve gücünü korumak için huzurla uyuyor."
+  },
+  "restoreTabButton": {
+    "message": "Sekmeyi Şimdi Uyandır"
+  },
+  "unsuspendInBackgroundTooltip": {
+    "message": "İşaretliyse, uyuyan bir sekmeyi uyandırdığınızda bulunduğunuz sayfadan ayrılmazsınız; seçilen sekme arka planda sessizce yüklenir."
+  },
+  "appDesc": {
+    "message": "Belleğinizi geri kazanın! TabSuspender HaYTooL boşta duran sekmeleri otomatik/manuel uyutarak RAM tasarrufu ve maksimum hız sağlar."
+  },
+  "commandSuspendCurrent": {
+    "message": "Mevcut sekmeyi askıya al / uyut"
+  },
+  "commandSuspendAll": {
+    "message": "Mevcut penceredeki tüm sekmeleri uyut"
+  },
+  "commandSuspendOthers": {
+    "message": "Mevcut sekme hariç diğer tüm sekmeleri uyut"
+  },
+  "commandUnsuspendAll": {
+    "message": "Mevcut penceredeki tüm uyuyan sekmeleri geri yükle"
+  }
+}

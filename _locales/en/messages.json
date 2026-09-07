@@ -1,0 +1,395 @@
+{
+  "appName": {
+    "message": "TabSuspender HaYTooL"
+  },
+  "settingsTitle": {
+    "message": "TabSuspender HaYTooL Settings"
+  },
+  "saveButton": {
+    "message": "Save Settings"
+  },
+  "settingsSaved": {
+    "message": "Settings saved!"
+  },
+  "resetButton": {
+    "message": "Restore Defaults"
+  },
+  "resetSuccess": {
+    "message": "Defaults restored!"
+  },
+  "resetConfirm": {
+    "message": "Are you sure you want to reset all settings to default values?"
+  },
+  "sectionAutoSuspend": {
+    "message": "Automatic Suspension"
+  },
+  "sectionExclusions": {
+    "message": "Never Suspend These Tabs"
+  },
+  "sectionRestore": {
+    "message": "Auto-Restore"
+  },
+  "sectionAppearance": {
+    "message": "Appearance & Language"
+  },
+  "sectionWhitelist": {
+    "message": "Never Suspend URLs"
+  },
+  "sectionShortcuts": {
+    "message": "Keyboard Shortcuts"
+  },
+  "sectionAbout": {
+    "message": "About & Links"
+  },
+  "disableAutoSuspension": {
+    "message": "Disable automatic suspension"
+  },
+  "suspendAfterLabel": {
+    "message": "Automatically suspend tabs after:"
+  },
+  "sec": {
+    "message": "seconds"
+  },
+  "min": {
+    "message": "minutes"
+  },
+  "hours": {
+    "message": "hours"
+  },
+  "neverSuspendPinned": {
+    "message": "Pinned tabs"
+  },
+  "neverSuspendActive": {
+    "message": "The active tab in each window"
+  },
+  "neverSuspendAudio": {
+    "message": "Tabs playing audio"
+  },
+  "neverSuspendOffline": {
+    "message": "Tabs when offline"
+  },
+  "autoUnsuspendOnView": {
+    "message": "Automatically unsuspend tab when it is viewed"
+  },
+  "iconClickActionLabel": {
+    "message": "When extension icon is clicked:"
+  },
+  "iconClickSuspendOthers": {
+    "message": "Suspend all other tabs (Except current)"
+  },
+  "iconClickPopup": {
+    "message": "Open popup menu"
+  },
+  "themeLabel": {
+    "message": "Theme:"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
+  "themeDiscord": {
+    "message": "Discord (Blurple & Dark)"
+  },
+  "themeYouTube": {
+    "message": "YouTube (OLED Black & Red)"
+  },
+  "themeMatrix": {
+    "message": "Matrix (Hacker Green & Dark)"
+  },
+  "languageLabel": {
+    "message": "Language / Dil:"
+  },
+  "addContextMenu": {
+    "message": "Add \"Suspend Tab\" to right-click menu"
+  },
+  "whitelistHint": {
+    "message": "Supports * as a wildcard (e.g. *.reddit.com/* or mail.google.com). One per line."
+  },
+  "whitelistPlaceholder": {
+    "message": "e.g., https://mail.google.com or *.reddit.com/*"
+  },
+  "shortcutsDesc": {
+    "message": "Chrome extensions manage shortcuts through Chrome's dedicated shortcut manager for security."
+  },
+  "shortcutsBtn": {
+    "message": "Open Chrome Shortcuts Page"
+  },
+  "shortcutsNote": {
+    "message": "Find \"TabSuspender HaYTooL\" and click the edit pencil icon to assign keys."
+  },
+  "sectionGist": {
+    "message": "Cloud & GitHub Gist Sync"
+  },
+  "gistDesc": {
+    "message": "Sync your settings and whitelist across different browsers (Chrome, Edge, Helium, Brave, etc.) via GitHub Gist."
+  },
+  "githubTokenLabel": {
+    "message": "GitHub Personal Access Token (PAT):"
+  },
+  "githubTokenPlaceholder": {
+    "message": "ghp_xxxxxxxxxxxxxxxxxxxx (Needs 'gist' permission)"
+  },
+  "gistIdLabel": {
+    "message": "Gist ID (Optional for first backup):"
+  },
+  "gistIdPlaceholder": {
+    "message": "Auto-filled after first backup or paste existing Gist ID"
+  },
+  "btnBackupGist": {
+    "message": "Upload to Gist"
+  },
+  "btnRestoreGist": {
+    "message": "Restore from Gist"
+  },
+  "btnListGists": {
+    "message": "Browse Backups"
+  },
+  "selectBackupPrompt": {
+    "message": "Select a Backup to Restore:"
+  },
+  "backupListLoading": {
+    "message": "Loading backups from GitHub..."
+  },
+  "backupListEmpty": {
+    "message": "No TabSuspender backups found on your GitHub account."
+  },
+  "gistConnected": {
+    "message": "GitHub Connected"
+  },
+  "gistLogoutBtn": {
+    "message": "Log Out / Disconnect"
+  },
+  "gistLogoutConfirm": {
+    "message": "Are you sure you want to disconnect GitHub and clear your saved Token and Gist ID?"
+  },
+  "gistLoggedOutSuccess": {
+    "message": "GitHub disconnected successfully."
+  },
+  "gistBackupSuccess": {
+    "message": "Settings uploaded to Gist successfully!"
+  },
+  "gistRestoreSuccess": {
+    "message": "Settings restored from Gist successfully!"
+  },
+  "gistSearching": {
+    "message": "Searching for backups on GitHub..."
+  },
+  "gistNotFound": {
+    "message": "No TabSuspender backup found in your GitHub account."
+  },
+  "gistErrorNoToken": {
+    "message": "Please enter a valid GitHub Token with 'gist' scope."
+  },
+  "gistErrorNoId": {
+    "message": "Please provide a Gist ID or enter your Token to browse backups."
+  },
+  "gistHelpLink": {
+    "message": "Create Token on GitHub (Auto-named with Date)"
+  },
+  "btnExportFile": {
+    "message": "Export JSON File"
+  },
+  "btnImportFile": {
+    "message": "Import JSON File"
+  },
+  "developer": {
+    "message": "by HaYTo"
+  },
+  "officialSite": {
+    "message": "Official Web Site"
+  },
+  "portal": {
+    "message": "HaYTooL PoRTaL"
+  },
+  "githubRepo": {
+    "message": "GitHub Repo"
+  },
+  "supportFeedback": {
+    "message": "Developer Support & Feedback:"
+  },
+  "loadingTabs": {
+    "message": "Loading tabs..."
+  },
+  "noTabs": {
+    "message": "No tabs open in this window."
+  },
+  "suspendAll": {
+    "message": "Suspend All"
+  },
+  "suspendOthers": {
+    "message": "Suspend Others"
+  },
+  "unsuspendAll": {
+    "message": "Unsuspend All"
+  },
+  "unsuspendInBackground": {
+    "message": "Unsuspend in background"
+  },
+  "suspendBtn": {
+    "message": "Suspend"
+  },
+  "unsuspendBtn": {
+    "message": "Unsuspend"
+  },
+  "currentTabMarker": {
+    "message": "(Current)"
+  },
+  "tabSuspendedTitle": {
+    "message": "Tab Suspended!"
+  },
+  "tabSuspendedDesc": {
+    "message": "This tab was suspended to save system memory."
+  },
+  "restoreHint": {
+    "message": "Click anywhere to restore this tab."
+  },
+  "restoreHintClickOnly": {
+    "message": "Click anywhere on the screen to restore this tab."
+  },
+  "whitelistBtn": {
+    "message": "Never Suspend This Site"
+  },
+  "untitledTab": {
+    "message": "Untitled Tab"
+  },
+  "contextSuspendTab": {
+    "message": "Suspend This Tab"
+  },
+  "contextWhitelistSite": {
+    "message": "Never Suspend This Site"
+  },
+  "sectionSuspensionMethod": {
+    "message": "Suspension Mode"
+  },
+  "suspensionMethodLabel": {
+    "message": "Choose how tabs should be suspended:"
+  },
+  "suspensionMethodPage": {
+    "message": "Information Page (Default - Shows title, favicon & restore button)"
+  },
+  "suspensionMethodDiscard": {
+    "message": "Direct Native Sleep (No page shown - Tab sleeps silently without changing URL)"
+  },
+  "suspensionMethodHint": {
+    "message": "Native mode frees RAM immediately without navigating away from the original URL."
+  },
+  "restoreTriggerLabel": {
+    "message": "Restore Trigger:"
+  },
+  "restoreTriggerAuto": {
+    "message": "Automatically restore when tab is switched/viewed"
+  },
+  "restoreTriggerClick": {
+    "message": "Only restore when clicked (Never restore just by viewing)"
+  },
+  "restoreTriggerHint": {
+    "message": "If 'Only restore when clicked' is selected, simply viewing the tab will keep it sleeping until you click anywhere."
+  },
+  "unsuspendDelayLabel": {
+    "message": "Automatic Wake-up Delay:"
+  },
+  "delayInstant": {
+    "message": "Instant (0 seconds)"
+  },
+  "delay1Sec": {
+    "message": "1 second"
+  },
+  "delay2Sec": {
+    "message": "2 seconds"
+  },
+  "delay3Sec": {
+    "message": "3 seconds"
+  },
+  "delay5Sec": {
+    "message": "5 seconds"
+  },
+  "unsuspendDelayHint": {
+    "message": "Prevents accidental wake-ups when quickly cycling through tabs."
+  },
+  "sectionNotifications": {
+    "message": "Notifications & Feedback"
+  },
+  "showRamToastLabel": {
+    "message": "Show RAM savings toast notification when tabs are suspended"
+  },
+  "showRamToastHint": {
+    "message": "Displays a temporary notification showing estimated RAM saved."
+  },
+  "ramToastSingle": {
+    "message": "🌙 Tab suspended! ~{ram} MB RAM saved."
+  },
+  "ramToastMultiple": {
+    "message": "🌙 {count} tabs suspended! ~{ram} MB RAM saved."
+  },
+  "animalThemeLabel": {
+    "message": "Sleeping Mascot / Animal:"
+  },
+  "animalCat": {
+    "message": "🐱 Ginger Cat (Cozy)"
+  },
+  "animalCatDark": {
+    "message": "🐈‍⬛ Black Cat & Crescent Moon"
+  },
+  "animalDog": {
+    "message": "🐶 Sleeping Puppy (Loyal)"
+  },
+  "animalPanda": {
+    "message": "🐼 Sleeping Panda (Zen)"
+  },
+  "animalKoala": {
+    "message": "🐨 Sleeping Koala (Peaceful)"
+  },
+  "animalNone": {
+    "message": "🚫 No Mascot (Minimalist)"
+  },
+  "animalDescCat": {
+    "message": "Curled up peacefully on your suspended tabs, guarding your RAM."
+  },
+  "animalDescCatDark": {
+    "message": "Mystic black cat sleeping quietly under the crescent night sky."
+  },
+  "animalDescDog": {
+    "message": "Loyal puppy napping soundly until you wake the tab up."
+  },
+  "animalDescPanda": {
+    "message": "Zen panda snoozing amongst green bamboo leaves."
+  },
+  "animalDescKoala": {
+    "message": "Gentle koala resting cozily on a eucalyptus branch."
+  },
+  "animalDescNone": {
+    "message": "Clean and minimalist layout without any animal illustration."
+  },
+  "animalThemeHint": {
+    "message": "Choose the cute animal companion that rests on your suspended tabs."
+  },
+  "suspendedMemorySavedBadge": {
+    "message": "Memory Saved: ~120 MB"
+  },
+  "suspendedSinceText": {
+    "message": "Sleeping peacefully to keep your browser fast."
+  },
+  "restoreTabButton": {
+    "message": "Wake Up Tab"
+  },
+  "unsuspendInBackgroundTooltip": {
+    "message": "If checked, restoring a tab will load it silently in the background without switching away from your current tab."
+  },
+  "appDesc": {
+    "message": "Reclaim memory! TabSuspender HaYTooL automatically and manually suspends inactive tabs, boosting browser performance and saving RAM."
+  },
+  "commandSuspendCurrent": {
+    "message": "Suspend the current tab"
+  },
+  "commandSuspendAll": {
+    "message": "Suspend all tabs in the current window"
+  },
+  "commandSuspendOthers": {
+    "message": "Suspend all tabs except the current one"
+  },
+  "commandUnsuspendAll": {
+    "message": "Unsuspend all suspended tabs in the current window"
+  }
+}
