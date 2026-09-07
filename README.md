@@ -42,6 +42,23 @@
 - **🔒 100% Offline-First & Privacy:** Zero remote telemetry, zero third-party tracking scripts. All operations run locally inside your browser sandbox.
 - **🌍 Native Store `_locales` & Bilingual:** Full Microsoft Edge Add-ons & Chrome Web Store `_locales` compatibility (EN & TR) with dynamic in-app language switching.
 
+### 📸 Screenshots & UI Preview
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="70%">
+        <strong>⚙️ Advanced Settings Dashboard</strong><br/><br/>
+        <img src="docs/screenshots/ingilizce-ayarlar.png" alt="English Settings Dashboard" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+      </td>
+      <td align="center" width="30%">
+        <strong>🖱️ Quick Popup Manager</strong><br/><br/>
+        <img src="docs/screenshots/ingilizce-popup.png" alt="English Popup Manager" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ### 📦 Installation Guide
 
 #### Method 1: Load Unpacked in Developer Mode (Recommended)
@@ -92,6 +109,23 @@
 - **⌨️ Özelleştirilebilir Kısayollar:** `Ctrl+Shift+S` gibi kısayollarla mevcut sekmeyi veya diğer tüm sekmeleri anında tek tuşla askıya alma imkanı.
 - **🔒 Sıfır Telemetri & %100 Gizlilik:** Hiçbir kullanıcı verisi veya geçmişi dış sunuculara gönderilmez. Eklenti tamamen yerel bellekte (`chrome.storage`) çalışır.
 
+### 📸 Ekran Görüntüleri & Arayüz
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="70%">
+        <strong>⚙️ Gelişmiş Ayarlar Kontrol Paneli</strong><br/><br/>
+        <img src="docs/screenshots/turkce-ayarlar.png" alt="Türkçe Ayarlar Paneli" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+      </td>
+      <td align="center" width="30%">
+        <strong>🖱️ Hızlı Yönetim Popup Menüsü</strong><br/><br/>
+        <img src="docs/screenshots/turkce-popup.png" alt="Türkçe Hızlı Yönetim Menüsü" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ### 🛠️ Kurulum Rehberi
 
 #### Yöntem 1: Geliştirici Moduyla Doğrudan Yükleme (Önerilen)
@@ -106,7 +140,7 @@
 6. Eklenti simgesini sabitlemek için yapboz ikonuna tıklayıp **TabSuspender HaYTooL**'u sabitleyin.
 
 #### Yöntem 2: Hazır WebStore ZIP Paketini Kullanma
-- [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) sayfasında yer alan en son `TabSuspender-HaYTooL-v2.6.zip` paketini indirip doğrudan tarayıcınıza yükleyebilirsiniz.
+- [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) sayfasında yer alan en son `TabSuspender-HaYTooL-v2.7.zip` paketini indirip doğrudan tarayıcınıza yükleyebilirsiniz.
 
 ---
 

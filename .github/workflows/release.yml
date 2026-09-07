@@ -38,6 +38,7 @@ jobs:
             -x "*.zip" \
             -x "*.crx" \
             -x "README.md" \
+            -x "docs/*" \
             -x ".gitignore"
 
       - name: Create or Update GitHub Release
