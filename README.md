@@ -5,7 +5,7 @@
   <p>
     <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/"><img src="https://img.shields.io/badge/Live_Site-Visit_Now-purple?style=for-the-badge&logo=safari" alt="Live Website"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL"><img src="https://img.shields.io/badge/GitHub-Main_Repo-blue?style=for-the-badge&logo=github" alt="GitHub Repo"/></a>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.6-brightgreen?style=for-the-badge" alt="Release"/></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.8-brightgreen?style=for-the-badge" alt="Release"/></a>
   </p>
 </div>
 
