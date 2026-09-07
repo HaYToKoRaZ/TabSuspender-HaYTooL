@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabSuspender HaYTooL | Akıllı, Hafif ve Uyuyan Kedi Temalı Sekme Uyutucu</title>
+  <meta name="description" content="Kullanılmayan sekmeleri sevimli bir kedi gibi mışıl mışıl uyutarak RAM ve CPU tüketimini azaltın. Açık kaynak kodlu ve gizlilik odaklı Chrome eklentisi.">
+  <meta name="theme-color" content="#0a0d14">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #0a0d16;
+      --bg-secondary: #101524;
+      --bg-card: rgba(16, 22, 38, 0.82);
+      --bg-card-hover: rgba(25, 34, 58, 0.9);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(245, 158, 11, 0.35);
+      
+      --accent-cat: #f59e0b;
+      --accent-cat-glow: rgba(245, 158, 11, 0.28);
+      --accent-primary: #6366f1;
+      --accent-secondary: #38bdf8;
+      --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+      --cat-gradient: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Glows */
+    .bg-glow-1 {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 750px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(99, 102, 241, 0.12) 40%, transparent 75%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow-2 {
+      position: absolute;
+      top: 950px;
+      right: -100px;
+      width: 550px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header / Navbar */
+    header {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 13, 22, 0.85);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-cat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--cat-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px var(--accent-cat-glow);
+      font-size: 1.4rem;
+    }
+
+    .nav-right-cluster {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cat);
+    }
+
+    /* Language Switcher Buttons with SVG Flags */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--accent-cat);
+      color: #1a0f00;
+      box-shadow: 0 2px 8px var(--accent-cat-glow);
+    }
+
+    .flag-icon {
+      width: 15px;
+      height: 11px;
+      border-radius: 2px;
+      display: inline-block;
+      vertical-align: middle;
+      box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      border: 1px solid transparent;
+    }
+
+    .btn-cat {
+      background: var(--cat-gradient);
+      color: #1a0f00;
+      font-weight: 700;
+      box-shadow: 0 4px 20px var(--accent-cat-glow);
+    }
+
+    .btn-cat:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 26px rgba(245, 158, 11, 0.45);
+      filter: brightness(1.08);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border-color: var(--border-color);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Store Cards Grid (3 Official Store Links like StartPage) */
+    .stores-container {
+      margin: 25px 0 45px;
+    }
+
+    .stores-title {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .stores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .store-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .store-card:hover {
+      transform: translateY(-3px);
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cat);
+      box-shadow: 0 12px 28px -8px var(--accent-cat-glow);
+    }
+
+    .store-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+    }
+
+    .store-info {
+      flex-grow: 1;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .store-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-cat);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .store-name {
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #ffffff;
+    }
+
+    .store-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fcd34d;
+      margin-bottom: 22px;
+    }
+
+    .hero-badge-cat {
+      animation: catNap 3s ease-in-out infinite alternate;
+      display: inline-block;
+    }
+
+    @keyframes catNap {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(4deg); }
+    }
+
+    .hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.3rem, 4.8vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+      background: linear-gradient(180deg, #ffffff 40%, #e2e8f0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 .cat-highlight {
+      background: var(--cat-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    /* Sleeping Cat Animated Stage */
+    .cat-stage {
+      max-width: 920px;
+      margin: 0 auto 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(245, 158, 11, 0.12);
+      backdrop-filter: blur(20px);
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      align-items: center;
+      gap: 32px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-illustration-box {
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(16, 22, 38, 0.3) 70%);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 18px;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* SVG Sleeping Cat */
+    .sleeping-cat-svg {
+      width: 100%;
+      max-width: 270px;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+      animation: catBreathing 4s ease-in-out infinite;
+    }
+
+    @keyframes catBreathing {
+      0%, 100% {
+        transform: scale(1) translateY(0);
+      }
+      50% {
+        transform: scale(1.025) translateY(-3px);
+      }
+    }
+
+    .zzz-text {
+      position: absolute;
+      top: 25px;
+      right: 40px;
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-weight: 700;
+      color: #fcd34d;
+      font-size: 1.4rem;
+      animation: floatZzz 2.8s infinite ease-out;
+      opacity: 0;
+      user-select: none;
+    }
+
+    .zzz-text:nth-child(2) {
+      top: 15px;
+      right: 25px;
+      font-size: 1.1rem;
+      animation-delay: 1s;
+    }
+
+    .zzz-text:nth-child(3) {
+      top: 8px;
+      right: 15px;
+      font-size: 0.85rem;
+      animation-delay: 1.8s;
+    }
+
+    @keyframes floatZzz {
+      0% {
+        transform: translate(0, 0) scale(0.7);
+        opacity: 0;
+      }
+      30% {
+        opacity: 0.9;
+      }
+      80% {
+        transform: translate(15px, -24px) scale(1.2);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(25px, -36px) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .cat-story {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cat-story h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fef08a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-story p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .cat-meta-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    /* Interactive Mockup */
+    .mockup-wrap {
+      max-width: 920px;
+      margin: 0 auto 50px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.1);
+      backdrop-filter: blur(20px);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .mockup-header {
+      background: rgba(16, 22, 38, 0.95);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mockup-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .mockup-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .mockup-tabs {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      overflow-x: auto;
+    }
+
+    .mockup-tab {
+      padding: 7px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+
+    .mockup-tab.active {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: var(--accent-cat);
+      color: #fef08a;
+    }
+
+    .mockup-tab.suspended {
+      opacity: 0.75;
+      border-style: dashed;
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .mockup-tab.suspended:hover {
+      opacity: 1;
+      border-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    .tab-badge {
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fcd34d;
+      font-weight: 600;
+    }
+
+    .mockup-body {
+      padding: 36px;
+      text-align: center;
+      position: relative;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #fcd34d;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Themes Showcase */
+    .theme-showcase {
+      margin-top: 30px;
+      padding: 24px;
+      background: rgba(16, 22, 38, 0.5);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .theme-pills {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .theme-badge {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-light { background: #ffffff; color: #1e293b; }
+    .theme-dark { background: #131b2e; color: #60a5fa; border-color: #3b82f6; }
+    .theme-discord { background: #2f3136; color: #5865f2; border-color: #5865f2; }
+    .theme-youtube { background: #181818; color: #ff0000; border-color: #ff0000; }
+    .theme-matrix { background: #0a110a; color: #00ff41; border-color: #00ff41; }
+
+    /* Features Grid */
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px -10px rgba(245, 158, 11, 0.15);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Installation Steps */
+    .install-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 48px 36px;
+      margin-bottom: 80px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .step-box {
+      padding: 26px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cat-gradient);
+      color: #1a0f00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .step-box h4 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .step-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .code-snippet {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      color: #fcd34d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      word-break: break-all;
+    }
+
+    /* FAQ Section */
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+
+    .faq-item:hover {
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-answer {
+      padding: 0 24px 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-icon {
+      transition: transform var(--transition-fast);
+      color: #f59e0b;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    footer a:hover {
+      color: var(--accent-cat);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .stores-grid {
+        grid-template-columns: 1fr;
+      }
+      .cat-stage {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cat-story h3 {
+        justify-content: center;
+      }
+      .cat-meta-pills {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding: 40px 0 30px;
+      }
+      .mockup-body {
+        padding: 20px;
+      }
+      .install-section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrap">
+      <a href="#" class="brand">
+        <div class="brand-cat-icon">🐱</div>
+        TabSuspender HaYTooL
+      </a>
+
+      <div class="nav-right-cluster">
+        <ul class="nav-links">
+          <li><a href="#stores" data-i18n="navStores">Mağazalar</a></li>
+          <li><a href="#cat-intro" data-i18n="navCat">Kedi Teması</a></li>
+          <li><a href="#features" data-i18n="navFeatures">Özellikler</a></li>
+          <li><a href="#install" data-i18n="navInstall">Kurulum</a></li>
+          <li><a href="#faq" data-i18n="navFaq">S.S.S</a></li>
+        </ul>
+
+        <!-- Language Switcher with Flags -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" id="btnLangTR" title="Türkçe">
+            <svg class="flag-icon" viewBox="0 0 1200 800">
+              <rect width="1200" height="800" fill="#E30A17"/>
+              <circle cx="425" cy="400" r="200" fill="#ffffff"/>
+              <circle cx="475" cy="400" r="160" fill="#E30A17"/>
+              <polygon points="583,400 660,375 631,450 631,350 660,425" fill="#ffffff"/>
+            </svg>
+            TR
+          </button>
+          <button class="lang-btn" id="btnLangEN" title="English">
+            <svg class="flag-icon" viewBox="0 0 60 30">
+              <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+              <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+              <g clip-path="url(#s)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+              </g>
+            </svg>
+            EN
+          </button>
+        </div>
+
+        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="btn btn-secondary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="hero-badge-cat">🐾</span>
+        <span data-i18n="heroBadge">Sekmeleriniz Yumuşacık Bir Kedi Gibi Uyusun</span>
+      </div>
+
+      <h1 data-i18n="heroTitle">
+        Sekmeleriniz Mışıl Mışıl Uyurken, <br>
+        <span class="cat-highlight">RAM Tüketiminiz Sıfırlansın</span>
+      </h1>
+
+      <p class="hero-desc" data-i18n="heroDesc">
+        TabSuspender HaYTooL, arka planda unutulan onlarca sekmeyi dinlenme sepetine alır. Bilgisayarınızın nefes almasını sağlar, fan gürültüsünü keser ve pil ömrünü uzatır.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#install" class="btn btn-cat">
+          <span data-i18n="heroBtnInstall">🐾 Hemen Ücretsiz Kurun</span>
+        </a>
+        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="btn btn-secondary" data-i18n="heroBtnRepo">
+          ⭐ GitHub Deposu (Kaynak Kod)
+        </a>
+      </div>
+
+      <!-- 3 Mağaza Kartı (HaYTooL-Cloud-StartPage Tarzı) -->
+      <div class="stores-container" id="stores">
+        <div class="stores-title" data-i18n="storesHeader">Resmi Mağaza & Tarayıcı Bağlantıları</div>
+        <div class="stores-grid">
+          <!-- Chrome Store -->
+          <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="store-card" id="chromeStoreBtn" title="Chrome Web Store">
+            <div class="store-icon-wrap">
+              <img src="assets/chrome.svg" alt="Google Chrome" width="28" height="28" style="object-fit: contain;">
+            </div>
+            <div class="store-info">
+              <span class="store-badge">Chrome Web Store</span>
+              <div class="store-name">Google Chrome</div>
+              <span class="store-sub" data-i18n="storeChromeSub">Chrome Mağazası</span>
+            </div>
+          </a>
+
+          <!-- Microsoft Edge Store -->
+          <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="store-card" id="edgeStoreBtn" title="Microsoft Edge Add-ons">
+            <div class="store-icon-wrap">
+              <img src="assets/edge.svg" alt="Microsoft Edge" width="28" height="28" style="object-fit: contain;">
+            </div>
+            <div class="store-info">
+              <span class="store-badge">Edge Eklentileri</span>
+              <div class="store-name">Microsoft Edge</div>
+              <span class="store-sub" data-i18n="storeEdgeSub">Microsoft Mağazası</span>
+            </div>
+          </a>
+
+          <!-- Helium & Chromium -->
+          <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="store-card" id="heliumStoreBtn" title="Helium Browser">
+            <div class="store-icon-wrap">
+              <img src="assets/helium.png" alt="Helium Browser" width="28" height="28" style="object-fit: contain; border-radius: 6px;">
+            </div>
+            <div class="store-info">
+              <span class="store-badge">Helium / Chromium</span>
+              <div class="store-name">Helium Browser</div>
+              <span class="store-sub" data-i18n="storeHeliumSub">Chromium Tabanlı</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Uyuyan Kedi İnteraktif Tanıtım Sahnesi -->
+      <div class="cat-stage" id="cat-intro">
+        <div class="cat-illustration-box">
+          <span class="zzz-text">Zzz...</span>
+          <span class="zzz-text">Zz...</span>
+          <span class="zzz-text">z...</span>
+          
+          <!-- Cute Sleeping Cat SVG -->
+          <svg class="sleeping-cat-svg" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cushion -->
+            <ellipse cx="160" cy="175" rx="140" ry="32" fill="#1e293b" stroke="rgba(245, 158, 11, 0.25)" stroke-width="3"/>
+            <!-- Body -->
+            <ellipse cx="150" cy="140" rx="90" ry="55" fill="url(#catBodyGrad)"/>
+            <!-- Curled Tail -->
+            <path d="M 235 145 C 265 145 275 110 260 95 C 248 83 235 98 245 112 C 250 120 248 135 230 142" fill="none" stroke="#f59e0b" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="260" cy="95" r="7" fill="#fbbf24"/>
+            <!-- Head -->
+            <circle cx="95" cy="115" r="42" fill="url(#catBodyGrad)"/>
+            <!-- Ears -->
+            <polygon points="62,85 75,50 98,78" fill="#f59e0b"/>
+            <polygon points="68,82 77,58 92,77" fill="#fda4af"/>
+            <polygon points="108,78 128,52 136,86" fill="#f59e0b"/>
+            <polygon points="112,77 126,58 131,83" fill="#fda4af"/>
+            <!-- Eyes -->
+            <path d="M 72 118 Q 80 126 88 118" stroke="#78350f" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M 102 118 Q 110 126 118 118" stroke="#78350f" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <!-- Nose -->
+            <polygon points="92,126 98,126 95,130" fill="#f43f5e"/>
+            <!-- Whiskers Left -->
+            <line x1="50" y1="124" x2="72" y2="127" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+            <line x1="48" y1="133" x2="72" y2="132" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+            <!-- Whiskers Right -->
+            <line x1="118" y1="127" x2="140" y2="124" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+            <line x1="118" y1="132" x2="142" y2="133" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+            <!-- Paws -->
+            <ellipse cx="118" cy="158" rx="16" ry="11" fill="#fbbf24"/>
+            <ellipse cx="88" cy="158" rx="16" ry="11" fill="#fbbf24"/>
+            <!-- Stripes -->
+            <path d="M 140 95 Q 148 110 140 120" stroke="rgba(180, 83, 9, 0.4)" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <path d="M 165 92 Q 172 108 165 122" stroke="rgba(180, 83, 9, 0.4)" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <path d="M 190 98 Q 198 112 190 126" stroke="rgba(180, 83, 9, 0.4)" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <defs>
+              <linearGradient id="catBodyGrad" x1="60" y1="60" x2="240" y2="190" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#fbbf24"/>
+                <stop offset="1" stop-color="#f59e0b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="cat-story">
+          <h3 data-i18n="catStoryTitle">🐱 "Sekmeleriniz Uyurken Belleğiniz Rahatlar"</h3>
+          <p data-i18n="catStoryDesc1">
+            Tıpkı bir kedinin gün boyu güneşli bir köşede huzurla uyuması gibi; TabSuspender arka planda bakmadığınız sekmeleri derin uyku moduna alır.
+          </p>
+          <p data-i18n="catStoryDesc2">
+            Uyuyan sekme hiçbir JavaScript veya reklam döngüsü çalıştırmaz. Geri döndüğünüzde ise tek bir pati (tıklama) darbesiyle sayfa anında eski haline uyanır!
+          </p>
+          <div class="cat-meta-pills">
+            <span class="cat-pill" data-i18n="catPill1">🐾 %85'e Varan RAM Tasarrufu</span>
+            <span class="cat-pill" data-i18n="catPill2">⚡ Anında Uyanış</span>
+            <span class="cat-pill" data-i18n="catPill3">🔒 Sıfır Telemetri</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canlı Mockup / Önizleme -->
+      <div class="mockup-wrap">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <div class="mockup-dot dot-red"></div>
+            <div class="mockup-dot dot-yellow"></div>
+            <div class="mockup-dot dot-green"></div>
+          </div>
+          <div class="mockup-tabs">
+            <div class="mockup-tab active">
+              <span id="tabMock1" data-i18n="tabMock1">🚀 Aktif Sekme (Uyanık)</span>
+            </div>
+            <div class="mockup-tab suspended" id="mockTabWrap2" title="Uyandırmak için tıklayın" data-i18n-title="tabMockTooltip">
+              <span id="tabMock2" data-i18n="tabMock2">🐱 YouTube (Kedi Uykusunda)</span>
+              <span class="tab-badge">-185 MB</span>
+            </div>
+            <div class="mockup-tab suspended" id="mockTabWrap3" title="Uyandırmak için tıklayın" data-i18n-title="tabMockTooltip">
+              <span id="tabMock3" data-i18n="tabMock3">🐱 X / Twitter (Kedi Uykusunda)</span>
+              <span class="tab-badge">-240 MB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-body">
+          <div class="stats-bar">
+            <div class="stat-card">
+              <div class="stat-val">1,480 MB</div>
+              <div class="stat-label" data-i18n="statRam">Kurtarılan Toplam Bellek</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val" data-i18n="statTabsVal">14 Sekme</div>
+              <div class="stat-label" data-i18n="statTabs">Uyku Modundaki Sekmeler</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">%72</div>
+              <div class="stat-label" data-i18n="statCpu">Daha Az CPU & Pil Yükü</div>
+            </div>
+          </div>
+
+          <!-- 5 Theme Showcase -->
+          <div class="theme-showcase">
+            <p style="font-size: 0.92rem; color: #e2e8f0; font-weight: 600; margin-bottom: 4px;" data-i18n="themeHeader">
+              🎨 5 Farklı Özel Tema Desteği:
+            </p>
+            <div class="theme-pills">
+              <span class="theme-badge theme-light" data-i18n="tLight">☀️ Açık (Light)</span>
+              <span class="theme-badge theme-dark" data-i18n="tDark">🌙 Koyu (Dark)</span>
+              <span class="theme-badge theme-discord">🎮 Discord</span>
+              <span class="theme-badge theme-youtube">▶️ YouTube</span>
+              <span class="theme-badge theme-matrix">💻 Matrix</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="container" style="padding-top: 20px;">
+    <div class="section-title">
+      <h2 data-i18n="featHeaderTitle">Güçlü, Sevecen & Akıllı Özellikler</h2>
+      <p data-i18n="featHeaderDesc">Tarayıcınızın dizginlerini elinize alın, gereksiz kaynak tüketimine dur deyin.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💤</div>
+        <h3 data-i18n="f1Title">Otomatik Kedi Uykusu</h3>
+        <p data-i18n="f1Desc">Belirlediğiniz süre boyunca el sürülmeyen sekmeler kendiliğinden derin uykuya dalar ve belleği serbest bırakır.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 data-i18n="f2Title">Akıllı Koruma & Beyaz Liste</h3>
+        <p data-i18n="f2Desc">Sabitlenmiş sekmeler, ses çalan sayfalar veya eklediğiniz özel alan adları (*.reddit.com/* gibi) asla siz istemeden uyutulmaz.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 data-i18n="f3Title">Tek Dokunuşla Uyanış</h3>
+        <p data-i18n="f3Desc">Sekmeye geri tıkladığınız anda sayfa bekleme yapmadan orijinal URL'ye geri döner, çalışmalarınızı korur.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">☁️</div>
+        <h3 data-i18n="f4Title">GitHub Gist Bulut Eşitlemesi</h3>
+        <p data-i18n="f4Desc">Tüm ayarlarınızı ve beyaz listenizi GitHub Gist üzerinden yedekleyin; Chrome, Edge, Brave ve Helium arasında anında senkronize edin.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⌨️</div>
+        <h3 data-i18n="f5Title">Klavye Kısayolları</h3>
+        <p data-i18n="f5Desc">Ctrl+Shift+S gibi sezgisel kısayollarla mevcut sekmeyi veya diğer tüm sekmeleri anında tek tuşla askıya alın.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 data-i18n="f6Title">%100 Çevrimdışı & Güvenli</h3>
+        <p data-i18n="f6Desc">Sıfır telemetri, sıfır üçüncü parti takip kodu. Eklentiniz tamamen yerel tarayıcınızda koşar, gizliliğinize sadık kalır.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Steps -->
+  <section id="install" class="container">
+    <div class="install-section">
+      <div class="section-title" style="margin-bottom: 20px;">
+        <h2 data-i18n="instTitle">1 Dakikada Kolay Kurulum</h2>
+        <p data-i18n="instDesc">Chromium tabanlı tüm tarayıcılarda (Chrome, Edge, Brave, Opera, Helium) kolayca çalışır.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-box">
+          <div class="step-number">1</div>
+          <h4 data-i18n="step1Title">Projeyi İndirin</h4>
+          <p data-i18n="step1Desc">GitHub deposundan kaynak kodları indirin veya depoyu klonlayın.</p>
+          <div class="code-snippet">git clone https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL.git</div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number">2</div>
+          <h4 data-i18n="step2Title">Eklentiler Sayfasını Açın</h4>
+          <p data-i18n="step2Desc">Tarayıcınızın adres çubuğuna şu adresi yazarak geliştirici modunu etkinleştirin:</p>
+          <div class="code-snippet">chrome://extensions</div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number">3</div>
+          <h4 data-i18n="step3Title">Paketlenmemiş Öğeyi Yükleyin</h4>
+          <p data-i18n="step3Desc">Sağ üstteki "Geliştirici modu"nu açın ve "Paketlenmemiş öğe yükle" diyerek <code>main</code> klasörünü seçin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="container">
+    <div class="section-title">
+      <h2 data-i18n="faqTitle">Sıkça Sorulan Sorular</h2>
+      <p data-i18n="faqDesc">Merak edilen detaylar ve yanıtlar.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item open">
+        <div class="faq-question">
+          <span data-i18n="faqQ1">Kedi uykusuna yatan sekmedeki formlar silinir mi?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer" data-i18n="faqA1">
+          Askıya alma işlemi tarayıcının yerel geçmişini ve orijinal sayfa URL'sini korur. Önemli bir form dolduruyorsanız veya bankacılık işlemi yapıyorsanız o sekmeyi beyaz listeye ekleyebilir veya sabitleyebilirsiniz.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span data-i18n="faqQ2">YouTube veya Spotify dinlerken sekme uyur mu?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer" data-i18n="faqA2">
+          Asla! Akıllı ses algılama sistemi sayesinde arkada müzik, podcast veya video çalan hiçbir sekme siz durdurana kadar uyutulmaz.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span data-i18n="faqQ3">Bu eklenti ücretli mi veya reklam içerir mi?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer" data-i18n="faqA3">
+          Kesinlikle hayır. Proje %100 açık kaynak kodludur, reklamsızdır ve tamamen ücretsiz olarak geliştirilmektedir.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="https://haytokoraz.github.io/" target="_blank">🏛️ HaYTooL PoRTaL</a></li>
+        <li><a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank">🐙 GitHub Deposu</a></li>
+        <li><a href="https://x.com/HaYTo" target="_blank">🐦 X (@HaYTo)</a></li>
+        <li><a href="mailto:korazhayto@gmail.com">✉️ İletişim (korazhayto@gmail.com)</a></li>
+      </ul>
+      <p data-i18n="footerCopy">© 2026 TabSuspender HaYTooL • Geliştirici: korazhayto • Sevimli Kedi Uykusu Teması ile Hazırlandı 🐾</p>
+    </div>
+  </footer>
+
+  <script>
+    // Two Language Dictionary (TR / EN)
+    const siteTranslations = {
+      tr: {
+        navStores: "Mağazalar",
+        navCat: "Kedi Teması",
+        navFeatures: "Özellikler",
+        navInstall: "Kurulum",
+        navFaq: "S.S.S",
+        heroBadge: "Sekmeleriniz Yumuşacık Bir Kedi Gibi Uyusun",
+        heroTitle: "Sekmeleriniz Mışıl Mışıl Uyurken, <br><span class=\"cat-highlight\">RAM Tüketiminiz Sıfırlansın</span>",
+        heroDesc: "TabSuspender HaYTooL, arka planda unutulan onlarca sekmeyi dinlenme sepetine alır. Bilgisayarınızın nefes almasını sağlar, fan gürültüsünü keser ve pil ömrünü uzatır.",
+        heroBtnInstall: "🐾 Hemen Ücretsiz Kurun",
+        heroBtnRepo: "⭐ GitHub Deposu (Kaynak Kod)",
+        storesHeader: "Resmi Mağaza & Tarayıcı Bağlantıları",
+        storeChromeSub: "Chrome Mağazası",
+        storeEdgeSub: "Microsoft Mağazası",
+        storeHeliumSub: "Chromium Tabanlı",
+        catStoryTitle: "🐱 \"Sekmeleriniz Uyurken Belleğiniz Rahatlar\"",
+        catStoryDesc1: "Tıpkı bir kedinin gün boyu güneşli bir köşede huzurla uyuması gibi; TabSuspender arka planda bakmadığınız sekmeleri derin uyku moduna alır.",
+        catStoryDesc2: "Uyuyan sekme hiçbir JavaScript veya reklam döngüsü çalıştırmaz. Geri döndüğünüzde ise tek bir pati (tıklama) darbesiyle sayfa anında eski haline uyanır!",
+        catPill1: "🐾 %85'e Varan RAM Tasarrufu",
+        catPill2: "⚡ Anında Uyanış",
+        catPill3: "🔒 Sıfır Telemetri",
+        statRam: "Kurtarılan Toplam Bellek",
+        statTabs: "Uyku Modundaki Sekmeler",
+        statTabsVal: "14 Sekme",
+        statCpu: "Daha Az CPU & Pil Yükü",
+        tabMock1: "🚀 Aktif Sekme (Uyanık)",
+        tabMock2: "🐱 YouTube (Kedi Uykusunda)",
+        tabMock3: "🐱 X / Twitter (Kedi Uykusunda)",
+        tabMockTooltip: "Uyandırmak için tıklayın",
+        themeHeader: "🎨 5 Farklı Özel Tema Desteği:",
+        tLight: "☀️ Açık (Light)",
+        tDark: "🌙 Koyu (Dark)",
+        featHeaderTitle: "Güçlü, Sevecen & Akıllı Özellikler",
+        featHeaderDesc: "Tarayıcınızın dizginlerini elinize alın, gereksiz kaynak tüketimine dur deyin.",
+        f1Title: "Otomatik Kedi Uykusu",
+        f1Desc: "Belirlediğiniz süre boyunca el sürülmeyen sekmeler kendiliğinden derin uykuya dalar ve belleği serbest bırakır.",
+        f2Title: "Akıllı Koruma & Beyaz Liste",
+        f2Desc: "Sabitlenmiş sekmeler, ses çalan sayfalar veya eklediğiniz özel alan adları (*.reddit.com/* gibi) asla siz istemeden uyutulmaz.",
+        f3Title: "Tek Dokunuşla Uyanış",
+        f3Desc: "Sekmeye geri tıkladığınız anda sayfa bekleme yapmadan orijinal URL'ye geri döner, çalışmalarınızı korur.",
+        f4Title: "GitHub Gist Bulut Eşitlemesi",
+        f4Desc: "Tüm ayarlarınızı ve beyaz listenizi GitHub Gist üzerinden yedekleyin; Chrome, Edge, Brave ve Helium arasında anında senkronize edin.",
+        f5Title: "Klavye Kısayolları",
+        f5Desc: "Ctrl+Shift+S gibi sezgisel kısayollarla mevcut sekmeyi veya diğer tüm sekmeleri anında tek tuşla askıya alın.",
+        f6Title: "%100 Çevrimdışı & Güvenli",
+        f6Desc: "Sıfır telemetri, sıfır üçüncü parti takip kodu. Eklentiniz tamamen yerel tarayıcınızda koşar, gizliliğinize sadık kalır.",
+        instTitle: "1 Dakikada Kolay Kurulum",
+        instDesc: "Chromium tabanlı tüm tarayıcılarda (Chrome, Edge, Brave, Opera, Helium) kolayca çalışır.",
+        step1Title: "Projeyi İndirin",
+        step1Desc: "GitHub deposundan kaynak kodları indirin veya depoyu klonlayın.",
+        step2Title: "Eklentiler Sayfasını Açın",
+        step2Desc: "Tarayıcınızın adres çubuğuna şu adresi yazarak geliştirici modunu etkinleştirin:",
+        step3Title: "Paketlenmemiş Öğeyi Yükleyin",
+        step3Desc: "Sağ üstteki \"Geliştirici modu\"nu açın ve \"Paketlenmemiş öğe yükle\" diyerek main klasörünü seçin.",
+        faqTitle: "Sıkça Sorulan Sorular",
+        faqDesc: "Merak edilen detaylar ve yanıtlar.",
+        faqQ1: "Kedi uykusuna yatan sekmedeki formlar silinir mi?",
+        faqA1: "Askıya alma işlemi tarayıcının yerel geçmişini ve orijinal sayfa URL'sini korur. Önemli bir form dolduruyorsanız o sekmeyi beyaz listeye ekleyebilir veya sabitleyebilirsiniz.",
+        faqQ2: "YouTube veya Spotify dinlerken sekme uyur mu?",
+        faqA2: "Asla! Akıllı ses algılama sistemi sayesinde arkada müzik, podcast veya video çalan hiçbir sekme siz durdurana kadar uyutulmaz.",
+        faqQ3: "Bu eklenti ücretli mi veya reklam içerir mi?",
+        faqA3: "Kesinlikle hayır. Proje %100 açık kaynak kodludur, reklamsızdır ve tamamen ücretsiz olarak geliştirilmektedir.",
+        footerCopy: "© 2026 TabSuspender HaYTooL • Geliştirici: korazhayto • Sevimli Kedi Uykusu Teması ile Hazırlandı 🐾",
+        tabWake: "⚡ Pisi Pisi Uyandı!"
+      },
+      en: {
+        navStores: "Stores",
+        navCat: "Cat Theme",
+        navFeatures: "Features",
+        navInstall: "Installation",
+        navFaq: "FAQ",
+        heroBadge: "Let Your Tabs Sleep Like a Soft Purring Kitten",
+        heroTitle: "While Your Tabs Nap Gently, <br><span class=\"cat-highlight\">Your RAM Usage Drops to Zero</span>",
+        heroDesc: "TabSuspender HaYTooL gently puts idle background tabs to sleep in their cozy basket. Reclaim memory, eliminate fan noise, and extend battery life.",
+        heroBtnInstall: "🐾 Install Free Now",
+        heroBtnRepo: "⭐ GitHub Repository (Source Code)",
+        storesHeader: "Official Store & Browser Links",
+        storeChromeSub: "Chrome Web Store",
+        storeEdgeSub: "Microsoft Store",
+        storeHeliumSub: "Chromium Based",
+        catStoryTitle: "🐱 \"Relaxing Memory While Tabs Are Resting\"",
+        catStoryDesc1: "Just like a kitten sleeping peacefully in a warm sunlit spot, TabSuspender puts untouched background tabs into a deep sleep state.",
+        catStoryDesc2: "Sleeping tabs run zero JavaScript and zero background ad loops. When you return, a single paw tap (click) instantly restores the page!",
+        catPill1: "🐾 Up to 85% RAM Savings",
+        catPill2: "⚡ Instant Restoration",
+        catPill3: "🔒 Zero Telemetry",
+        statRam: "Total Memory Recovered",
+        statTabs: "Tabs in Sleeping Mode",
+        statTabsVal: "14 Tabs",
+        statCpu: "Reduced CPU & Battery Load",
+        tabMock1: "🚀 Active Tab (Awake)",
+        tabMock2: "🐱 YouTube (Cat Napping)",
+        tabMock3: "🐱 X / Twitter (Cat Napping)",
+        tabMockTooltip: "Click to wake up",
+        themeHeader: "🎨 5 Dynamic Themes Supported:",
+        tLight: "☀️ Light",
+        tDark: "🌙 Dark",
+        featHeaderTitle: "Powerful, Gentle & Intelligent Features",
+        featHeaderDesc: "Take back control of your browser resources without breaking your workflow.",
+        f1Title: "Automatic Cat Nap",
+        f1Desc: "Tabs left untouched for your chosen duration automatically curl up for a deep nap, freeing system memory.",
+        f2Title: "Smart Protection & Whitelist",
+        f2Desc: "Pinned tabs, audio-playing pages, or designated domains (*.reddit.com/*) are never suspended without your consent.",
+        f3Title: "One-Click Restoration",
+        f3Desc: "Clicking a suspended tab instantly wakes it up and brings back the original webpage without delay.",
+        f4Title: "GitHub Gist Cloud Sync",
+        f4Desc: "Backup all settings and custom whitelists through GitHub Gist; seamlessly sync across Chrome, Edge, Brave, and Helium.",
+        f5Title: "Keyboard Shortcuts",
+        f5Desc: "Suspend current or other tabs on the fly with customizable shortcuts like Ctrl+Shift+S.",
+        f6Title: "100% Offline & Private",
+        f6Desc: "Zero tracking, zero remote analytics. Everything runs locally on your browser machine, honoring your privacy.",
+        instTitle: "Easy 1-Minute Installation",
+        instDesc: "Works smoothly on all Chromium-based browsers (Chrome, Edge, Brave, Opera, Helium).",
+        step1Title: "Download Project",
+        step1Desc: "Download source files or clone the repository directly from GitHub.",
+        step2Title: "Open Extensions Page",
+        step2Desc: "Navigate to chrome://extensions in your browser address bar and enable Developer Mode.",
+        step3Title: "Load Unpacked Extension",
+        step3Desc: "Click \"Load unpacked\" in the top bar and select the main folder.",
+        faqTitle: "Frequently Asked Questions",
+        faqDesc: "Helpful details and explanations.",
+        faqQ1: "Will filled-out form data be lost when a tab naps?",
+        faqA1: "The suspension preserves the original URL and history. For critical form entries or active banking, simply whitelist or pin the tab.",
+        faqQ2: "Do tabs suspend while playing YouTube or Spotify?",
+        faqA2: "Never! Smart audio detection ensures background music, podcasts, or videos are never suspended while playing.",
+        faqQ3: "Is this extension free or does it have ads?",
+        faqA3: "Completely free! It is 100% open-source, ad-free, and developed for the community.",
+        footerCopy: "© 2026 TabSuspender HaYTooL • Developed by korazhayto • Crafted with a Cute Cat Nap Theme 🐾",
+        tabWake: "⚡ Kitty Woke Up!"
+      }
+    };
+
+    let activeLang = 'tr';
+
+    function setLanguage(lang) {
+      activeLang = lang;
+      const dict = siteTranslations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (dict[key]) {
+          el.setAttribute('title', dict[key]);
+        }
+      });
+
+      document.getElementById('btnLangTR').classList.toggle('active', lang === 'tr');
+      document.getElementById('btnLangEN').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+    }
+
+    document.getElementById('btnLangTR').addEventListener('click', () => setLanguage('tr'));
+    document.getElementById('btnLangEN').addEventListener('click', () => setLanguage('en'));
+
+    // Check browser or saved language preference, default to TR if starts with tr, else EN
+    const userPref = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    const defaultSiteLang = userPref.startsWith('tr') ? 'tr' : 'en';
+    setLanguage(defaultSiteLang);
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const parent = q.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Mockup Interactive Tabs
+    document.querySelectorAll('.mockup-tab.suspended').forEach(tab => {
+      tab.addEventListener('click', () => {
+        tab.classList.remove('suspended');
+        const span = tab.querySelector('span:first-child');
+        const originalText = span ? span.innerText : tab.innerText;
+        const wakeMsg = siteTranslations[activeLang].tabWake || '⚡ Uyanış!';
+        if (span) {
+          span.innerText = wakeMsg;
+        } else {
+          tab.innerText = wakeMsg;
+        }
+        setTimeout(() => {
+          if (span) {
+            span.innerText = originalText.replace('🐱', '🌐').replace('(Kedi Uykusunda)', '(Uyanık)').replace('(Cat Napping)', '(Awake)');
+          }
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>
