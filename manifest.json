@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "TabSuspender HaYTooL",
+  "version": "2.5",
+  "description": "Reclaim Chrome's memory! TabSuspender HaYTooL auto/manually suspends inactive tabs, boosting performance.",
+  "homepage_url": "https://haytokoraz.github.io/TabSuspender-HaYTooL/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "contextMenus",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "commands": {
+    "suspend-current-tab": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Suspend the current tab"
+    },
+    "suspend-all-tabs": {
+      "description": "Suspend all tabs in the current window"
+    },
+    "suspend-all-but-current-tab": {
+      "description": "Suspend all tabs except the current one"
+    },
+    "unsuspend-all-tabs": {
+      "description": "Unsuspend all suspended tabs in the current window"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [ "suspended.html", "animals/*.svg" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
+}

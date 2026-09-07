@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabSuspender HaYTooL Settings</title>
+    <style>
+        :root {
+            --bg-page: #f1f5f9;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-heading: #0f172a;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-glow: rgba(59, 130, 246, 0.15);
+            --success: #10b981;
+            --success-hover: #059669;
+            --input-bg: #ffffff;
+            --input-border: #cbd5e1;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode {
+            --bg-page: #0b0f19;
+            --bg-card: #131b2e;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-heading: #f8fafc;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --primary-glow: rgba(96, 165, 250, 0.2);
+            --input-bg: #1e293b;
+            --input-border: #334155;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* DISCORD THEME: Blurple & Signature Dark Gray */
+        body.theme-discord {
+            --bg-page: #202225;
+            --bg-card: #2f3136;
+            --border-card: #202225;
+            --text-main: #dcddde;
+            --text-muted: #8e9297;
+            --text-heading: #ffffff;
+            --primary: #5865f2;
+            --primary-hover: #4752c4;
+            --primary-glow: rgba(88, 101, 242, 0.25);
+            --input-bg: #40444b;
+            --input-border: #202225;
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+        }
+
+        /* YOUTUBE THEME: Deep OLED Black & Iconic Red */
+        body.theme-youtube {
+            --bg-page: #0f0f0f;
+            --bg-card: #181818;
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f1f1f1;
+            --text-muted: #aaaaaa;
+            --text-heading: #ffffff;
+            --primary: #ff0000;
+            --primary-hover: #cc0000;
+            --primary-glow: rgba(255, 0, 0, 0.25);
+            --input-bg: #272727;
+            --input-border: #3f3f3f;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        /* MATRIX THEME: Pure Hacker Terminal Black & Phosphor Neon Green */
+        body.theme-matrix {
+            --bg-page: #050805;
+            --bg-card: #0a110a;
+            --border-card: rgba(0, 255, 65, 0.25);
+            --text-main: #00ff41;
+            --text-muted: #00aa2b;
+            --text-heading: #70ff94;
+            --primary: #00ff41;
+            --primary-hover: #00cc33;
+            --primary-glow: rgba(0, 255, 65, 0.35);
+            --input-bg: #050e05;
+            --input-border: #008f11;
+            --card-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px 32px;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .settings-wrapper {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        header.settings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-brand img {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px var(--primary-glow);
+        }
+
+        .header-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: -0.02em;
+        }
+
+        .version-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 20px;
+            background: var(--primary-glow);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .version-tag:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 10px var(--primary-glow);
+            filter: brightness(1.15);
+        }
+
+        .header-brand p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* 2-Column Wide Balanced Layout */
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .settings-col {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .settings-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 22px 24px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .settings-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .section-icon {
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+
+        .setting-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 400;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="number"], select, textarea, input[type="text"], input[type="password"] {
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="number"]:focus, select:focus, textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        input[type="number"] {
+            width: 80px;
+        }
+
+        select {
+            cursor: pointer;
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            resize: vertical;
+            font-family: monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .lang-selector-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-card);
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .lang-pill:hover {
+            border-color: var(--primary);
+            background-color: var(--primary-glow);
+        }
+
+        .lang-pill.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 6px var(--primary-glow);
+        }
+
+        .flag-icon {
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        /* Sleeping Animal Mascot Preview Box */
+        .animal-preview-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: var(--bg-body);
+            border: 1.5px dashed var(--border-card);
+            transition: all 0.25s ease;
+        }
+
+        .animal-preview-img-wrap {
+            width: 84px;
+            height: 84px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            padding: 6px;
+        }
+
+        .animal-preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .animal-preview-box:hover .animal-preview-img {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        .animal-preview-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .animal-preview-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .animal-preview-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .hint-text {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: #ffffff;
+        }
+
+        .btn-success:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-glow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-card);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-card);
+            color: var(--text-heading);
+        }
+
+        .status-badge {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--success);
+            margin-left: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .status-badge.show {
+            opacity: 1;
+        }
+
+        .bottom-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            bottom: 20px;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .bottom-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bottom-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 8px 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .links-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.88rem;
+        }
+
+        .links-group a {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: opacity 0.2s;
+        }
+
+        .links-group a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .about-text {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-wrapper">
+        <!-- HEADER -->
+        <header class="settings-header">
+            <div class="header-brand">
+                <img src="icons/icon48.png" alt="Logo">
+                <div>
+                    <div class="header-title-row">
+                        <h1 id="i18n-title">TabSuspender HaYTooL</h1>
+                        <a id="extensionVersionTag" href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" rel="noopener noreferrer" class="version-tag" title="GitHub Repository">v2.3</a>
+                    </div>
+                    <p id="i18n-subheading">Akıllı ve Ultra Hafif Sekme Yönetim Merkezi</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN 2-COLUMN BALANCED WIDE DASHBOARD -->
+        <div class="settings-layout">
+            
+            <!-- LEFT COLUMN: Temel Davranış & Koruma & Beyaz Liste -->
+            <div class="settings-col">
+                
+                <!-- SECTION 1: OTOMATİK UYUTMA -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">⏱️</span>
+                        <h2 class="section-title" id="i18n-secAuto">Otomatik Askıya Alma (Uyutma)</h2>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="disableAutoSuspension">
+                            <span id="i18n-disableAuto">Otomatik uyutmayı devre dışı bırak</span>
+                        </label>
+                    </div>
+
+                    <div class="setting-row">
+                        <label for="inactivityTimeValue" id="i18n-suspendAfter">Sekmeleri şu süre boşta kalınca uyut:</label>
+                        <div class="input-group">
+                            <input type="number" id="inactivityTimeValue" min="1" value="30">
+                            <select id="inactivityTimeUnit" style="max-width: 140px;">
+                                <option value="seconds" id="i18n-sec">saniye</option>
+                                <option value="minutes" id="i18n-min">dakika</option>
+                                <option value="hours" id="i18n-hours">saat</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: KORUMA & İSTİSNALAR -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">🛡️</span>
+                        <h2 class="section-title" id="i18n-secExcl">Asla Askıya Alınmayacak Sekmeler</h2>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="neverSuspendPinned">
+                            <span id="i18n-neverPinned">Sabitlenmiş sekmeler (Pinned)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="neverSuspendActiveInWindow">
+                            <span id="i18n-neverActive">Her penceredeki aktif (ön plandaki) sekme</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="neverSuspendAudio">
+                            <span id="i18n-neverAudio">Ses çalan sekmeler (Müzik / Video)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="neverSuspendOffline">
+                            <span id="i18n-neverOffline">İnternet bağlantısı yokken (Çevrimdışı)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SECTION 2.5: ASKIYA ALMA YÖNTEMİ (SUSPENSION METHOD) -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">🎛️</span>
+                        <h2 class="section-title" id="i18n-secSuspensionMethod">Askıya Alma Yöntemi (Uyutma Modu)</h2>
+                    </div>
+
+                    <p class="hint-text" id="i18n-suspensionMethodHint" style="margin-bottom: 12px;">Doğrudan uyutma modu, sekmeyi özel sayfaya yönlendirmeden tarayıcı seviyesinde dondurur ve RAM'i anında boşaltır.</p>
+                    <div class="setting-row">
+                        <label for="suspensionMethod" id="i18n-suspensionMethodLabel">Sekmeler nasıl uyutulsun:</label>
+                        <select id="suspensionMethod">
+                            <option value="page" id="i18n-optMethodPage">📄 Görsel Bilgi Sayfası Göster (Varsayılan)</option>
+                            <option value="discard" id="i18n-optMethodDiscard">⚡ Sayfa Göstermeden Doğrudan Uyut (Native Discard)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: OTOMATİK UYANDIRMA & GECİKME -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">⚡</span>
+                        <h2 class="section-title" id="i18n-secRestore">Otomatik Uyandırma (Geri Yükleme)</h2>
+                    </div>
+
+                    <div class="setting-row" style="margin-bottom: 12px;">
+                        <label for="restoreTrigger" id="i18n-restoreTriggerLabel">Uyandırma Şekli:</label>
+                        <select id="restoreTrigger">
+                            <option value="auto" id="i18n-optTriggerAuto">Sekmeye geçildiğinde / bakıldığında otomatik uyandır</option>
+                            <option value="click" id="i18n-optTriggerClick">Yalnızca sayfaya tıklandığında uyandır (Tıklamadan açılmaz)</option>
+                        </select>
+                    </div>
+                    <p class="hint-text" id="i18n-restoreTriggerHint" style="margin-bottom: 14px;">'Yalnızca sayfaya tıklandığında' seçilirse, sekmeye geçseniz bile ekranda bir yere tıklayana kadar sekme uykuda kalır.</p>
+
+                    <div class="setting-row" id="delaySettingRow">
+                        <label for="unsuspendDelay" id="i18n-unsuspendDelayLabel">Otomatik Uyandırma Gecikmesi:</label>
+                        <select id="unsuspendDelay">
+                            <option value="0" id="i18n-optDelay0">Anında (0 saniye)</option>
+                            <option value="1" id="i18n-optDelay1">1 saniye sonra</option>
+                            <option value="2" id="i18n-optDelay2">2 saniye sonra</option>
+                            <option value="3" id="i18n-optDelay3">3 saniye sonra</option>
+                            <option value="5" id="i18n-optDelay5">5 saniye sonra</option>
+                        </select>
+                    </div>
+                    <p class="hint-text" id="i18n-unsuspendDelayHint">Sekmeler arasında hızlıca gezinirken sekmelerin yanlışlıkla açılmasını engeller.</p>
+                </div>
+
+                <!-- SECTION 4: BEYAZ LİSTE (URL FILTER) -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">🌐</span>
+                        <h2 class="section-title" id="i18n-secWhitelist">Asla Uyutulmayacak Siteler (Beyaz Liste)</h2>
+                    </div>
+
+                    <p class="hint-text" id="i18n-whitelistHint">Her satıra bir adres yazın. * joker karakterini destekler (örn: *.reddit.com/* veya mail.google.com).</p>
+                    <textarea id="excludedUrls" placeholder="örn: https://mail.google.com&#10;*.reddit.com/*&#10;github.com"></textarea>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Görünüm & Bildirimler & Kısayollar & Bulut Eşitleme -->
+            <div class="settings-col">
+                
+                <!-- SECTION 5: GÖRÜNÜM & TEMA & HAYVAN MASKOTU -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">🎨</span>
+                        <h2 class="section-title" id="i18n-secApp">Görünüm ve Tema Ayarları</h2>
+                    </div>
+
+                    <div class="setting-row">
+                        <label for="iconClickAction" id="i18n-iconClickLabel">Eklenti simgesine tıklandığında:</label>
+                        <select id="iconClickAction">
+                            <option value="suspendOthers" id="i18n-optSuspendOthers">Diğer tüm sekmeleri hemen uyut (Aktif hariç)</option>
+                            <option value="popup" id="i18n-optPopup">Açılır menüyü (Popup) göster</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-row">
+                        <label for="theme" id="i18n-themeLabel">Tema:</label>
+                        <select id="theme">
+                            <option value="light" id="i18n-themeLight">☀️ Açık Tema (Light)</option>
+                            <option value="dark" id="i18n-themeDark">🌙 Koyu Tema (Dark)</option>
+                            <option value="discord" id="i18n-themeDiscord">🎮 Discord (Blurple & Dark)</option>
+                            <option value="youtube" id="i18n-themeYouTube">▶️ YouTube (OLED & Red)</option>
+                            <option value="matrix" id="i18n-themeMatrix">🟢 Matrix (Hacker Green)</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-row" style="margin-top: 6px;">
+                        <label for="animalTheme" id="i18n-animalThemeLabel">Uyuyan Hayvan Maskotu:</label>
+                        <select id="animalTheme">
+                            <option value="cat" id="i18n-optAnimalCat">🐱 Sarı Tekir Kedi (Sıcak & Rahat)</option>
+                            <option value="cat_dark" id="i18n-optAnimalCatDark">🐈‍⬛ Kara Kedi & Hilal Ay</option>
+                            <option value="dog" id="i18n-optAnimalDog">🐶 Uyuyan Köpekçik (Sadık)</option>
+                            <option value="panda" id="i18n-optAnimalPanda">🐼 Uyuyan Panda (Huzurlu)</option>
+                            <option value="koala" id="i18n-optAnimalKoala">🐨 Uyuyan Koala (Ağaç Dalı)</option>
+                            <option value="none" id="i18n-optAnimalNone">🚫 Maskotsuz (Sade & Minimal)</option>
+                        </select>
+                    </div>
+
+                    <!-- Interactive Animal Preview Box -->
+                    <div class="animal-preview-box" id="animalPreviewBox">
+                        <div class="animal-preview-img-wrap">
+                            <img id="animalPreviewImg" class="animal-preview-img" src="animals/cat.svg" alt="Animal Preview">
+                            <span id="animalPreviewEmpty" style="display: none; font-size: 1.8rem;">🚫</span>
+                        </div>
+                        <div class="animal-preview-info">
+                            <div class="animal-preview-name" id="animalPreviewName">🐱 Sarı Tekir Kedi</div>
+                            <div class="animal-preview-desc" id="animalPreviewDesc">Askıya alınan sekmelerde huzurla kıvrılıp uyuyarak RAM tasarrufunuzu izler.</div>
+                        </div>
+                    </div>
+
+                    <p class="hint-text" id="i18n-animalThemeHint">Askıya alınan sekmelerde gösterilecek sevimli uyuyan hayvan arkadaşınızı seçin.</p>
+
+                    <label class="checkbox-label" style="margin-top: 8px;">
+                        <input type="checkbox" id="addContextMenu">
+                        <span id="i18n-addContext">Sağ tık menüsüne "Bu Sekmeyi Uyut" seçeneğini ekle</span>
+                    </label>
+                </div>
+
+                <!-- SECTION 6: BİLDİRİMLER VE GERİ BİLDİRİM -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">🔔</span>
+                        <h2 class="section-title" id="i18n-secNotifications">Bildirimler ve Geri Bildirim</h2>
+                    </div>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showRamToast">
+                        <span id="i18n-showRamToast">Sekmeler uyutulduğunda RAM kazancı bildirimini göster</span>
+                    </label>
+                    <p class="hint-text" id="i18n-showRamToastHint">Sekme uyutulduğunda ekranda tahmini kazanılan RAM miktarını belirten şık bir bildirim gösterir.</p>
+                </div>
+
+                <!-- SECTION 7: KISAYOLLAR -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">⌨️</span>
+                        <h2 class="section-title" id="i18n-secShortcuts">Klavye Kısayolları</h2>
+                    </div>
+
+                    <p class="hint-text" id="i18n-shortcutsDesc">Tarayıcı güvenliği nedeniyle kısayollar Chrome'un özel kısayol yönetim sayfasından atanır.</p>
+                    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                        <button id="openShortcutsBtn" class="btn btn-outline" type="button">
+                            <span>⚙️</span>
+                            <span id="i18n-shortcutsBtn">Chrome Kısayollar Sayfasını Aç</span>
+                        </button>
+                        <p class="hint-text" id="i18n-shortcutsNote" style="flex: 1; min-width: 220px;">Listede "TabSuspender HaYTooL" eklentisini bulup tuş atayabilirsiniz.</p>
+                    </div>
+                </div>
+
+                <!-- SECTION 8: BULUT & GITHUB GIST EŞİTLEMESİ -->
+                <div class="settings-card">
+                    <div class="section-header">
+                        <span class="section-icon">☁️</span>
+                        <h2 class="section-title" id="i18n-secGist">Bulut & GitHub Gist Eşitlemesi</h2>
+                    </div>
+
+                    <p class="hint-text" id="i18n-gistDesc">Farklı tarayıcılar arasında ayarlarınızı ve beyaz listenizi GitHub Gist üzerinden tek tıkla eşitleyin.</p>
+
+                    <!-- STATE 1: LOGGED IN / CONNECTED VIEW -->
+                    <div id="gistConnectedContainer" style="display: none; padding: 12px; border-radius: 8px; background: var(--bg-body); border: 1px solid var(--border-card); flex-direction: column; gap: 8px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img id="gistAvatarImg" src="" alt="Avatar" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--primary); display: none; object-fit: cover;">
+                                <span id="gistStatusDot" style="font-size: 1.1rem;">🟢</span>
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <strong id="i18n-gistConnected" style="font-size: 0.88rem; color: var(--text-heading);">GitHub Bağlantısı Aktif</strong>
+                                        <span id="gistUsernameText" style="font-size: 0.82rem; font-weight: 600; color: var(--primary);"></span>
+                                    </div>
+                                    <div id="gistUserBadge" style="font-size: 0.78rem; color: var(--text-muted);">Token: ••••••••••••</div>
+                                </div>
+                            </div>
+                            <button id="gistLogoutBtn" class="btn btn-secondary" type="button" style="font-size: 0.78rem; padding: 5px 10px; color: #ef4444; border-color: rgba(239, 68, 68, 0.4);">
+                                <span>🚪</span>
+                                <span id="i18n-gistLogoutBtn">Çıkış Yap</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STATE 2: NOT LOGGED IN / TOKEN INPUT VIEW -->
+                    <div id="gistAuthContainer" style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="setting-row">
+                            <label for="githubToken" id="i18n-githubTokenLabel">GitHub Token (PAT):</label>
+                            <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                            <a href="https://github.com/settings/tokens/new?scopes=gist&description=TabSuspender-HaYTooL-Sync" target="_blank" class="hint-text" style="color: var(--primary); text-decoration: none;" id="i18n-gistHelpLink">🔗 GitHub Token nasıl alınır? (Otomatik aç)</a>
+                        </div>
+
+                        <div class="setting-row">
+                            <label for="gistId" id="i18n-gistIdLabel">Gist ID:</label>
+                            <input type="text" id="gistId" placeholder="İlk yüklemede otomatik oluşur veya yapıştırın">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px;">
+                        <button id="backupGistBtn" class="btn btn-outline" type="button" style="flex: 1; min-width: 130px;">
+                            <span>☁️ ⬆️</span>
+                            <span id="i18n-btnBackupGist">Gist'e Yükle</span>
+                        </button>
+                        <button id="restoreGistBtn" class="btn btn-outline" type="button" style="flex: 1; min-width: 130px;">
+                            <span>☁️ ⬇️</span>
+                            <span id="i18n-btnRestoreGist">Gist'ten İndir</span>
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 2px;">
+                        <button id="listGistsBtn" class="btn btn-secondary" type="button" style="width: 100%; font-size: 0.82rem;">
+                            <span>📋</span>
+                            <span id="i18n-btnListGists">Yedek Geçmişini Gör & Seç</span>
+                        </button>
+                    </div>
+
+                    <!-- DYNAMIC BACKUP SELECTOR CONTAINER -->
+                    <div id="backupSelectorContainer" style="display: none; margin-top: 4px; padding: 10px; background: var(--bg-body); border-radius: 8px; border: 1px solid var(--border-card);">
+                        <label id="i18n-selectBackupPrompt" for="backupSelect" style="font-size: 0.82rem; font-weight: 600; margin-bottom: 4px; display: block;">Geri yüklenecek yedeği seçin:</label>
+                        <select id="backupSelect" style="font-size: 0.82rem; width: 100%; margin-bottom: 8px;">
+                            <option value="">Yedekler yükleniyor...</option>
+                        </select>
+                        <div style="display: flex; gap: 8px;">
+                            <button id="applySelectedBackupBtn" class="btn btn-success" type="button" style="flex: 1; font-size: 0.8rem; padding: 6px 10px;">
+                                <span>✓ Seçilen Yedeği Yükle</span>
+                            </button>
+                            <button id="cancelBackupSelectBtn" class="btn btn-secondary" type="button" style="font-size: 0.8rem; padding: 6px 10px;">
+                                <span>✕ Kapat</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-card); margin: 4px 0;">
+
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button id="exportFileBtn" class="btn btn-secondary" type="button" style="flex: 1; min-width: 110px; font-size: 0.82rem;">
+                            <span>📥</span>
+                            <span id="i18n-btnExportFile">JSON İndir</span>
+                        </button>
+                        <button id="importFileBtn" class="btn btn-secondary" type="button" style="flex: 1; min-width: 110px; font-size: 0.82rem;">
+                            <span>📤</span>
+                            <span id="i18n-btnImportFile">JSON Yükle</span>
+                        </button>
+                        <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- STICKY ACTION BAR (Single row: Flags on left, Actions on right) -->
+        <div class="bottom-bar">
+            <div class="bottom-bar-left">
+                <span id="i18n-langLabelBottom" style="font-size: 0.85rem; font-weight: 600; color: var(--text-heading); display: flex; align-items: center; gap: 6px;">
+                    <span>🌐</span> <span id="i18n-langLabel">Dil:</span>
+                </span>
+                <input type="hidden" id="language" value="tr">
+                <div class="lang-selector-group" id="langSelectorGroup">
+                    <button type="button" class="lang-pill active" data-lang="tr" id="langBtnTr" title="Türkçe">
+                        <svg class="flag-icon" viewBox="0 0 1200 800" width="20" height="14">
+                            <rect width="1200" height="800" fill="#E30A17"/>
+                            <circle cx="425" cy="400" r="200" fill="#ffffff"/>
+                            <circle cx="475" cy="400" r="160" fill="#E30A17"/>
+                            <polygon points="583.3,400 684.2,432.8 621.9,347.1 621.9,452.9 684.2,367.2" fill="#ffffff"/>
+                        </svg>
+                        <span>TR</span>
+                    </button>
+                    <button type="button" class="lang-pill" data-lang="en" id="langBtnEn" title="English">
+                        <svg class="flag-icon" viewBox="0 0 60 30" width="20" height="14">
+                            <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+                            <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                            <g clip-path="url(#s)">
+                                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                            </g>
+                        </svg>
+                        <span>EN</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bottom-bar-right">
+                <button id="resetButtonBottom" class="btn btn-secondary" type="button">
+                    <span>🔄</span>
+                    <span id="i18n-resetBtnBottom">Varsayılanlara Dön</span>
+                </button>
+                <button id="saveButtonBottom" class="btn btn-success" type="button">
+                    <span>💾</span>
+                    <span id="i18n-saveBtnBottom">Ayarları Kaydet</span>
+                </button>
+                <span id="statusMessageBottom" class="status-badge">✓ Kaydedildi</span>
+            </div>
+        </div>
+
+        <!-- PAGE FOOTER (Links and credits) -->
+        <footer class="page-footer">
+            <div class="links-group">
+                <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/" target="_blank">🌐 <span id="i18n-linkSite">Resmi Web Sitesi</span></a>
+                <a href="https://haytokoraz.github.io/" target="_blank">🏛️ <span id="i18n-linkPortal">HaYTooL PoRTaL</span></a>
+                <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank">🐙 <span id="i18n-linkGithub">GitHub</span></a>
+                <a href="https://x.com/HaYTo" target="_blank">🐦 Twitter (@HaYTo)</a>
+            </div>
+            <div class="about-text">
+                <strong>TabSuspender HaYTooL <span id="footerVersionText">v2.5</span></strong> — <span id="i18n-devBy">by HaYTo</span> (<a href="mailto:korazhayto@gmail.com" style="color: inherit;">korazhayto@gmail.com</a>)
+            </div>
+        </footer>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

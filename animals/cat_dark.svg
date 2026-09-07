@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="100%" height="100%">
+  <defs>
+    <linearGradient id="catDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a5568"/>
+      <stop offset="100%" stop-color="#1a202c"/>
+    </linearGradient>
+    <linearGradient id="moonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf089"/>
+      <stop offset="100%" stop-color="#ecc94b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crescent Moon -->
+  <path d="M 160 35 A 35 35 0 1 0 170 85 A 28 28 0 1 1 160 35 Z" fill="url(#moonGrad)" opacity="0.85"/>
+  <circle cx="130" cy="30" r="2" fill="#faf089"/>
+  <circle cx="178" cy="24" r="1.5" fill="#faf089"/>
+
+  <!-- Body -->
+  <ellipse cx="100" cy="110" rx="55" ry="34" fill="url(#catDarkGrad)"/>
+
+  <!-- Curled Tail with white tip -->
+  <path d="M 145 118 C 178 114 180 82 160 80 C 150 79 146 90 148 97 C 152 105 160 110 138 122 Z" fill="url(#catDarkGrad)"/>
+  <circle cx="162" cy="83" r="5" fill="#e2e8f0"/>
+
+  <!-- Head -->
+  <circle cx="62" cy="100" r="28" fill="url(#catDarkGrad)"/>
+
+  <!-- Ears -->
+  <polygon points="38,82 44,52 60,76" fill="#1a202c"/>
+  <polygon points="42,78 46,58 56,75" fill="#718096"/>
+
+  <polygon points="68,76 84,54 88,82" fill="#1a202c"/>
+  <polygon points="72,76 81,60 84,79" fill="#718096"/>
+
+  <!-- Closed Sleeping Eyes (Curved lines) -->
+  <path d="M 46 100 Q 52 107 58 100" stroke="#a0aec0" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M 64 100 Q 70 107 76 100" stroke="#a0aec0" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Pink Nose & Cute Mouth -->
+  <polygon points="59,105 63,109 55,109" fill="#f687b3"/>
+  <path d="M 59 109 Q 59 114 55 114" stroke="#a0aec0" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M 59 109 Q 59 114 63 114" stroke="#a0aec0" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+  <!-- White Whiskers -->
+  <path d="M 42 106 L 26 104" stroke="#cbd5e0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 41 110 L 25 113" stroke="#cbd5e0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 76 106 L 92 104" stroke="#cbd5e0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 77 110 L 93 113" stroke="#cbd5e0" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- White Socks / Paws -->
+  <ellipse cx="60" cy="124" rx="10" ry="7" fill="#edf2f7"/>
+  <ellipse cx="78" cy="124" rx="9" ry="6" fill="#edf2f7"/>
+
+  <!-- Floating Zzz's -->
+  <text x="110" y="55" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="16" fill="#68d391">z</text>
+  <text x="124" y="42" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="20" fill="#4fd1c5">z</text>
+  <text x="140" y="26" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="24" fill="#63b3ed">Z</text>
+</svg>

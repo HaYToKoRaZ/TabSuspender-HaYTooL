@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dogGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d69e2e"/>
+      <stop offset="100%" stop-color="#b7791f"/>
+    </linearGradient>
+    <linearGradient id="rugGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7d7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#feb2b2" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dog Mat / Rug -->
+  <ellipse cx="100" cy="135" rx="85" ry="18" fill="url(#rugGrad)"/>
+
+  <!-- Tail -->
+  <path d="M 150 115 C 172 108 178 90 170 85 C 164 80 158 92 145 110 Z" fill="#975a16"/>
+
+  <!-- Body -->
+  <ellipse cx="105" cy="110" rx="55" ry="34" fill="url(#dogGrad)"/>
+
+  <!-- Head resting on paws -->
+  <circle cx="65" cy="102" r="30" fill="url(#dogGrad)"/>
+
+  <!-- Floppy Ears -->
+  <path d="M 45 85 C 30 90 28 120 40 125 C 48 128 52 110 50 92 Z" fill="#975a16"/>
+  <path d="M 82 85 C 92 90 95 120 86 125 C 78 128 75 110 78 92 Z" fill="#975a16"/>
+
+  <!-- Sleeping Closed Eyes -->
+  <path d="M 48 102 Q 54 108 60 102" stroke="#521b05" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+  <path d="M 68 102 Q 74 108 80 102" stroke="#521b05" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+
+  <!-- Muzzle & Snout -->
+  <ellipse cx="64" cy="115" rx="14" ry="10" fill="#fefcbf"/>
+  <ellipse cx="64" cy="110" rx="6" ry="4.5" fill="#2d3748"/>
+  <path d="M 64 114.5 L 64 118" stroke="#521b05" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 60 118 Q 64 122 68 118" stroke="#521b05" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Front Paws placed under chin -->
+  <ellipse cx="52" cy="128" rx="12" ry="7" fill="#fbd38d"/>
+  <ellipse cx="76" cy="128" rx="12" ry="7" fill="#fbd38d"/>
+  <!-- Paw toe lines -->
+  <line x1="48" y1="126" x2="48" y2="132" stroke="#b7791f" stroke-width="1.5"/>
+  <line x1="54" y1="126" x2="54" y2="132" stroke="#b7791f" stroke-width="1.5"/>
+  <line x1="72" y1="126" x2="72" y2="132" stroke="#b7791f" stroke-width="1.5"/>
+  <line x1="78" y1="126" x2="78" y2="132" stroke="#b7791f" stroke-width="1.5"/>
+
+  <!-- Floating Zzz's -->
+  <text x="120" y="55" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="16" fill="#f6ad55">z</text>
+  <text x="135" y="40" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="20" fill="#ed8936">z</text>
+  <text x="152" y="24" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="25" fill="#dd6b20">Z</text>
+</svg>

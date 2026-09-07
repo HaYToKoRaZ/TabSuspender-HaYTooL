@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pandaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="bambooGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#68d391"/>
+      <stop offset="100%" stop-color="#38a169"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bamboo Stalk under panda -->
+  <rect x="15" y="130" width="170" height="14" rx="7" fill="url(#bambooGrad)"/>
+  <line x1="60" y1="130" x2="60" y2="144" stroke="#276749" stroke-width="2"/>
+  <line x1="120" y1="130" x2="120" y2="144" stroke="#276749" stroke-width="2"/>
+  <!-- Little Bamboo Leaf -->
+  <path d="M 160 130 Q 175 115 190 125 Q 175 135 160 130 Z" fill="#48bb78"/>
+
+  <!-- Round Belly / Body -->
+  <ellipse cx="105" cy="105" rx="55" ry="34" fill="url(#pandaGrad)"/>
+  <!-- Black Back Belt -->
+  <path d="M 80 78 C 95 72 120 72 135 78 C 125 105 100 105 80 78 Z" fill="#2d3748"/>
+
+  <!-- Black Tail -->
+  <circle cx="158" cy="112" r="8" fill="#2d3748"/>
+
+  <!-- Back Foot tucked -->
+  <ellipse cx="138" cy="128" rx="14" ry="9" fill="#1a202c"/>
+
+  <!-- Head -->
+  <circle cx="62" cy="98" r="30" fill="url(#pandaGrad)"/>
+
+  <!-- Black Round Ears -->
+  <circle cx="42" cy="72" r="11" fill="#1a202c"/>
+  <circle cx="82" cy="72" r="11" fill="#1a202c"/>
+
+  <!-- Iconic Black Eye Patches -->
+  <ellipse cx="50" cy="96" rx="9" ry="12" fill="#2d3748" transform="rotate(-15 50 96)"/>
+  <ellipse cx="74" cy="96" rx="9" ry="12" fill="#2d3748" transform="rotate(15 74 96)"/>
+
+  <!-- Cute Sleeping Eyes (white curved lines inside patches) -->
+  <path d="M 45 96 Q 50 101 55 96" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M 69 96 Q 74 101 79 96" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+  <!-- Cute Black Nose & Smile -->
+  <ellipse cx="62" cy="106" rx="5" ry="3.5" fill="#1a202c"/>
+  <path d="M 62 109.5 L 62 112" stroke="#1a202c" stroke-width="1.8"/>
+  <path d="M 58 112 Q 62 115 66 112" stroke="#1a202c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+  <!-- Front Paws hugging the bamboo -->
+  <ellipse cx="65" cy="126" rx="14" ry="9" fill="#1a202c"/>
+
+  <!-- Floating Zzz's -->
+  <text x="120" y="52" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="16" fill="#48bb78">z</text>
+  <text x="135" y="38" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="20" fill="#38a169">z</text>
+  <text x="154" y="22" font-family="'Segoe UI', Roboto, sans-serif" font-weight="bold" font-size="25" fill="#276749">Z</text>
+</svg>

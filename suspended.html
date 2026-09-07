@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Suspended</title>
+    <style>
+        :root {
+            --bg-page: #f1f5f9;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-heading: #0f172a;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-glow: rgba(59, 130, 246, 0.18);
+            --badge-bg: #ecfdf5;
+            --badge-text: #059669;
+            --badge-border: #a7f3d0;
+            --btn-bg: #ffffff;
+            --btn-border: #cbd5e1;
+            --btn-text: #334155;
+            --btn-hover-bg: #f8fafc;
+            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark-mode {
+            --bg-page: #0b0f19;
+            --bg-card: #131b2e;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-heading: #f8fafc;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --primary-glow: rgba(96, 165, 250, 0.22);
+            --badge-bg: rgba(16, 185, 129, 0.15);
+            --badge-text: #34d399;
+            --badge-border: rgba(16, 185, 129, 0.3);
+            --btn-bg: #1e293b;
+            --btn-border: #334155;
+            --btn-text: #e2e8f0;
+            --btn-hover-bg: #273549;
+            --card-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* DISCORD THEME */
+        body.theme-discord {
+            --bg-page: #202225;
+            --bg-card: #2f3136;
+            --border-card: #202225;
+            --text-main: #dcddde;
+            --text-muted: #8e9297;
+            --text-heading: #ffffff;
+            --primary: #5865f2;
+            --primary-hover: #4752c4;
+            --primary-glow: rgba(88, 101, 242, 0.25);
+            --badge-bg: rgba(87, 242, 135, 0.15);
+            --badge-text: #57f287;
+            --badge-border: rgba(87, 242, 135, 0.3);
+            --btn-bg: #40444b;
+            --btn-border: #202225;
+            --btn-text: #ffffff;
+            --btn-hover-bg: #4f545c;
+            --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        /* YOUTUBE THEME */
+        body.theme-youtube {
+            --bg-page: #0f0f0f;
+            --bg-card: #181818;
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f1f1f1;
+            --text-muted: #aaaaaa;
+            --text-heading: #ffffff;
+            --primary: #ff0000;
+            --primary-hover: #cc0000;
+            --primary-glow: rgba(255, 0, 0, 0.25);
+            --badge-bg: rgba(43, 166, 64, 0.18);
+            --badge-text: #2ba640;
+            --badge-border: rgba(43, 166, 64, 0.35);
+            --btn-bg: #272727;
+            --btn-border: #3f3f3f;
+            --btn-text: #ffffff;
+            --btn-hover-bg: #383838;
+            --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        /* MATRIX THEME */
+        body.theme-matrix {
+            --bg-page: #050805;
+            --bg-card: #0a110a;
+            --border-card: rgba(0, 255, 65, 0.25);
+            --text-main: #00ff41;
+            --text-muted: #00aa2b;
+            --text-heading: #70ff94;
+            --primary: #00ff41;
+            --primary-hover: #00cc33;
+            --primary-glow: rgba(0, 255, 65, 0.35);
+            --badge-bg: rgba(0, 255, 65, 0.12);
+            --badge-text: #00ff41;
+            --badge-border: #008f11;
+            --btn-bg: #050e05;
+            --btn-border: #008f11;
+            --btn-text: #00ff41;
+            --btn-hover-bg: #0a1b0a;
+            --card-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            text-align: center;
+            padding: 24px;
+            cursor: pointer; /* Whole screen acts as click-to-wake */
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        #suspended-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            padding: 34px 36px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            max-width: 580px;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #suspended-content:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Mascot Animal Illustration Container */
+        .mascot-container {
+            width: 160px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            margin-bottom: 2px;
+        }
+
+        .mascot-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
+        }
+
+        /* Original Site Info Row */
+        .site-badge-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--btn-bg);
+            border: 1px solid var(--border-card);
+            padding: 6px 14px;
+            border-radius: 20px;
+            max-width: 95%;
+        }
+
+        #originalFavicon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .site-host {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Informative Heading */
+        h1 {
+            color: var(--text-heading);
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        #originalTitleDisplay {
+            font-size: 1.12rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.45;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        /* Memory Savings Pill */
+        .savings-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--badge-border);
+            padding: 5px 12px;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        #suspendedDesc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 440px;
+        }
+
+        #originalUrlLink {
+            font-size: 0.82rem;
+            color: var(--primary);
+            text-decoration: none;
+            word-break: break-all;
+            display: block;
+            opacity: 0.9;
+            transition: opacity 0.15s, text-decoration 0.15s;
+        }
+
+        #originalUrlLink:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Action Buttons Row */
+        .actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 8px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .btn-restore {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 10px 22px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px var(--primary-glow);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-restore:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        #whitelistBtn {
+            padding: 9px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--btn-border);
+            background: var(--btn-bg);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--btn-text);
+            transition: all 0.2s ease;
+        }
+
+        #whitelistBtn:hover {
+            background: var(--btn-hover-bg);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        #restoreHint {
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="suspended-content">
+        <!-- Cute Sleeping Mascot -->
+        <div class="mascot-container" id="mascotContainer">
+            <img id="mascotImg" src="animals/cat.svg" alt="Sleeping Mascot">
+        </div>
+
+        <!-- Favicon & Domain Badge -->
+        <div class="site-badge-row">
+            <img id="originalFavicon" src="" alt="" style="display: none;">
+            <span class="site-host" id="siteHostDisplay">Website</span>
+        </div>
+
+        <h1 id="suspendedHeading">Tab Suspended!</h1>
+        <h2 id="originalTitleDisplay"></h2>
+
+        <!-- Memory Savings Info -->
+        <div class="savings-pill" id="savingsBadge">
+            <span>⚡</span>
+            <span id="savingsBadgeText">Memory Saved: ~120 MB</span>
+        </div>
+
+        <p id="suspendedDesc">This tab was suspended to save system memory.</p>
+        <a id="originalUrlLink" href="#"></a>
+
+        <!-- Interactive Action Buttons -->
+        <div class="actions-row">
+            <button class="btn-restore" id="wakeTabBtn" type="button">
+                <span>☀️</span>
+                <span id="wakeTabBtnText">Wake Up Tab</span>
+            </button>
+            <button id="whitelistBtn" type="button">Never Suspend This Site</button>
+        </div>
+
+        <p id="restoreHint">Click anywhere to restore this tab.</p>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="suspended.js"></script>
+</body>
+</html>
+

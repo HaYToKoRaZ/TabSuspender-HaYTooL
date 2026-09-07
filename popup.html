@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabSuspender HaYTooL</title>
+    <style>
+        :root {
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border-card: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-heading: #1e293b;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-glow: rgba(59, 130, 246, 0.18);
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --danger-glow: rgba(239, 68, 68, 0.18);
+            --success: #10b981;
+            --success-hover: #059669;
+            --success-glow: rgba(16, 185, 129, 0.18);
+            --input-bg: #ffffff;
+            --input-border: #cbd5e1;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --item-hover: #f1f5f9;
+        }
+
+        body.dark-mode {
+            --bg-page: #0b0f19;
+            --bg-card: #131b2e;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-heading: #f8fafc;
+            --primary: #60a5fa;
+            --primary-hover: #3b82f6;
+            --primary-glow: rgba(96, 165, 250, 0.22);
+            --danger: #f87171;
+            --danger-hover: #ef4444;
+            --danger-glow: rgba(248, 113, 113, 0.22);
+            --success: #34d399;
+            --success-hover: #10b981;
+            --success-glow: rgba(52, 211, 153, 0.22);
+            --input-bg: #1e293b;
+            --input-border: #334155;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            --item-hover: #1a233b;
+        }
+
+        /* DISCORD THEME */
+        body.theme-discord {
+            --bg-page: #202225;
+            --bg-card: #2f3136;
+            --border-card: #202225;
+            --text-main: #dcddde;
+            --text-muted: #8e9297;
+            --text-heading: #ffffff;
+            --primary: #5865f2;
+            --primary-hover: #4752c4;
+            --primary-glow: rgba(88, 101, 242, 0.25);
+            --danger: #ed4245;
+            --danger-hover: #c03537;
+            --danger-glow: rgba(237, 66, 69, 0.25);
+            --success: #57f287;
+            --success-hover: #3ba55d;
+            --success-glow: rgba(87, 242, 135, 0.25);
+            --input-bg: #40444b;
+            --input-border: #202225;
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            --item-hover: #36393f;
+        }
+
+        /* YOUTUBE THEME */
+        body.theme-youtube {
+            --bg-page: #0f0f0f;
+            --bg-card: #181818;
+            --border-card: rgba(255, 255, 255, 0.1);
+            --text-main: #f1f1f1;
+            --text-muted: #aaaaaa;
+            --text-heading: #ffffff;
+            --primary: #ff0000;
+            --primary-hover: #cc0000;
+            --primary-glow: rgba(255, 0, 0, 0.25);
+            --danger: #ff4e45;
+            --danger-hover: #cc0000;
+            --danger-glow: rgba(255, 78, 69, 0.25);
+            --success: #2ba640;
+            --success-hover: #1e7e34;
+            --success-glow: rgba(43, 166, 64, 0.25);
+            --input-bg: #272727;
+            --input-border: #3f3f3f;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --item-hover: #222222;
+        }
+
+        /* MATRIX THEME */
+        body.theme-matrix {
+            --bg-page: #050805;
+            --bg-card: #0a110a;
+            --border-card: rgba(0, 255, 65, 0.25);
+            --text-main: #00ff41;
+            --text-muted: #00aa2b;
+            --text-heading: #70ff94;
+            --primary: #00ff41;
+            --primary-hover: #00cc33;
+            --primary-glow: rgba(0, 255, 65, 0.35);
+            --danger: #ff3333;
+            --danger-hover: #cc0000;
+            --danger-glow: rgba(255, 51, 51, 0.35);
+            --success: #00ff41;
+            --success-hover: #00cc33;
+            --success-glow: rgba(0, 255, 65, 0.35);
+            --input-bg: #050e05;
+            --input-border: #008f11;
+            --card-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+            --item-hover: #0d1a0d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            width: 380px;
+            margin: 0;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            padding: 12px;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* Header Bar */
+        .popup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .header-brand img {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px var(--primary-glow);
+        }
+
+        .header-brand h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: -0.01em;
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            color: var(--text-muted);
+            border-radius: 6px;
+            padding: 4px 7px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .header-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: var(--primary-glow);
+        }
+
+        /* Quick Settings Panel */
+        .quick-settings {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            cursor: pointer;
+            width: 100%;
+            gap: 8px;
+        }
+
+        .setting-label {
+            color: var(--text-main);
+            font-weight: 500;
+            user-select: none;
+            font-size: 0.82rem;
+        }
+
+        /* Modern Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--input-border);
+            transition: .25s ease;
+            border-radius: 18px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .25s ease;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+
+        /* Tooltip style */
+        .info-tooltip-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+            cursor: help;
+        }
+
+        .info-icon {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1;
+            transition: color 0.15s;
+        }
+
+        .info-tooltip-container:hover .info-icon {
+            color: var(--primary);
+        }
+
+        .info-tooltip-box {
+            visibility: hidden;
+            opacity: 0;
+            width: 200px;
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            text-align: left;
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 999;
+            top: 22px;
+            left: 0;
+            font-size: 0.72rem;
+            line-height: 1.35;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-card);
+            transition: opacity 0.2s, visibility 0.2s;
+            pointer-events: none;
+            white-space: normal;
+        }
+
+        .info-tooltip-container:hover .info-tooltip-box {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Tab List Container */
+        .tab-list-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            padding: 0 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .tab-count-badge {
+            background: var(--primary-glow);
+            color: var(--primary);
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 0.74rem;
+            font-weight: 700;
+        }
+
+        .tab-list {
+            max-height: 290px;
+            overflow-y: auto;
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            background-color: var(--bg-card);
+            padding: 4px;
+            margin-bottom: 10px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .tab-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .tab-list::-webkit-scrollbar-thumb {
+            background: var(--input-border);
+            border-radius: 4px;
+        }
+        .tab-list::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Tab Item Card */
+        .tab-list-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 8px;
+            border-radius: 6px;
+            margin-bottom: 3px;
+            transition: background-color 0.15s ease;
+            gap: 8px;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .tab-list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tab-list-item:hover {
+            background-color: var(--item-hover);
+        }
+
+        .tab-list-item.is-current {
+            border-left: 3px solid var(--primary);
+            background-color: var(--primary-glow);
+        }
+
+        .tab-favicon {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .tab-info {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .tab-title-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tab-title {
+            font-weight: 600;
+            font-size: 0.82rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text-heading);
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .badge-active {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--primary-glow);
+            padding: 1px 4px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .badge-suspended {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: rgba(148, 163, 184, 0.15);
+            padding: 1px 4px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .tab-url {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            margin-top: 1px;
+        }
+
+        /* Action Buttons on items */
+        .tab-action-btn {
+            border: none;
+            padding: 4px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.74rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .suspend-btn {
+            background-color: var(--danger-glow);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+        .suspend-btn:hover {
+            background-color: var(--danger);
+            color: #ffffff;
+        }
+
+        .unsuspend-btn {
+            background-color: var(--success-glow);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+        .unsuspend-btn:hover {
+            background-color: var(--success);
+            color: #ffffff;
+        }
+
+        /* Bulk Actions Footer */
+        .bulk-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .bulk-actions button {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-card);
+            padding: 8px 3px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bulk-actions button:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 8px var(--primary-glow);
+        }
+
+        .message {
+            padding: 24px 10px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* Footer links */
+        .popup-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-card);
+            font-size: 0.78rem;
+        }
+
+        .popup-footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+
+        .popup-footer a:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header class="popup-header">
+        <div class="header-brand">
+            <img src="icons/icon48.png" alt="Logo">
+            <h1 id="popupTitle">TabSuspender</h1>
+        </div>
+        <div class="header-actions">
+            <a href="options.html" target="_blank" class="header-btn" id="optionsLink" title="Ayarlar">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span id="optionsLinkText">Ayarlar</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="quick-settings">
+        <label class="setting-row" for="unsuspendInBackground">
+            <div style="display: flex; align-items: center;">
+                <span class="setting-label" id="unsuspendInBackgroundLabel">Arka planda uyandır</span>
+                <div class="info-tooltip-container" id="unsuspendTooltipContainer" tabindex="0">
+                    <span class="info-icon">ℹ️</span>
+                    <div class="info-tooltip-box" id="unsuspendTooltipText">
+                        İşaretliyse, uyuyan bir sekmeyi uyandırdığınızda bulunduğunuz sayfadan ayrılmazsınız; seçilen sekme arka planda sessizce yüklenir.
+                    </div>
+                </div>
+            </div>
+            <div class="switch">
+                <input type="checkbox" id="unsuspendInBackground">
+                <span class="slider"></span>
+            </div>
+        </label>
+    </div>
+
+    <div class="tab-list-header">
+        <span id="tabListLabel">Açık Sekmeler</span>
+        <span class="tab-count-badge" id="tabCountBadge">0</span>
+    </div>
+
+    <div class="tab-list" id="tabList">
+        <div class="message" id="loadingMessage">Sekmeler yükleniyor...</div>
+    </div>
+
+    <div class="bulk-actions">
+        <button id="suspendAllBtn">Tümünü Uyut</button>
+        <button id="suspendAllButCurrentBtn">Diğerlerini Uyut</button>
+        <button id="unsuspendAllBtn">Tümünü Uyandır</button>
+    </div>
+
+    <footer class="popup-footer">
+        <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/" target="_blank" rel="noopener noreferrer" id="websiteLink">
+            🌐 Web Sitesi
+        </a>
+        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" rel="noopener noreferrer" id="githubLink">
+            ⭐ GitHub
+        </a>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
