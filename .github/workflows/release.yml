@@ -48,19 +48,23 @@ jobs:
           body: |
             ## 🚀 ${{ steps.extract_meta.outputs.name }} v${{ steps.extract_meta.outputs.version }}
 
-            Otomatik olarak paketlenmiş Chromium uzantı ZIP paketi.
-            
-            ### 📦 İndirme:
-            - **${{ steps.extract_meta.outputs.zip_name }}** dosyasını indirip arşivden çıkartarak veya doğrudan Chrome / Edge / Brave / Helium tarayıcılarında kullanabilirsiniz.
-            
-            ### ✨ Öne Çıkan Özellikler:
-            - Manifest V3 & Ultra Hafif mimari
-            - Çift Modlu Uyutma (Görsel Bilgi Sayfası + Native Discard)
-            - 5 Dinamik Tema (Açık, Koyu, Discord, YouTube, Matrix)
-            - Vektörel Uyuyan Hayvan Maskotları & Canlı Önizleme
-            - Akıllı RAM Tasarrufu Bildirimi
-            - GitHub Gist Bulut Eşitleme
-            - %100 Çift Dilli (TR & EN)
+            Automated release package for Chromium browsers (Manifest V3).
+
+            ### 📦 Download & Installation:
+            1. Download **`${{ steps.extract_meta.outputs.zip_name }}`** below.
+            2. Extract the archive to a folder on your computer.
+            3. Open `chrome://extensions` in your browser and enable **Developer mode**.
+            4. Click **Load unpacked** and select the extracted folder.
+
+            ### ✨ Key Features:
+            - **⚡ Manifest V3 & Ultra-Lightweight:** Low resource footprint, instant tab restore.
+            - **🎛️ Dual Suspension Modes:** Informative visual page or silent browser-level native discard.
+            - **🐾 Sleeping Animal Mascots:** Cozy vector mascots (Cats, Dog, Panda, Koala) with live preview in settings.
+            - **🎨 5 Dynamic Themes:** Light, Dark, Discord, YouTube, and Matrix.
+            - **🔔 Smart RAM Savings Toast:** Real-time aggregated memory savings notification.
+            - **☁️ GitHub Gist Cloud Sync:** One-click settings and whitelist backup across browsers.
+            - **🔒 100% Offline-First:** Zero tracking, zero third-party scripts.
+            - **🌍 Bilingual Support:** English (EN) and Turkish (TR).
           files: "${{ steps.extract_meta.outputs.zip_name }}"
           draft: false
           prerelease: false
