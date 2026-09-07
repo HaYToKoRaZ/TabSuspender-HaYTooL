@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "2.7",
+  "version": "2.8",
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "homepage_url": "https://haytokoraz.github.io/TabSuspender-HaYTooL/",
@@ -26,9 +26,6 @@
     "contextMenus",
     "scripting",
     "activeTab"
-  ],
-  "host_permissions": [
-    "<all_urls>"
   ],
   "commands": {
     "suspend-current-tab": {

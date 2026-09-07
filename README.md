@@ -7,7 +7,7 @@
   *Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
 
   <p align="center">
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.7-brightgreen?style=for-the-badge&logo=github" alt="Release v2.7"/></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.8-brightgreen?style=for-the-badge&logo=github" alt="Release v2.8"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
     <a href="https://developer.chrome.com/docs/extensions/mv3/"><img src="https://img.shields.io/badge/Manifest-V3-orange?style=for-the-badge&logo=googlechrome" alt="Manifest V3"/></a>
     <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/"><img src="https://img.shields.io/badge/Web_Site-Live_Demo-purple?style=for-the-badge&logo=safari" alt="Website Demo"/></a>
@@ -73,7 +73,7 @@
 6. Pin **TabSuspender HaYTooL** from your browser extensions puzzle icon.
 
 #### Method 2: Use Pre-Packaged Release ZIP
-- Download the latest `TabSuspender-HaYTooL-v2.7.zip` directly from our [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) page and load it unpacked.
+- Download the latest `TabSuspender-HaYTooL-v2.8.zip` directly from our [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) page and load it unpacked.
 
 ### ⌨️ Keyboard Shortcuts
 1. Open `chrome://extensions/shortcuts` in your browser.
@@ -140,7 +140,7 @@
 6. Eklenti simgesini sabitlemek için yapboz ikonuna tıklayıp **TabSuspender HaYTooL**'u sabitleyin.
 
 #### Yöntem 2: Hazır WebStore ZIP Paketini Kullanma
-- [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) sayfasında yer alan en son `TabSuspender-HaYTooL-v2.7.zip` paketini indirip doğrudan tarayıcınıza yükleyebilirsiniz.
+- [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) sayfasında yer alan en son `TabSuspender-HaYTooL-v2.8.zip` paketini indirip doğrudan tarayıcınıza yükleyebilirsiniz.
 
 ---
 
