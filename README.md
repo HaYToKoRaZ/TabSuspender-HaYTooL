@@ -7,6 +7,7 @@
   *Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
 
   <p align="center">
+    <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg"><img src="https://img.shields.io/badge/Edge_Add--ons-Official_Store-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge Add-ons"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.8-brightgreen?style=for-the-badge&logo=github" alt="Release v2.8"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
     <a href="https://developer.chrome.com/docs/extensions/mv3/"><img src="https://img.shields.io/badge/Manifest-V3-orange?style=for-the-badge&logo=googlechrome" alt="Manifest V3"/></a>
@@ -17,6 +18,7 @@
 ---
 
 ## 🌐 Quick Links / Hızlı Bağlantılar
+- 🛒 **Microsoft Edge Add-ons Store:** [Official Edge Extension Page](https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg)
 - 🌐 **Live Website Portal:** [https://haytokoraz.github.io/TabSuspender-HaYTooL/](https://haytokoraz.github.io/TabSuspender-HaYTooL/)
 - 🏛️ **HaYTooL PoRTaL:** [https://haytokoraz.github.io/](https://haytokoraz.github.io/)
 - 🐙 **GitHub Repository:** [https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL)
@@ -61,7 +63,11 @@
 
 ### 📦 Installation Guide
 
-#### Method 1: Load Unpacked in Developer Mode (Recommended)
+#### Method 1: Install from Microsoft Edge Add-ons Store (Easiest)
+- Install directly with a single click from the official store:  
+  👉 **[Get TabSuspender HaYTooL on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg)**
+
+#### Method 2: Load Unpacked in Developer Mode
 1. Clone or download this repository:
    ```bash
    git clone https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL.git
@@ -72,7 +78,7 @@
 5. Select the `main` directory of this repository.
 6. Pin **TabSuspender HaYTooL** from your browser extensions puzzle icon.
 
-#### Method 2: Use Pre-Packaged Release ZIP
+#### Method 3: Use Pre-Packaged Release ZIP
 - Download the latest `TabSuspender-HaYTooL-v2.8.zip` directly from our [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) page and load it unpacked.
 
 ### ⌨️ Keyboard Shortcuts
@@ -128,7 +134,11 @@
 
 ### 🛠️ Kurulum Rehberi
 
-#### Yöntem 1: Geliştirici Moduyla Doğrudan Yükleme (Önerilen)
+#### Yöntem 1: Microsoft Edge Eklenti Mağazasından Yükleme (En Kolay)
+- Resmi mağazadan tek tıkla hemen kurun:  
+  👉 **[Microsoft Edge Add-ons Mağazasından İndir](https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg)**
+
+#### Yöntem 2: Geliştirici Moduyla Doğrudan Yükleme
 1. Bu depoyu bilgisayarınıza klonlayın veya ZIP olarak indirin:
    ```bash
    git clone https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL.git
@@ -139,7 +149,7 @@
 5. İndirdiğiniz klasörün içindeki `main` klasörünü seçin.
 6. Eklenti simgesini sabitlemek için yapboz ikonuna tıklayıp **TabSuspender HaYTooL**'u sabitleyin.
 
-#### Yöntem 2: Hazır WebStore ZIP Paketini Kullanma
+#### Yöntem 3: Hazır WebStore ZIP Paketini Kullanma
 - [GitHub Releases](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases) sayfasında yer alan en son `TabSuspender-HaYTooL-v2.8.zip` paketini indirip doğrudan tarayıcınıza yükleyebilirsiniz.
 
 ---
@@ -147,8 +157,8 @@
 ## 📦 Store Availability / Mağaza Durumu
 | Browser / Platform | Store Link | Status |
 | :--- | :--- | :--- |
+| **Microsoft Edge** | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg) | **Official Store / Live** 🟢 |
 | **Google Chrome** | [Chrome Web Store](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL) | Manual / Store Ready |
-| **Microsoft Edge** | [Edge Add-ons](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL) | Manual / Store Ready |
 | **Helium / Brave** | [Chromium Engine](https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL) | 100% Compatible |
 
 ---
