@@ -53,11 +53,11 @@
     <tr>
       <td align="center" width="70%">
         <strong>⚙️ Advanced Settings Dashboard</strong><br/><br/>
-        <img src="docs/screenshots/ingilizce-ayarlar.png" alt="English Settings Dashboard" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+        <img src="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png" alt="English Settings Dashboard" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
       </td>
       <td align="center" width="30%">
         <strong>🖱️ Quick Popup Manager</strong><br/><br/>
-        <img src="docs/screenshots/ingilizce-popup.png" alt="English Popup Manager" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+        <img src="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-popup.png" alt="English Popup Manager" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
       </td>
     </tr>
   </table>
@@ -124,11 +124,11 @@
     <tr>
       <td align="center" width="70%">
         <strong>⚙️ Gelişmiş Ayarlar Kontrol Paneli</strong><br/><br/>
-        <img src="docs/screenshots/turkce-ayarlar.png" alt="Türkçe Ayarlar Paneli" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+        <img src="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/turkce-ayarlar.png" alt="Türkçe Ayarlar Paneli" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
       </td>
       <td align="center" width="30%">
         <strong>🖱️ Hızlı Yönetim Popup Menüsü</strong><br/><br/>
-        <img src="docs/screenshots/turkce-popup.png" alt="Türkçe Hızlı Yönetim Menüsü" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
+        <img src="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/turkce-popup.png" alt="Türkçe Hızlı Yönetim Menüsü" width="100%" style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);"/>
       </td>
     </tr>
   </table>
