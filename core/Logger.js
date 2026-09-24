@@ -4,7 +4,7 @@
  */
 export class Logger {
     static prefix(moduleName) {
-        return [TabSuspender:];
+        return `[TabSuspender:${moduleName}]`;
     }
 
     static info(moduleName, ...args) {
