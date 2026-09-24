@@ -97,6 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const vText = `v${manifest.version}`;
                 setText('extensionVersionTag', vText);
                 setText('footerVersionText', vText);
+                const vTag = document.getElementById('extensionVersionTag');
+                if (vTag) {
+                    vTag.href = "https://haytokoraz.github.io/TabSuspender-HaYTooL/";
+                    vTag.title = t('officialSite') || 'Resmi Web Sitesi';
+                }
             }
         } catch (e) {}
 

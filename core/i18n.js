@@ -111,6 +111,8 @@ const translations = {
         // Context Menus
         contextSuspendTab: "Suspend This Tab",
         contextWhitelistSite: "Never Suspend This Site",
+        contextOfficialSite: "🌐 Official Website",
+        contextPortal: "🏠 HaYTooL PoRTaL",
 
         // New Settings (v2.4)
         sectionSuspensionMethod: "Suspension Mode",
