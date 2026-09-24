@@ -10,4 +10,7 @@ Thumbs.db # Windows
 
 # Generated Files
 *.zip # Ignore any zip files you create for packaging/publishing
-*.crx # Ignore compiled Chrome extension files
+*.crx # Ignore compiled Chrome extension files\
+
+# Codebase Memory MCP
+.codebase-memory/

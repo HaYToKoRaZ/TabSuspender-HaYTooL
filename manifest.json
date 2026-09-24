@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "2.8",
+  "version": "2.9",
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "homepage_url": "https://haytokoraz.github.io/TabSuspender-HaYTooL/",
@@ -18,7 +18,8 @@
   },
   "options_page": "options.html",
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "permissions": [
     "tabs",

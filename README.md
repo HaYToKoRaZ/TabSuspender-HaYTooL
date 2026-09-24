@@ -7,6 +7,7 @@
   *Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
 
   <p align="center">
+    <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad"><img src="https://img.shields.io/badge/Chrome_Web_Store-Official_Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store"/></a>
     <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg"><img src="https://img.shields.io/badge/Edge_Add--ons-Official_Store-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge Add-ons"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.8-brightgreen?style=for-the-badge&logo=github" alt="Release v2.8"/></a>
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
@@ -18,6 +19,7 @@
 ---
 
 ## 🌐 Quick Links / Hızlı Bağlantılar
+- 🛒 **Chrome Web Store (Google Chrome & Helium):** [Official Chrome Web Store Page](https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad)
 - 🛒 **Microsoft Edge Add-ons Store:** [Official Edge Extension Page](https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg)
 - 🌐 **Live Website Portal:** [https://haytokoraz.github.io/TabSuspender-HaYTooL/](https://haytokoraz.github.io/TabSuspender-HaYTooL/)
 - 🏛️ **HaYTooL PoRTaL:** [https://haytokoraz.github.io/](https://haytokoraz.github.io/)
