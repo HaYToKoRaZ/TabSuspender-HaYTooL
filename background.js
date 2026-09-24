@@ -9,6 +9,7 @@ import { ContextMenuService } from './services/ContextMenuService.js';
 import { SuspensionService } from './services/SuspensionService.js';
 import { getTranslation } from './core/i18n.js';
 import { Logger } from './core/Logger.js';
+import { PulseService } from './services/PulseService.js';
 
 const suspensionService = new SuspensionService();
 let currentSettings = null;
@@ -34,6 +35,7 @@ async function initializeApp() {
         updateActionPopup(currentSettings.iconClickAction);
         ContextMenuService.updateContextMenu(currentSettings, getTranslation);
         
+        PulseService.init();
         suspensionService.startInactivityCheck(
             () => StorageRepository.getSettings(),
             (tab, settings, isOffline) => WhitelistService.isTabProtected(tab, settings, isOffline),
@@ -66,7 +68,8 @@ StorageRepository.onStorageChanged((changes) => {
             ContextMenuService.updateContextMenu(currentSettings, getTranslation);
         }
         if (changes.inactivityTimeValue || changes.inactivityTimeUnit || changes.disableAutoSuspension) {
-            suspensionService.startInactivityCheck(
+            PulseService.init();
+        suspensionService.startInactivityCheck(
                 () => StorageRepository.getSettings(),
                 (tab, settings, isOffline) => WhitelistService.isTabProtected(tab, settings, isOffline),
                 getTranslation

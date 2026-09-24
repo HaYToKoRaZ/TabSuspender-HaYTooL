@@ -276,6 +276,8 @@ const translations = {
         // Context Menus
         contextSuspendTab: "Bu Sekmeyi Uyut",
         contextWhitelistSite: "Bu Siteyi Asla Uyutma",
+        contextOfficialSite: "🌐 Resmi Web Sitesi",
+        contextPortal: "🏠 HaYTooL PoRTaL",
 
         // Yeni Ayarlar (v2.4)
         sectionSuspensionMethod: "Askıya Alma Yöntemi (Uyutma Modu)",
