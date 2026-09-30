@@ -453,15 +453,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event Listeners
+    // Event Listeners with Instant Auto-Save
     if (animalThemeSelect) {
         animalThemeSelect.addEventListener('change', () => {
             updateAnimalPreview(animalThemeSelect.value);
+            saveSettings();
         });
-    }
-
-    if (saveButton) {
-        saveButton.addEventListener('click', saveSettings);
     }
 
     if (resetButton) {
@@ -469,13 +466,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (themeSelect) {
-        themeSelect.addEventListener('change', () => applyTheme(themeSelect.value));
+        themeSelect.addEventListener('change', () => {
+            applyTheme(themeSelect.value);
+            saveSettings();
+        });
     }
 
     if (openShortcutsBtn) {
         openShortcutsBtn.addEventListener('click', () => {
             chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
         });
+    }
+
+    // Auto-save debouncer for text inputs
+    let autoSaveTimeout = null;
+    function triggerAutoSave(debounceMs = 0) {
+        if (debounceMs > 0) {
+            clearTimeout(autoSaveTimeout);
+            autoSaveTimeout = setTimeout(() => {
+                saveSettings();
+            }, debounceMs);
+        } else {
+            saveSettings();
+        }
+    }
+
+    // Bind instant auto-save to all select, checkbox and radio controls
+    const instantChangeInputs = [
+        inactivityTimeUnitSelect,
+        disableAutoSuspensionCheckbox,
+        neverSuspendPinnedCheckbox,
+        neverSuspendActiveInWindowCheckbox,
+        neverSuspendAudioCheckbox,
+        neverSuspendOfflineCheckbox,
+        suspensionMethodSelect,
+        restoreTriggerSelect,
+        unsuspendDelaySelect,
+        showRamToastCheckbox,
+        addContextMenuCheckbox,
+        iconClickActionSelect
+    ];
+
+    instantChangeInputs.forEach(el => {
+        if (el) {
+            el.addEventListener('change', () => triggerAutoSave(0));
+        }
+    });
+
+    // Debounced auto-save for number and text fields (save while typing without lagging)
+    if (inactivityTimeValueInput) {
+        inactivityTimeValueInput.addEventListener('input', () => triggerAutoSave(400));
+        inactivityTimeValueInput.addEventListener('change', () => triggerAutoSave(0));
+    }
+
+    if (excludedUrlsTextarea) {
+        excludedUrlsTextarea.addEventListener('input', () => triggerAutoSave(600));
+        excludedUrlsTextarea.addEventListener('change', () => triggerAutoSave(0));
+    }
+
+    if (githubTokenInput) {
+        githubTokenInput.addEventListener('input', () => triggerAutoSave(600));
+    }
+
+    if (gistIdInput) {
+        gistIdInput.addEventListener('input', () => triggerAutoSave(600));
     }
 
     // --- GITHUB GIST & CLOUD SYNC LOGIC ---

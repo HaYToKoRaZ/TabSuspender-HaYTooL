@@ -445,16 +445,24 @@
         }
 
         .status-badge {
-            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
+            background: rgba(16, 185, 129, 0.12);
             color: var(--success);
-            margin-left: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transform: translateY(4px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
         .status-badge.show {
             opacity: 1;
+            transform: translateY(0);
         }
 
         .bottom-bar {
@@ -880,15 +888,11 @@
             </div>
 
             <div class="bottom-bar-right">
+                <span id="statusMessageBottom" class="status-badge">✓ Ayarlar otomatik kaydedildi</span>
                 <button id="resetButtonBottom" class="btn btn-secondary" type="button">
                     <span>🔄</span>
                     <span id="i18n-resetBtnBottom">Varsayılanlara Dön</span>
                 </button>
-                <button id="saveButtonBottom" class="btn btn-success" type="button">
-                    <span>💾</span>
-                    <span id="i18n-saveBtnBottom">Ayarları Kaydet</span>
-                </button>
-                <span id="statusMessageBottom" class="status-badge">✓ Kaydedildi</span>
             </div>
         </div>
 

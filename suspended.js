@@ -80,27 +80,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    if (originalUrl) {
-        const decoded = decodeURIComponent(originalUrl);
-        originalUrlLink.href = decoded;
-        originalUrlLink.textContent = decoded;
+    /**
+     * Safely decodes a URI component without throwing URIError (e.g. titles with raw % characters).
+     * @param {string} str 
+     * @returns {string}
+     */
+     function safeDecode(str) {
+        if (!str || typeof str !== 'string') return '';
         try {
-            const parsedUrl = new URL(decoded);
+            return decodeURIComponent(str);
+        } catch (e) {
+            return str;
+        }
+    }
+
+    // URLSearchParams.get() already decodes values. We use safe fallback for resilience.
+    const cleanOriginalUrl = originalUrl || '';
+    const cleanOriginalTitle = originalTitle || '';
+    const cleanFavicon = favicon || '';
+
+    if (cleanOriginalUrl) {
+        originalUrlLink.href = cleanOriginalUrl;
+        originalUrlLink.textContent = cleanOriginalUrl;
+        try {
+            const parsedUrl = new URL(cleanOriginalUrl);
             if (siteHostDisplay) siteHostDisplay.textContent = parsedUrl.hostname;
         } catch (e) {
-            if (siteHostDisplay) siteHostDisplay.textContent = decoded;
+            if (siteHostDisplay) siteHostDisplay.textContent = cleanOriginalUrl;
         }
     } else {
         originalUrlLink.textContent = 'Original URL not found.';
         if (siteHostDisplay) siteHostDisplay.textContent = 'Website';
     }
 
-    if (originalTitle) {
-        const decodedTitle = decodeURIComponent(originalTitle);
-        originalTitleDisplay.textContent = decodedTitle;
+    if (cleanOriginalTitle) {
+        originalTitleDisplay.textContent = cleanOriginalTitle;
         // NEW: set the real browser tab title too, so the tab strip shows the
         // page's actual name instead of just "Tab Suspended"
-        document.title = decodedTitle;
+        document.title = cleanOriginalTitle;
     } else {
         originalTitleDisplay.textContent = 'Untitled Tab'; // Fallback if title is missing
     }
@@ -118,22 +135,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // NEW: show the site's real favicon instead of just a generic suspended icon
-    if (favicon) {
-        const decodedFavicon = decodeURIComponent(favicon);
-        if (decodedFavicon) {
-            originalFavicon.src = decodedFavicon;
-            originalFavicon.style.display = 'inline-block';
-            originalFavicon.addEventListener('error', () => {
-                originalFavicon.style.display = 'none';
-            });
-            setTabFavicon(decodedFavicon);
-        }
+    if (cleanFavicon) {
+        originalFavicon.src = cleanFavicon;
+        originalFavicon.style.display = 'inline-block';
+        originalFavicon.addEventListener('error', () => {
+            originalFavicon.style.display = 'none';
+        });
+        setTabFavicon(cleanFavicon);
     }
 
     // NEW: Add click listener to the entire body for restoration
     document.body.addEventListener('click', () => {
-        if (originalUrl) {
-            chrome.runtime.sendMessage({ action: "unsuspendTabFromSuspendedPage", url: decodeURIComponent(originalUrl) });
+        if (cleanOriginalUrl) {
+            chrome.runtime.sendMessage({ action: "unsuspendTabFromSuspendedPage", url: cleanOriginalUrl });
         }
     });
 
@@ -148,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wakeTabBtn) {
         wakeTabBtn.addEventListener('click', (event) => {
             event.stopPropagation();
-            if (originalUrl) {
-                chrome.runtime.sendMessage({ action: "unsuspendTabFromSuspendedPage", url: decodeURIComponent(originalUrl) });
+            if (cleanOriginalUrl) {
+                chrome.runtime.sendMessage({ action: "unsuspendTabFromSuspendedPage", url: cleanOriginalUrl });
             }
         });
     }
@@ -158,10 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whitelistBtn) {
         whitelistBtn.addEventListener('click', (event) => {
             event.stopPropagation(); // Don't trigger the body's restore-on-click
-            if (originalUrl) {
+            if (cleanOriginalUrl) {
                 whitelistBtn.disabled = true;
                 whitelistBtn.textContent = 'Whitelisted \u2014 restoring...';
-                chrome.runtime.sendMessage({ action: "whitelistFromSuspendedPage", url: decodeURIComponent(originalUrl) });
+                chrome.runtime.sendMessage({ action: "whitelistFromSuspendedPage", url: cleanOriginalUrl });
             }
         });
     }

@@ -22,6 +22,16 @@ export class ContextMenuService {
             // 1. Action context menu items (Eklenti simgesine sağ tıklandığında gösterilir)
             try {
                 chrome.contextMenus.create({
+                    id: "suspendOthersFromAction",
+                    title: t('contextSuspendOthers') || '🌙 Diğer Sekmeleri Uyut',
+                    contexts: ["action"]
+                });
+                chrome.contextMenus.create({
+                    id: "unsuspendAllFromAction",
+                    title: t('contextUnsuspendAll') || '☀️ Uyuyan Sekmeleri Uyandır',
+                    contexts: ["action"]
+                });
+                chrome.contextMenus.create({
                     id: "openOfficialWebsite",
                     title: t('contextOfficialSite') || '🌐 Resmi Web Sitesi',
                     contexts: ["action"]
@@ -44,6 +54,16 @@ export class ContextMenuService {
                         contexts: ["page"]
                     });
                     chrome.contextMenus.create({
+                        id: "suspendOthersFromPage",
+                        title: t('contextSuspendOthers') || '🌙 Diğer Sekmeleri Uyut',
+                        contexts: ["page"]
+                    });
+                    chrome.contextMenus.create({
+                        id: "unsuspendAllFromPage",
+                        title: t('contextUnsuspendAll') || '☀️ Uyuyan Sekmeleri Uyandır',
+                        contexts: ["page"]
+                    });
+                    chrome.contextMenus.create({
                         id: "whitelistThisSite",
                         title: t('contextWhitelistSite') || 'Bu Siteyi Hariç Tut',
                         contexts: ["page"]
@@ -59,12 +79,24 @@ export class ContextMenuService {
      * Routes context menu click events.
      * @param {chrome.contextMenus.OnClickData} info 
      * @param {chrome.tabs.Tab} tab 
-     * @param {Object} actions { onSuspendCurrent: Function, onWhitelistSite: Function }
+     * @param {Object} actions { onSuspendCurrent: Function, onSuspendOthers: Function, onWhitelistSite: Function, onUnsuspendAll: Function }
      */
     static handleClick(info, tab, actions) {
         if (!info) return;
 
         // Action context menu clicks (Toolbar ikonu sağ tık)
+        if (info.menuItemId === "suspendOthersFromAction") {
+            if (actions && actions.onSuspendOthers) {
+                actions.onSuspendOthers();
+            }
+            return;
+        }
+        if (info.menuItemId === "unsuspendAllFromAction") {
+            if (actions && actions.onUnsuspendAll) {
+                actions.onUnsuspendAll(false); // all windows or current window
+            }
+            return;
+        }
         if (info.menuItemId === "openOfficialWebsite") {
             chrome.tabs.create({ url: "https://haytokoraz.github.io/TabSuspender-HaYTooL/" });
             return;
@@ -75,6 +107,19 @@ export class ContextMenuService {
         }
 
         // Page context menu clicks (Sayfa içi sağ tık)
+        if (info.menuItemId === "suspendOthersFromPage") {
+            if (actions && actions.onSuspendOthers) {
+                actions.onSuspendOthers();
+            }
+            return;
+        }
+        if (info.menuItemId === "unsuspendAllFromPage") {
+            if (actions && actions.onUnsuspendAll) {
+                actions.onUnsuspendAll(true); // current window
+            }
+            return;
+        }
+
         if (tab) {
             if (info.menuItemId === "suspendCurrentTab" && actions && actions.onSuspendCurrent) {
                 actions.onSuspendCurrent(tab);

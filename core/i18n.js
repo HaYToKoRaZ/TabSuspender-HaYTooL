@@ -3,7 +3,7 @@ const translations = {
         appName: "TabSuspender HaYTooL",
         settingsTitle: "TabSuspender HaYTooL Settings",
         saveButton: "Save Settings",
-        settingsSaved: "Settings saved!",
+        settingsSaved: "Changes saved automatically!",
         resetButton: "Restore Defaults",
         resetSuccess: "Defaults restored!",
         resetConfirm: "Are you sure you want to reset all settings to default values?",
@@ -44,7 +44,7 @@ const translations = {
         themeYouTube: "YouTube (OLED Black & Red)",
         themeMatrix: "Matrix (Hacker Green & Dark)",
         languageLabel: "Language / Dil:",
-        addContextMenu: "Add \"Suspend Tab\" to right-click menu",
+        addContextMenu: "Add TabSuspender actions to right-click menu (Suspend & Wake Up)",
         
         // Whitelist
         whitelistHint: "Supports * as a wildcard (e.g. *.reddit.com/* or mail.google.com). One per line.",
@@ -110,6 +110,8 @@ const translations = {
         
         // Context Menus
         contextSuspendTab: "Suspend This Tab",
+        contextSuspendOthers: "🌙 Suspend Other Tabs",
+        contextUnsuspendAll: "☀️ Wake Up Sleeping Tabs",
         contextWhitelistSite: "Never Suspend This Site",
         contextOfficialSite: "🌐 Official Website",
         contextPortal: "🏠 HaYTooL PoRTaL",
@@ -168,7 +170,7 @@ const translations = {
         appName: "TabSuspender HaYTooL",
         settingsTitle: "TabSuspender HaYTooL Ayarları",
         saveButton: "Ayarları Kaydet",
-        settingsSaved: "Ayarlar başarıyla kaydedildi!",
+        settingsSaved: "Ayarlar anında kaydedildi!",
         resetButton: "Varsayılan Ayarlara Dön",
         resetSuccess: "Varsayılan ayarlar yüklendi!",
         resetConfirm: "Tüm ayarları varsayılan değerlerine sıfırlamak istediğinizden emin misiniz?",
@@ -209,7 +211,7 @@ const translations = {
         themeYouTube: "YouTube (OLED Siyahı & Kırmızı)",
         themeMatrix: "Matrix (Hacker Yeşili & Terminal)",
         languageLabel: "Dil / Language:",
-        addContextMenu: "Sağ tık menüsüne \"Bu Sekmeyi Uyut\" seçeneğini ekle",
+        addContextMenu: "Sağ tık menüsüne TabSuspender seçeneklerini ekle (Uyut & Uyandır)",
         
         // Whitelist
         whitelistHint: "Her satıra bir adres yazın. * joker karakterini destekler (örn: *.reddit.com/* veya mail.google.com).",
@@ -275,6 +277,8 @@ const translations = {
         
         // Context Menus
         contextSuspendTab: "Bu Sekmeyi Uyut",
+        contextSuspendOthers: "🌙 Diğer Sekmeleri Uyut",
+        contextUnsuspendAll: "☀️ Uyuyan Sekmeleri Uyandır",
         contextWhitelistSite: "Bu Siteyi Asla Uyutma",
         contextOfficialSite: "🌐 Resmi Web Sitesi",
         contextPortal: "🏠 HaYTooL PoRTaL",

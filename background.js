@@ -158,12 +158,22 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
                 );
             }
         },
+        onSuspendOthers: () => {
+            suspensionService.suspendOtherTabs(
+                settings,
+                (t, s, offline) => WhitelistService.isTabProtected(t, s, offline),
+                getTranslation
+            );
+        },
         onWhitelistSite: async (targetTab) => {
             if (targetTab && targetTab.url) {
                 await StorageRepository.addExcludedUrl(targetTab.url);
                 currentSettings = await StorageRepository.getSettings();
                 Logger.info('ServiceWorker', `Added site to whitelist: ${targetTab.url}`);
             }
+        },
+        onUnsuspendAll: (currentWindowOnly) => {
+            suspensionService.unsuspendAllSuspendedTabs(currentWindowOnly);
         }
     });
 });

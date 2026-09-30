@@ -208,6 +208,76 @@ export class SuspensionService {
     }
 
     /**
+     * Suspends all tabs in current window except the active tab.
+     * @param {Object} settings
+     * @param {Function} isProtectedFn
+     * @param {Function} translateFn
+     */
+    async suspendOtherTabs(settings, isProtectedFn, translateFn) {
+        const isOffline = typeof navigator !== 'undefined' && 'onLine' in navigator ? !navigator.onLine : false;
+        const suspendedPrefix = chrome.runtime.getURL('suspended.html');
+
+        chrome.tabs.query({ currentWindow: true }, async (tabs) => {
+            if (chrome.runtime.lastError || !tabs) return;
+
+            const targets = tabs.filter(t =>
+                t.url &&
+                (t.url.startsWith('http://') || t.url.startsWith('https://')) &&
+                !t.active &&
+                !t.url.startsWith(suspendedPrefix) &&
+                !isProtectedFn(t, settings, isOffline)
+            );
+
+            if (targets.length > 0) {
+                const promises = targets.map(t =>
+                    this.suspendTab(t.id, t.url, t.title || t.url, t.favIconUrl, settings, translateFn, 3, false)
+                );
+                await Promise.all(promises);
+                this.notifyRamSavings(targets.length, settings, translateFn);
+                this.updateBadge();
+            }
+        });
+    }
+
+    /**
+     * Unsuspends all sleeping/suspended tabs in current window (or all windows).
+     * @param {boolean} currentWindowOnly
+     */
+    async unsuspendAllSuspendedTabs(currentWindowOnly = false) {
+        const queryOptions = currentWindowOnly ? { currentWindow: true } : {};
+        const suspendedPrefix = chrome.runtime.getURL('suspended.html');
+
+        chrome.tabs.query(queryOptions, (tabs) => {
+            if (chrome.runtime.lastError || !tabs) return;
+
+            const targets = tabs.map(t => {
+                let originalUrl = null;
+                if (t.url && t.url.startsWith(suspendedPrefix)) {
+                    try {
+                        const urlObj = new URL(t.url);
+                        originalUrl = urlObj.searchParams.get('originalUrl');
+                    } catch (e) {
+                        Logger.error('SuspensionService', 'Error parsing suspended URL:', t.url, e);
+                    }
+                }
+                return { id: t.id, url: originalUrl, discarded: Boolean(t.discarded) };
+            }).filter(t => (t.url && t.url !== 'null') || t.discarded);
+
+            targets.forEach(t => {
+                if (t.url) {
+                    this.unsuspendTab(t.id, t.url, false);
+                } else if (t.discarded) {
+                    // Native discarded tab reload to activate
+                    chrome.tabs.reload(t.id).catch(() => {});
+                }
+            });
+
+            Logger.info('SuspensionService', `Unsuspended ${targets.length} sleeping tabs.`);
+            setTimeout(() => this.updateBadge(), 500);
+        });
+    }
+
+    /**
      * Handles automatic wakeup with optional delay when user focuses a suspended tab.
      */
     handleTabWakeupWithDelay(tabId, originalUrl, settings) {
@@ -217,14 +287,14 @@ export class SuspensionService {
 
         const delaySeconds = parseInt(settings.unsuspendDelay, 10) || 0;
         if (delaySeconds <= 0) {
-            this.unsuspendTab(tabId, decodeURIComponent(originalUrl), true);
+            this.unsuspendTab(tabId, originalUrl, true);
         } else {
             if (this.pendingUnsuspendTimers[tabId]) {
                 clearTimeout(this.pendingUnsuspendTimers[tabId]);
             }
             this.pendingUnsuspendTimers[tabId] = setTimeout(() => {
                 delete this.pendingUnsuspendTimers[tabId];
-                this.unsuspendTab(tabId, decodeURIComponent(originalUrl), true);
+                this.unsuspendTab(tabId, originalUrl, true);
             }, delaySeconds * 1000);
         }
     }
