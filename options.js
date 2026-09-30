@@ -618,9 +618,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        const currentBtnHtml = backupGistBtn ? backupGistBtn.innerHTML : '';
+        const loadingText = currentLang === 'tr' ? 'Yedekleniyor...' : 'Backing up...';
+
         try {
-            backupGistBtn.disabled = true;
-            backupGistBtn.textContent = '⏳ ...';
+            if (backupGistBtn) {
+                backupGistBtn.disabled = true;
+                backupGistBtn.innerHTML = `<span>⏳</span> <span>${loadingText}</span>`;
+            }
 
             let endpoint = 'https://api.github.com/gists';
             let method = 'POST';
@@ -655,29 +660,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 showStatusMessage(getTranslation(currentLang, 'gistBackupSuccess'));
             });
 
+            // Show visible success state on the button
+            if (backupGistBtn) {
+                backupGistBtn.innerHTML = `<span>✓</span> <span>${currentLang === 'tr' ? 'Yedeklendi!' : 'Backed Up!'}</span>`;
+                setTimeout(() => {
+                    if (backupGistBtn) {
+                        backupGistBtn.disabled = false;
+                        backupGistBtn.innerHTML = currentBtnHtml;
+                        updateLanguage(currentLang);
+                    }
+                }, 2000);
+            }
+
         } catch (err) {
             console.error('Gist Backup Error:', err);
             alert(`Gist Backup Error: ${err.message}`);
-        } finally {
-            backupGistBtn.disabled = false;
-            updateLanguage(currentLang);
+            if (backupGistBtn) {
+                backupGistBtn.disabled = false;
+                backupGistBtn.innerHTML = currentBtnHtml;
+                updateLanguage(currentLang);
+            }
         }
     }
 
-    async function restoreFromGist() {
+    async function restoreFromGist(customGistIdOrUrl = null) {
         const token = githubTokenInput ? githubTokenInput.value.trim() : '';
-        let gistId = gistIdInput ? gistIdInput.value.trim() : '';
+        let targetRef = customGistIdOrUrl || (gistIdInput ? gistIdInput.value.trim() : '');
         const currentLang = languageSelect ? languageSelect.value : 'tr';
 
-        if (!gistId && !token) {
+        if (!targetRef && !token) {
             alert(getTranslation(currentLang, 'gistErrorNoId'));
             if (gistIdInput) gistIdInput.focus();
             return;
         }
 
+        const currentBtnHtml = restoreGistBtn ? restoreGistBtn.innerHTML : '';
+        const loadingText = currentLang === 'tr' ? 'İndiriliyor...' : 'Downloading...';
+
         try {
-            restoreGistBtn.disabled = true;
-            restoreGistBtn.textContent = '⏳ ...';
+            if (restoreGistBtn) {
+                restoreGistBtn.disabled = true;
+                restoreGistBtn.innerHTML = `<span>⏳</span> <span>${loadingText}</span>`;
+            }
 
             const headers = {
                 'Accept': 'application/vnd.github+json',
@@ -688,7 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Smart Auto-Discovery: If Gist ID is empty, search user's gists via GitHub API
-            if (!gistId) {
+            if (!targetRef) {
                 showStatusMessage(getTranslation(currentLang, 'gistSearching'));
                 const listResp = await fetch('https://api.github.com/gists?per_page=50', {
                     method: 'GET',
@@ -706,16 +730,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
 
                 if (matchedGist && matchedGist.id) {
-                    gistId = matchedGist.id;
-                    if (gistIdInput) gistIdInput.value = gistId;
-                    chrome.storage.sync.set({ gistId: gistId });
+                    targetRef = matchedGist.id;
+                    if (gistIdInput) gistIdInput.value = targetRef;
+                    chrome.storage.sync.set({ gistId: targetRef });
                 } else {
                     alert(getTranslation(currentLang, 'gistNotFound'));
                     return;
                 }
             }
 
-            const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+            // Target URL can be a standard gist ID or a commit SHA revision URL: https://api.github.com/gists/{id}/{sha}
+            const fetchUrl = targetRef.startsWith('http') ? targetRef : `https://api.github.com/gists/${targetRef}`;
+
+            const response = await fetch(fetchUrl, {
                 method: 'GET',
                 headers: headers
             });
@@ -736,12 +763,26 @@ document.addEventListener('DOMContentLoaded', () => {
             applyImportedSettings(parsed);
             showStatusMessage(getTranslation(currentLang, 'gistRestoreSuccess'));
 
+            // Show visible success state on the button
+            if (restoreGistBtn) {
+                restoreGistBtn.innerHTML = `<span>✓</span> <span>${currentLang === 'tr' ? 'Yüklendi!' : 'Restored!'}</span>`;
+                setTimeout(() => {
+                    if (restoreGistBtn) {
+                        restoreGistBtn.disabled = false;
+                        restoreGistBtn.innerHTML = currentBtnHtml;
+                        updateLanguage(currentLang);
+                    }
+                }, 2000);
+            }
+
         } catch (err) {
             console.error('Gist Restore Error:', err);
             alert(`Gist Restore Error: ${err.message}`);
-        } finally {
-            restoreGistBtn.disabled = false;
-            updateLanguage(currentLang);
+            if (restoreGistBtn) {
+                restoreGistBtn.disabled = false;
+                restoreGistBtn.innerHTML = currentBtnHtml;
+                updateLanguage(currentLang);
+            }
         }
     }
 
@@ -826,9 +867,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fetch all user Gists and display formatted dates/times in dropdown
+    // Fetch all user Gists and display formatted dates/times in dropdown (including all revisions/commits)
     async function listBackups() {
         const token = githubTokenInput ? githubTokenInput.value.trim() : '';
+        const currentGistId = gistIdInput ? gistIdInput.value.trim() : '';
         const currentLang = languageSelect ? languageSelect.value : 'tr';
 
         if (!token) {
@@ -837,34 +879,92 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const currentBtnHtml = listGistsBtn ? listGistsBtn.innerHTML : '';
+        const loadingMsg = currentLang === 'tr' ? 'Yedekler Taranıyor...' : 'Scanning Backups...';
+
         try {
-            listGistsBtn.disabled = true;
-            listGistsBtn.textContent = '⏳ ...';
+            if (listGistsBtn) {
+                listGistsBtn.disabled = true;
+                listGistsBtn.innerHTML = `<span>⏳</span> <span>${loadingMsg}</span>`;
+            }
             if (backupSelectorContainer) backupSelectorContainer.style.display = 'block';
             if (backupSelect) {
                 backupSelect.innerHTML = `<option value="">${getTranslation(currentLang, 'backupListLoading')}</option>`;
             }
 
-            const response = await fetch('https://api.github.com/gists?per_page=100', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/vnd.github+json',
-                    'Authorization': `Bearer ${token}`,
-                    'X-GitHub-Api-Version': '2022-11-28'
-                }
-            });
+            const authHeaders = {
+                'Accept': 'application/vnd.github+json',
+                'Authorization': `Bearer ${token}`,
+                'X-GitHub-Api-Version': '2022-11-28'
+            };
 
-            if (!response.ok) {
-                const errData = await response.json().catch(() => ({}));
-                throw new Error(errData.message || `HTTP ${response.status}`);
+            const backupOptions = [];
+
+            // 1. If we have a saved Gist ID, fetch all its historical commits (each backup version taken)
+            if (currentGistId) {
+                try {
+                    const commitsResp = await fetch(`https://api.github.com/gists/${currentGistId}/commits?per_page=30`, {
+                        headers: authHeaders
+                    });
+                    if (commitsResp.ok) {
+                        const commits = await commitsResp.json();
+                        if (Array.isArray(commits) && commits.length > 0) {
+                            commits.forEach((c, idx) => {
+                                const dateObj = new Date(c.committed_at);
+                                const formattedDate = dateObj.toLocaleDateString(currentLang === 'tr' ? 'tr-TR' : 'en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    second: '2-digit'
+                                });
+                                const label = idx === 0 
+                                    ? `⭐ (En Son Yedek) 📅 ${formattedDate}` 
+                                    : `📦 (Geçmiş Sürüm #${commits.length - idx}) 📅 ${formattedDate}`;
+                                
+                                backupOptions.push({
+                                    value: `https://api.github.com/gists/${currentGistId}/${c.version}`,
+                                    label: label
+                                });
+                            });
+                        }
+                    }
+                } catch (commitErr) {
+                    console.warn('Could not fetch gist commits:', commitErr);
+                }
             }
 
-            const gists = await response.json();
-            const backups = (Array.isArray(gists) ? gists : []).filter(g => 
-                g.files && (g.files["tab_suspender_settings.json"] || (g.description && g.description.includes("TabSuspender-HaYTooL-Sync")))
-            );
+            // 2. Fetch other TabSuspender gists on user account if any
+            const response = await fetch('https://api.github.com/gists?per_page=50', {
+                method: 'GET',
+                headers: authHeaders
+            });
 
-            if (backups.length === 0) {
+            if (response.ok) {
+                const gists = await response.json();
+                const otherGists = (Array.isArray(gists) ? gists : []).filter(g => 
+                    g.id !== currentGistId &&
+                    g.files && (g.files["tab_suspender_settings.json"] || (g.description && g.description.includes("TabSuspender-HaYTooL-Sync")))
+                );
+
+                otherGists.forEach(g => {
+                    const dateObj = new Date(g.updated_at || g.created_at);
+                    const formattedDate = dateObj.toLocaleDateString(currentLang === 'tr' ? 'tr-TR' : 'en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    backupOptions.push({
+                        value: g.id,
+                        label: `📁 Farklı Gist: 📅 ${formattedDate} [ID: ${g.id.substring(0, 8)}...]`
+                    });
+                });
+            }
+
+            if (backupOptions.length === 0) {
                 if (backupSelect) {
                     backupSelect.innerHTML = `<option value="">${getTranslation(currentLang, 'backupListEmpty')}</option>`;
                 }
@@ -874,18 +974,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (backupSelect) {
                 backupSelect.innerHTML = '';
-                backups.forEach((b, idx) => {
+                backupOptions.forEach(optData => {
                     const opt = document.createElement('option');
-                    opt.value = b.id;
-                    const dateObj = new Date(b.updated_at || b.created_at);
-                    const formattedDate = dateObj.toLocaleDateString(currentLang === 'tr' ? 'tr-TR' : 'en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                    opt.textContent = `${idx === 0 ? '⭐ (En Güncel) ' : ''}📅 ${formattedDate} [ID: ${b.id.substring(0, 8)}...]`;
+                    opt.value = optData.value;
+                    opt.textContent = optData.label;
                     backupSelect.appendChild(opt);
                 });
             }
@@ -895,19 +987,20 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`GitHub Error: ${err.message}`);
             if (backupSelectorContainer) backupSelectorContainer.style.display = 'none';
         } finally {
-            listGistsBtn.disabled = false;
-            updateLanguage(currentLang);
+            if (listGistsBtn) {
+                listGistsBtn.disabled = false;
+                listGistsBtn.innerHTML = currentBtnHtml;
+                updateLanguage(currentLang);
+            }
         }
     }
 
     // Apply specific backup chosen from dropdown
     async function applySelectedBackup() {
-        const selectedId = backupSelect ? backupSelect.value : '';
-        if (!selectedId) return;
+        const selectedValue = backupSelect ? backupSelect.value : '';
+        if (!selectedValue) return;
 
-        if (gistIdInput) gistIdInput.value = selectedId;
-        chrome.storage.sync.set({ gistId: selectedId });
-        await restoreFromGist();
+        await restoreFromGist(selectedValue);
     }
 
     // Gist & File Listeners
