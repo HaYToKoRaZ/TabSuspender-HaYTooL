@@ -9,12 +9,12 @@
   <p align="center">
     <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad"><img src="https://img.shields.io/badge/Chrome_Web_Store-Official_Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store"/></a>
     <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg"><img src="https://img.shields.io/badge/Edge_Add--ons-Official_Store-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge Add-ons"/></a>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/badge/Release-v2.8-brightgreen?style=for-the-badge&logo=github" alt="Release v2.8"/></a>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
-    <a href="https://developer.chrome.com/docs/extensions/mv3/"><img src="https://img.shields.io/badge/Manifest-V3-orange?style=for-the-badge&logo=googlechrome" alt="Manifest V3"/></a>
-    <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/"><img src="https://img.shields.io/badge/Web_Site-Live_Demo-purple?style=for-the-badge&logo=safari" alt="Website Demo"/></a>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/latest/total?color=success&label=Latest%20Release%20Downloads" alt="Latest Release Downloads" /></a>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/total?color=2ea44f&label=Total%20Downloads" alt="Total Downloads" /></a>
+    <img src="assets/badges/release.svg" alt="Release v2.8"/>
+    <img src="assets/badges/license.svg" alt="License MIT"/>
+    <img src="assets/badges/manifest.svg" alt="Manifest V3"/>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/latest/total?style=for-the-badge&logo=github&color=2ea44f&label=LATEST%20DOWNLOADS" alt="Latest Release Downloads" /></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/total?style=for-the-badge&logo=github&color=0969da&label=TOTAL%20DOWNLOADS" alt="Total Downloads" /></a>
+    <a href="https://haytokoraz.github.io/" target="_blank"><img src="assets/badges/portal.svg" alt="HaYTooL PoRTaL" /></a>
   </p>
 </div>
 
