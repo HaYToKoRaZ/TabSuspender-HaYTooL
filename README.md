@@ -20,6 +20,20 @@
 
 ---
 
+
+### 🌐 Supported Browsers & Store Downloads
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" title="Chrome Web Store">
+    <img src="assets/badges/chrome.svg" alt="Chrome Web Store" width="40" height="40" style="margin: 0 10px;" />
+  </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg" title="Microsoft Edge Add-ons">
+    <img src="assets/badges/edge.svg" alt="Microsoft Edge" width="40" height="40" style="margin: 0 10px;" />
+  </a>
+  <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" title="Helium Browser">
+    <img src="assets/badges/helium.png" alt="Helium Browser" width="40" height="40" style="margin: 0 10px;" />
+  </a>
+</p>
+
 ## 🌐 Quick Links / Hızlı Bağlantılar
 - 🛒 **Chrome Web Store (Google Chrome & Helium):** [Official Chrome Web Store Page](https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad)
 - 🛒 **Microsoft Edge Add-ons Store:** [Official Edge Extension Page](https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg)
