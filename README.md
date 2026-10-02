@@ -7,8 +7,8 @@
   *Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
 
   <p align="center">
-    <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad"><img src="https://img.shields.io/badge/Chrome_Web_Store-Official_Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store"/></a>
-    <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg"><img src="https://img.shields.io/badge/Edge_Add--ons-Official_Store-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge Add-ons"/></a>
+    
+    
     <img src="assets/badges/release.svg" alt="Release v2.8"/>
     <img src="assets/badges/license.svg" alt="License MIT"/>
     <img src="assets/badges/manifest.svg" alt="Manifest V3"/>
