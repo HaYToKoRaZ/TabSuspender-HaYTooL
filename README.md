@@ -1,27 +1,38 @@
 <div align="center">
   <img src="icons/icon128.png" alt="TabSuspender HaYTooL Logo" width="100" style="border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"/>
 
-  # TabSuspender HaYTooL
-  
-  **Smart, Ultra-Lightweight & Privacy-First Tab Suspender & Memory Saver**  
-  *Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
+# TabSuspender HaYTooL
 
-  <p align="center">
-    
-    
-    <img src="assets/badges/release.svg" alt="Release v2.8"/>
-    <img src="assets/badges/license.svg" alt="License MIT"/>
-    <img src="assets/badges/manifest.svg" alt="Manifest V3"/>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/latest/total?style=for-the-badge&logo=github&color=2ea44f&label=LATEST%20DOWNLOADS" alt="Latest Release Downloads" /></a>
-    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/total?style=for-the-badge&logo=github&color=0969da&label=TOTAL%20DOWNLOADS" alt="Total Downloads" /></a>
-    <a href="https://haytokoraz.github.io/" target="_blank"><img src="assets/badges/portal.svg" alt="HaYTooL PoRTaL" /></a>
-  </p>
+**Smart, Ultra-Lightweight & Privacy-First Tab Suspender & Memory Saver**  
+*Akıllı, Ultra Hafif ve Gizlilik Odaklı Sekme Uyutucu & Bellek Koruyucu*
+
+<p align="center">
+  <img src="assets/badges/release.svg" alt="Release v2.8"/>
+  <img src="assets/badges/license.svg" alt="License MIT"/>
+  <img src="assets/badges/manifest.svg" alt="Manifest V3"/>
+  <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/latest/total?style=for-the-badge&logo=github&color=2ea44f&label=LATEST%20DOWNLOADS" alt="Latest Release Downloads" /></a>
+  <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/total?style=for-the-badge&logo=github&color=0969da&label=TOTAL%20DOWNLOADS" alt="Total Downloads" /></a>
+  <a href="https://haytokoraz.github.io/" target="_blank"><img src="assets/badges/portal.svg" alt="HaYTooL PoRTaL" /></a>
+</p>
+
+### 🌐 Supported Browsers & Store Downloads
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" title="Chrome Web Store">
+    <img src="assets/badges/chrome.svg" alt="Chrome Web Store" width="40" height="40" style="margin: 0 10px;" />
+  </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg" title="Microsoft Edge Add-ons">
+    <img src="assets/badges/edge.svg" alt="Microsoft Edge" width="40" height="40" style="margin: 0 10px;" />
+  </a>
+  <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" title="Helium Browser">
+    <img src="assets/badges/helium.png" alt="Helium Browser" width="40" height="40" style="margin: 0 10px;" />
+  </a>
+</p>
+
 </div>
 
 ---
 
-
-### 🌐 Supported Browsers & Store Downloads
+## 🌐 Supported Browsers & Store Downloads
 <p align="center">
   <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" title="Chrome Web Store">
     <img src="assets/badges/chrome.svg" alt="Chrome Web Store" width="40" height="40" style="margin: 0 10px;" />
