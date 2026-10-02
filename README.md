@@ -13,6 +13,8 @@
     <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT"/></a>
     <a href="https://developer.chrome.com/docs/extensions/mv3/"><img src="https://img.shields.io/badge/Manifest-V3-orange?style=for-the-badge&logo=googlechrome" alt="Manifest V3"/></a>
     <a href="https://haytokoraz.github.io/TabSuspender-HaYTooL/"><img src="https://img.shields.io/badge/Web_Site-Live_Demo-purple?style=for-the-badge&logo=safari" alt="Website Demo"/></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/latest/total?color=success&label=Latest%20Release%20Downloads" alt="Latest Release Downloads" /></a>
+    <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/TabSuspender-HaYTooL/total?color=2ea44f&label=Total%20Downloads" alt="Total Downloads" /></a>
   </p>
 </div>
 
