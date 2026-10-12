@@ -1,16 +1,114 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TabSuspender HaYTooL | Akıllı, Hafif ve Uyuyan Kedi Temalı Sekme Uyutucu</title>
-  <meta name="description" content="Kullanılmayan sekmeleri sevimli bir kedi gibi mışıl mışıl uyutarak RAM ve CPU tüketimini azaltın. Açık kaynak kodlu ve gizlilik odaklı Chrome eklentisi.">
+  <title>TabSuspender HaYTooL | Smart, Lightweight & Cute Cat Sleeping Tab Suspender</title>
+  <meta name="description" content="Save up to 85% RAM and CPU by letting inactive background tabs take a gentle cat nap. Free, open-source, and zero-telemetry Chromium extension.">
+  <meta name="keywords" content="Tab Suspender, Chrome Extension, Memory Saver, RAM Saver, Sleeping Tabs, Tab Snooze, Cat Theme, Chromium, Zero Telemetry, Open Source, Edge Addons">
+  <meta name="author" content="HaYToKoRaZ">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0a0d14">
+  <link rel="canonical" href="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
+  <link rel="help" href="llms.txt" type="text/plain" title="LLM & AI Assistant Documentation">
+
+  <!-- Open Graph / Facebook / LinkedIn (Global English Primary) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TabSuspender HaYTooL">
+  <meta property="og:url" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
+  <meta property="og:title" content="TabSuspender HaYTooL | Smart, Lightweight & Cute Tab Suspender">
+  <meta property="og:description" content="Save up to 85% RAM by letting idle tabs take a cozy cat nap. Zero telemetry, open source, and privacy-first.">
+  <meta property="og:image" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
+  <meta name="twitter:title" content="TabSuspender HaYTooL | Smart & Cute Tab Suspender">
+  <meta name="twitter:description" content="Save up to 85% RAM by letting idle background tabs take a cozy kitten nap. 100% private, zero-telemetry & open-source.">
+  <meta name="twitter:image" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png">
+
+  <!-- Structured Data: Schema.org JSON-LD (SoftwareApplication, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TabSuspender HaYTooL",
+      "operatingSystem": "Chromium, Google Chrome, Microsoft Edge, Brave, Opera, Vivaldi",
+      "applicationCategory": "BrowserApplication",
+      "description": "Open-source Chromium extension that automatically suspends inactive background tabs with a cozy sleeping kitten theme, cutting RAM and CPU usage by up to 85%.",
+      "url": "https://haytokoraz.github.io/TabSuspender-HaYTooL/",
+      "downloadUrl": "https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "HaYToKoRaZ",
+        "url": "https://github.com/HaYToKoRaZ"
+      },
+      "screenshot": "https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "HaYTooL Portal",
+          "item": "https://haytokoraz.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "TabSuspender HaYTooL",
+          "item": "https://haytokoraz.github.io/TabSuspender-HaYTooL/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Will form entries or unsaved data be lost when a tab naps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tab suspension securely retains the original URL and browsing history. For sensitive form entries, banking, or active web apps, simply pin the tab or add the domain to your custom whitelist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do background tabs suspend while playing YouTube or Spotify music?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Never! The smart audio detection engine ensures that tabs actively playing audio or media streams are never suspended."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this extension completely free and ad-free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 100% free and open-source under the MIT license! It includes zero tracking, zero telemetry, and zero ads."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
 
   <style>
     :root {
@@ -51,6 +149,28 @@
       box-sizing: border-box;
     }
 
+    /* Accessibility & Focus Rings (UI-UX-Pro-Max & WCAG 2.1 AA) */
+    :focus-visible {
+      outline: 2px solid var(--accent-cat);
+      outline-offset: 3px;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent-cat);
+      outline-offset: 2px;
+      box-shadow: 0 0 12px var(--accent-cat-glow);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
@@ -58,6 +178,8 @@
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* Ambient Glows */

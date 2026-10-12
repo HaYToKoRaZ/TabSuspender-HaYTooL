@@ -1,0 +1,21 @@
+# TabSuspender HaYTooL
+
+> Smart, ultra-lightweight, sleeping-kitten-themed, and zero-telemetry Chromium tab suspender extension.
+
+## Overview
+TabSuspender HaYTooL is an open-source Chromium extension (Chrome, Edge, Brave, Opera, Vivaldi, Helium) designed to drastically reduce system memory (RAM) and CPU consumption by up to 85% by automatically or manually putting idle background tabs to sleep.
+
+## Key Features
+- **Cozy Sleeping Kitten & Mascot Themes:** Inactive tabs rest in a peaceful nap accompanied by soothing sleeping animations and a relaxing mascot screen.
+- **Intelligent Protection & Whitelist:** Audio-playing tabs (YouTube, Spotify), active forms, pinned tabs, and user-defined domain whitelists (*.domain.com/*) are strictly protected from suspension.
+- **Zero Telemetry & 100% Privacy:** No remote analytics, no tracking, and no external servers. Operates completely offline using secure local `chrome.storage`.
+- **Manifest V3 & Pure Vanilla Performance:** Built with modular N-Tier architecture and pure Vanilla JS/CSS (<50ms startup time, ultra-low memory footprint).
+- **Multiple Color Themes:** Discord Blurple, YouTube OLED Black, Cyber Matrix, Midnight Blue, Dark, and Light themes.
+- **Cloud Sync via GitHub Gist:** Easily backup and synchronize custom whitelists and configurations across multiple devices.
+
+## Links & Distribution
+- **Official Website:** https://haytokoraz.github.io/TabSuspender-HaYTooL/
+- **Microsoft Edge Add-ons:** https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg
+- **GitHub Repository:** https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL
+- **Developer:** HaYToKoRaZ
+- **License:** MIT (Free & Open Source)
