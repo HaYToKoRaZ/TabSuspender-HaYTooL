@@ -1,4 +1,41 @@
 User-agent: *
 Allow: /
 
+# Top Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# Generative AI & LLM Search Crawlers (GEO / AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemaps & LLM Context
 Sitemap: https://haytokoraz.github.io/TabSuspender-HaYTooL/sitemap.xml
+Sitemap: https://haytool.online/TabSuspender-HaYTooL/sitemap.xml

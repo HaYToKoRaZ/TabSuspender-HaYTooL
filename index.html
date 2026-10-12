@@ -3,20 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TabSuspender HaYTooL | Smart, Lightweight & Cute Cat Sleeping Tab Suspender</title>
+  <title>TabSuspender HaYTooL | Smart Tab Suspender & RAM Saver</title>
   <meta name="description" content="Save up to 85% RAM and CPU by letting inactive background tabs take a gentle cat nap. Free, open-source, and zero-telemetry Chromium extension.">
-  <meta name="keywords" content="Tab Suspender, Chrome Extension, Memory Saver, RAM Saver, Sleeping Tabs, Tab Snooze, Cat Theme, Chromium, Zero Telemetry, Open Source, Edge Addons">
-  <meta name="author" content="HaYToKoRaZ">
+  <meta name="author" content="HaYTo">
+  <meta name="publisher" content="HaYTooL">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0a0d14">
   <link rel="canonical" href="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
+  <link rel="alternate" hreflang="en" href="https://haytokoraz.github.io/TabSuspender-HaYTooL/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://haytokoraz.github.io/TabSuspender-HaYTooL/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
   <link rel="help" href="llms.txt" type="text/plain" title="LLM & AI Assistant Documentation">
+
+  <!-- Favicon, Touch Icons & Web App Manifest -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph / Facebook / LinkedIn (Global English Primary) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="TabSuspender HaYTooL">
   <meta property="og:url" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
-  <meta property="og:title" content="TabSuspender HaYTooL | Smart, Lightweight & Cute Tab Suspender">
+  <meta property="og:title" content="TabSuspender HaYTooL | Smart Tab Suspender & RAM Saver">
   <meta property="og:description" content="Save up to 85% RAM by letting idle tabs take a cozy cat nap. Zero telemetry, open source, and privacy-first.">
   <meta property="og:image" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png">
   <meta property="og:locale" content="en_US">
@@ -25,7 +35,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/">
-  <meta name="twitter:title" content="TabSuspender HaYTooL | Smart & Cute Tab Suspender">
+  <meta name="twitter:title" content="TabSuspender HaYTooL | Smart Tab Suspender & RAM Saver">
   <meta name="twitter:description" content="Save up to 85% RAM by letting idle background tabs take a cozy kitten nap. 100% private, zero-telemetry & open-source.">
   <meta name="twitter:image" content="https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png">
 
@@ -48,8 +58,13 @@
       },
       "author": {
         "@type": "Person",
-        "name": "HaYToKoRaZ",
+        "name": "HaYTo",
         "url": "https://github.com/HaYToKoRaZ"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "HaYTooL",
+        "url": "https://haytokoraz.github.io/"
       },
       "screenshot": "https://haytokoraz.github.io/TabSuspender-HaYTooL/assets/screenshots/ingilizce-ayarlar.png"
     },
@@ -104,10 +119,13 @@
   ]
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Zero Render-Blocking Async Loader) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&family=Fredoka:wght@600&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&family=Fredoka:wght@600&display=swap">
+  </noscript>
 
 
   <style>
@@ -160,6 +178,23 @@
       outline: 2px solid var(--accent-cat);
       outline-offset: 2px;
       box-shadow: 0 0 12px var(--accent-cat-glow);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--accent-cat);
+      color: #1a0f00;
+      padding: 10px 18px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 10000;
+      text-decoration: none;
+      transition: top var(--transition-fast);
+    }
+    .skip-link:focus {
+      top: 16px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -374,7 +409,7 @@
       font-size: 0.88rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-dim);
+      color: #cbd5e1;
       font-weight: 700;
       margin-bottom: 16px;
       text-align: center;
@@ -615,6 +650,7 @@
       gap: 14px;
     }
 
+    .cat-story h2,
     .cat-story h3 {
       font-family: 'Outfit', sans-serif;
       font-size: 1.6rem;
@@ -716,24 +752,26 @@
     }
 
     .mockup-tab.suspended {
-      opacity: 0.75;
+      opacity: 1;
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.05);
       border-style: dashed;
-      border-color: rgba(245, 158, 11, 0.4);
+      border-color: rgba(245, 158, 11, 0.6);
     }
 
     .mockup-tab.suspended:hover {
       opacity: 1;
       border-color: #f59e0b;
-      background: rgba(245, 158, 11, 0.1);
+      background: rgba(245, 158, 11, 0.15);
     }
 
     .tab-badge {
-      font-size: 0.7rem;
-      padding: 2px 7px;
+      font-size: 0.72rem;
+      padding: 2px 8px;
       border-radius: 4px;
-      background: rgba(245, 158, 11, 0.2);
-      color: #fcd34d;
-      font-weight: 600;
+      background: rgba(245, 158, 11, 0.25);
+      color: #fde047;
+      font-weight: 700;
     }
 
     .mockup-body {
@@ -798,11 +836,11 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .theme-light { background: #ffffff; color: #1e293b; }
-    .theme-dark { background: #131b2e; color: #60a5fa; border-color: #3b82f6; }
-    .theme-discord { background: #2f3136; color: #5865f2; border-color: #5865f2; }
-    .theme-youtube { background: #181818; color: #ff0000; border-color: #ff0000; }
-    .theme-matrix { background: #0a110a; color: #00ff41; border-color: #00ff41; }
+    .theme-light { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
+    .theme-dark { background: #1e293b; color: #93c5fd; border-color: #3b82f6; }
+    .theme-discord { background: #5865f2; color: #ffffff; border-color: #5865f2; }
+    .theme-youtube { background: #dc2626; color: #ffffff; border-color: #ef4444; }
+    .theme-matrix { background: #052e16; color: #4ade80; border-color: #22c55e; }
 
     /* Features Grid */
     .section-title {
@@ -911,6 +949,7 @@
       margin-bottom: 16px;
     }
 
+    .step-box h3,
     .step-box h4 {
       font-size: 1.15rem;
       margin-bottom: 8px;
@@ -1115,12 +1154,16 @@
       border-top: 1px solid var(--border-color);
       padding: 40px 0;
       text-align: center;
-      color: var(--text-dim);
+      color: #cbd5e1;
       font-size: 0.9rem;
     }
 
+    footer p {
+      color: #cbd5e1;
+    }
+
     footer a {
-      color: var(--text-muted);
+      color: #e2e8f0;
       text-decoration: none;
       transition: color var(--transition-fast);
     }
@@ -1172,6 +1215,9 @@
 </head>
 <body>
 
+  <!-- Skip to Main Content (WCAG 2.1 AA / Axe Core Accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content / Ana içeriğe atla</a>
+
   <div class="bg-glow-1"></div>
   <div class="bg-glow-2"></div>
 
@@ -1220,7 +1266,7 @@
           </button>
         </div>
 
-        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="btn btn-secondary">
+        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-secondary">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
@@ -1229,6 +1275,9 @@
       </div>
     </div>
   </header>
+
+  <!-- Main Landmark for Screen Readers & Semantic Navigation -->
+  <main id="main-content">
 
   <!-- Hero Section -->
   <section class="hero">
@@ -1251,7 +1300,7 @@
         <a href="#install" class="btn btn-cat">
           <span data-i18n="heroBtnInstall">🐾 Hemen Ücretsiz Kurun</span>
         </a>
-        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" class="btn btn-secondary" data-i18n="heroBtnRepo">
+        <a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-secondary" data-i18n="heroBtnRepo">
           ⭐ GitHub Deposu (Kaynak Kod)
         </a>
       </div>
@@ -1261,9 +1310,9 @@
         <div class="stores-title" data-i18n="storesHeader">Resmi Mağaza & Tarayıcı Bağlantıları</div>
         <div class="stores-grid">
           <!-- Chrome Store -->
-          <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" target="_blank" class="store-card" id="chromeStoreBtn" title="Chrome Web Store">
+          <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" target="_blank" rel="noopener noreferrer nofollow" class="store-card" id="chromeStoreBtn" title="Chrome Web Store">
             <div class="store-icon-wrap">
-              <img src="assets/chrome.svg" alt="Google Chrome" width="28" height="28" style="object-fit: contain;">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" viewBox="0 0 190 190" width="28" height="28" aria-hidden="true"><linearGradient id="cr_d" x1="28.3" x2="80.8" y1="75" y2="44.4" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#a52714" stop-opacity=".6"/><stop offset=".7" stop-color="#a52714" stop-opacity="0"/></linearGradient><linearGradient id="cr_f" x1="109.9" x2="51.5" y1="164.5" y2="130.3" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#055524" stop-opacity=".4"/><stop offset=".3" stop-color="#055524" stop-opacity="0"/></linearGradient><linearGradient id="cr_h" x1="121.9" x2="136.6" y1="49.8" y2="114.1" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ea6100" stop-opacity=".3"/><stop offset=".7" stop-color="#ea6100" stop-opacity="0"/></linearGradient><radialGradient id="cr_a" cx="91.2" cy="55" r="84.1" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3e2723" stop-opacity=".2"/><stop offset="1" stop-color="#3e2723" stop-opacity="0"/></radialGradient><radialGradient id="cr_i" cx="20.9" cy="47.5" r="78" xlink:href="#cr_a"/><radialGradient id="cr_j" cx="94.8" cy="95.1" r="87.9" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#263238" stop-opacity=".2"/><stop offset="1" stop-color="#263238" stop-opacity="0"/></radialGradient><radialGradient id="cr_k" cx="33.3" cy="31" r="176.8" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><clipPath id="cr_b"><circle cx="95" cy="95" r="88"/></clipPath><g clip-path="url(#cr_b)"><use fill="#db4437" xlink:href="#cr_c"/><use fill="url(#cr_d)" xlink:href="#cr_c"/><use fill="#0f9d58" xlink:href="#cr_e"/><use fill="url(#cr_f)" xlink:href="#cr_e"/><use fill="#ffcd40" xlink:href="#cr_g"/><use fill="url(#cr_h)" xlink:href="#cr_g"/><g fill-opacity=".1"><path fill="#3e2723" d="M61.3 114.7L21 47.4l39 67.8z"/><path fill="#263238" d="M128.8 116.3l-.8-.4-37.3 67 38.3-67z"/></g><path id="cr_e" d="M7 183h83.8l39-39v-29H60.2L7 23.5z"/><path id="cr_g" d="M95 55l34.6 60L91 183h92V55z"/><path id="cr_c" d="M21 7v108h39.4L95 55h88V7z"/><path fill="url(#cr_a)" d="M95 55v21l78.4-21z"/><path fill="url(#cr_i)" d="M21 47.5l57.2 57.2L60.4 115z"/><path fill="url(#cr_j)" d="M90.8 183l21-78.3 17.8 10.3z"/><circle cx="95" cy="95" r="40" fill="#f1f1f1"/><circle cx="95" cy="95" r="32" fill="#4285f4"/><circle cx="95" cy="95" r="88" fill="url(#cr_k)"/><g fill="#3e2723" fill-opacity=".1"><path fill="#fff" d="M129.6 115a40 40 0 01-69.2 0L7 24.5 60.4 116a40 40 0 0069.2 0z"/><path d="M96 55h-.5a40 40 0 110 80h.5c22 0 40-18 40-40s-18-40-40-40zm-1 127a88 88 0 0088-87.5v.5A88 88 0 017 95v-.5A88 88 0 0095 182z"/><g fill-opacity=".2"><path fill="#fff" d="M130 116.3a39.3 39.3 0 003.4-32 38 38 0 01-3.8 30.7L92 183l38.2-66.5zM95 8a88 88 0 0188 87.5V95A88 88 0 007 95v.5A88 88 0 0195 8z"/><path d="M95 54c-22 0-40 18-40 40v1c0-22 18-40 40-40h88v-1z"/></g></g></g></svg>
             </div>
             <div class="store-info">
               <span class="store-badge">Chrome Web Store</span>
@@ -1273,9 +1322,9 @@
           </a>
 
           <!-- Microsoft Edge Store -->
-          <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg" target="_blank" class="store-card" id="edgeStoreBtn" title="Microsoft Edge Add-ons">
+          <a href="https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg" target="_blank" rel="noopener noreferrer nofollow" class="store-card" id="edgeStoreBtn" title="Microsoft Edge Add-ons">
             <div class="store-icon-wrap">
-              <img src="assets/edge.svg" alt="Microsoft Edge" width="28" height="28" style="object-fit: contain;">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 27600 27600" width="28" height="28" aria-hidden="true"><linearGradient id="ed_A" gradientUnits="userSpaceOnUse"/><linearGradient id="ed_B" x1="6870" x2="24704" y1="18705" y2="18705" xlink:href="#ed_A"><stop offset="0" stop-color="#0c59a4"/><stop offset="1" stop-color="#114a8b"/></linearGradient><linearGradient id="ed_C" x1="16272" x2="5133" y1="10968" y2="23102" xlink:href="#ed_A"><stop offset="0" stop-color="#1b9de2"/><stop offset=".16" stop-color="#1595df"/><stop offset=".67" stop-color="#0680d7"/><stop offset="1" stop-color="#0078d4"/></linearGradient><radialGradient id="ed_D" cx="16720" cy="18747" r="9538" xlink:href="#ed_A"><stop offset=".72" stop-opacity="0"/><stop offset=".95" stop-opacity=".53"/><stop offset="1"/></radialGradient><radialGradient id="ed_E" cx="7130" cy="19866" r="14324" gradientTransform="matrix(.14843 -.98892 .79688 .1196 -8759 25542)" xlink:href="#ed_A"><stop offset=".76" stop-opacity="0"/><stop offset=".95" stop-opacity=".5"/><stop offset="1"/></radialGradient><radialGradient id="ed_F" cx="2523" cy="4680" r="20243" gradientTransform="matrix(-.03715 .99931 -2.12836 -.07913 13579 3530)" xlink:href="#ed_A"><stop offset="0" stop-color="#35c1f1"/><stop offset=".11" stop-color="#34c1ed"/><stop offset=".23" stop-color="#2fc2df"/><stop offset=".31" stop-color="#2bc3d2"/><stop offset=".67" stop-color="#36c752"/></radialGradient><radialGradient id="ed_G" cx="24247" cy="7758" r="9734" gradientTransform="matrix(.28109 .95968 -.78353 .22949 24510 -16292)" xlink:href="#ed_A"><stop offset="0" stop-color="#66eb6e"/><stop offset="1" stop-color="#66eb6e" stop-opacity="0"/></radialGradient><path id="ed_H" d="M24105 20053a9345 9345 0 01-1053 472 10202 10202 0 01-3590 646c-4732 0-8855-3255-8855-7432 0-1175 680-2193 1643-2729-4280 180-5380 4640-5380 7253 0 7387 6810 8137 8276 8137 791 0 1984-230 2704-456l130-44a12834 12834 0 006660-5282c220-350-168-757-535-565z"/><path id="ed_I" d="M11571 25141a7913 7913 0 01-2273-2137 8145 8145 0 01-1514-4740 8093 8093 0 013093-6395 8082 8082 0 011373-859c312-148 846-414 1554-404a3236 3236 0 012569 1297 3184 3184 0 01636 1866c0-21 2446-7960-8005-7960-4390 0-8004 4166-8004 7820 0 2319 538 4170 1212 5604a12833 12833 0 007684 6757 12795 12795 0 003908 610c1414 0 2774-233 4045-656a7575 7575 0 01-6278-803z"/><path id="ed_J" d="M16231 15886c-80 105-330 250-330 566 0 260 170 512 472 723 1438 1003 4149 868 4156 868a5954 5954 0 003027-839 6147 6147 0 001133-850 6180 6180 0 001910-4437c26-2242-796-3732-1133-4392-2120-4141-6694-6525-11668-6525-7011 0-12703 5635-12798 12620 47-3654 3679-6605 7996-6605 350 0 2346 34 4200 1007 1634 858 2490 1894 3086 2921 618 1067 728 2415 728 2952s-271 1333-780 1990z"/><use fill="url(#ed_B)" xlink:href="#ed_H"/><use fill="url(#ed_D)" opacity=".35" xlink:href="#ed_H"/><use fill="url(#ed_C)" xlink:href="#ed_I"/><use fill="url(#ed_E)" opacity=".4" xlink:href="#ed_I"/><use fill="url(#ed_F)" xlink:href="#ed_J"/><use fill="url(#ed_G)" xlink:href="#ed_J"/></svg>
             </div>
             <div class="store-info">
               <span class="store-badge">Edge Eklentileri</span>
@@ -1285,9 +1334,9 @@
           </a>
 
           <!-- Helium & Chromium -->
-          <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" target="_blank" class="store-card" id="heliumStoreBtn" title="Helium Browser (Chrome Web Store)">
+          <a href="https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad" target="_blank" rel="noopener noreferrer nofollow" class="store-card" id="heliumStoreBtn" title="Helium Browser (Chrome Web Store)">
             <div class="store-icon-wrap">
-              <img src="assets/helium.png" alt="Helium Browser" width="28" height="28" style="object-fit: contain; border-radius: 6px;">
+              <img src="data:image/png;base64,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" alt="Helium Browser" width="28" height="28" style="object-fit: contain; border-radius: 6px;" decoding="async">
             </div>
             <div class="store-info">
               <span class="store-badge">Helium / Chromium</span>
@@ -1349,7 +1398,7 @@
         </div>
 
         <div class="cat-story">
-          <h3 data-i18n="catStoryTitle">🐱 "Sekmeleriniz Uyurken Belleğiniz Rahatlar"</h3>
+          <h2 data-i18n="catStoryTitle">🐱 "Sekmeleriniz Uyurken Belleğiniz Rahatlar"</h2>
           <p data-i18n="catStoryDesc1">
             Tıpkı bir kedinin gün boyu güneşli bir köşede huzurla uyuması gibi; TabSuspender arka planda bakmadığınız sekmeleri derin uyku moduna alır.
           </p>
@@ -1478,21 +1527,21 @@
       <div class="steps-grid">
         <div class="step-box">
           <div class="step-number">1</div>
-          <h4 data-i18n="step1Title">Projeyi İndirin</h4>
+          <h3 data-i18n="step1Title">Projeyi İndirin</h3>
           <p data-i18n="step1Desc">GitHub deposundan kaynak kodları indirin veya depoyu klonlayın.</p>
           <div class="code-snippet">git clone https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL.git</div>
         </div>
 
         <div class="step-box">
           <div class="step-number">2</div>
-          <h4 data-i18n="step2Title">Eklentiler Sayfasını Açın</h4>
+          <h3 data-i18n="step2Title">Eklentiler Sayfasını Açın</h3>
           <p data-i18n="step2Desc">Tarayıcınızın adres çubuğuna şu adresi yazarak geliştirici modunu etkinleştirin:</p>
           <div class="code-snippet">chrome://extensions</div>
         </div>
 
         <div class="step-box">
           <div class="step-number">3</div>
-          <h4 data-i18n="step3Title">Paketlenmemiş Öğeyi Yükleyin</h4>
+          <h3 data-i18n="step3Title">Paketlenmemiş Öğeyi Yükleyin</h3>
           <p data-i18n="step3Desc">Sağ üstteki "Geliştirici modu"nu açın ve "Paketlenmemiş öğe yükle" diyerek <code>main</code> klasörünü seçin.</p>
         </div>
       </div>
@@ -1524,7 +1573,7 @@
           <span class="screenshot-badge">options.html</span>
         </div>
         <div class="screenshot-img-box" onclick="window.open('assets/screenshots/turkce-ayarlar.png', '_blank')">
-          <img src="assets/screenshots/turkce-ayarlar.png" alt="TabSuspender HaYTooL Türkçe Ayarlar Paneli" loading="lazy">
+          <img src="assets/screenshots/turkce-ayarlar.png" alt="TabSuspender HaYTooL Türkçe Ayarlar Paneli" width="1107" height="1396" loading="lazy" decoding="async">
         </div>
         <div class="screenshot-footer">
           Otomatik askıya alma süreleri, 5 uyuyan hayvan maskotu canlı önizlemesi, GitHub Gist bulut eşitlemesi ve 5 renk teması ayarları.
@@ -1537,7 +1586,7 @@
           <span class="screenshot-badge">popup.html</span>
         </div>
         <div class="screenshot-img-box" onclick="window.open('assets/screenshots/turkce-popup.png', '_blank')">
-          <img src="assets/screenshots/turkce-popup.png" alt="TabSuspender HaYTooL Türkçe Popup Menüsü" loading="lazy">
+          <img src="assets/screenshots/turkce-popup.png" alt="TabSuspender HaYTooL Türkçe Popup Menüsü" width="402" height="276" loading="lazy" decoding="async">
         </div>
         <div class="screenshot-footer">
           Sekmeleri anında tek tıkla uyutma, toplu uyandırma ve açık sekmeleri durum rozetleriyle izleme.
@@ -1553,7 +1602,7 @@
           <span class="screenshot-badge">options.html</span>
         </div>
         <div class="screenshot-img-box" onclick="window.open('assets/screenshots/ingilizce-ayarlar.png', '_blank')">
-          <img src="assets/screenshots/ingilizce-ayarlar.png" alt="TabSuspender HaYTooL English Settings Dashboard" loading="lazy">
+          <img src="assets/screenshots/ingilizce-ayarlar.png" alt="TabSuspender HaYTooL English Settings Dashboard" width="1106" height="1362" loading="lazy" decoding="async">
         </div>
         <div class="screenshot-footer">
           Auto-suspend duration timer, live preview for 5 sleeping animal mascots, GitHub Gist cloud synchronization, and 5 color themes.
@@ -1566,7 +1615,7 @@
           <span class="screenshot-badge">popup.html</span>
         </div>
         <div class="screenshot-img-box" onclick="window.open('assets/screenshots/ingilizce-popup.png', '_blank')">
-          <img src="assets/screenshots/ingilizce-popup.png" alt="TabSuspender HaYTooL English Popup Manager" loading="lazy">
+          <img src="assets/screenshots/ingilizce-popup.png" alt="TabSuspender HaYTooL English Popup Manager" width="384" height="277" loading="lazy" decoding="async">
         </div>
         <div class="screenshot-footer">
           Instant one-click tab suspension, bulk wake-up, and real-time tab status badges.
@@ -1614,14 +1663,15 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer>
     <div class="container">
       <ul class="footer-links">
-        <li><a href="https://haytokoraz.github.io/" target="_blank">🏛️ HaYTooL PoRTaL</a></li>
-        <li><a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank">🐙 GitHub Deposu</a></li>
-        <li><a href="https://x.com/HaYTo" target="_blank">🐦 X (@HaYTo)</a></li>
+        <li><a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer nofollow">🏛️ HaYTooL PoRTaL</a></li>
+        <li><a href="https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL" target="_blank" rel="noopener noreferrer nofollow">🐙 GitHub Deposu</a></li>
+        <li><a href="https://x.com/HaYTo" target="_blank" rel="noopener noreferrer nofollow">🐦 X (@HaYTo)</a></li>
         <li><a href="mailto:korazhayto@gmail.com">✉️ İletişim (korazhayto@gmail.com)</a></li>
       </ul>
       <p data-i18n="footerCopy">© 2026 TabSuspender HaYTooL • Geliştirici: korazhayto • Sevimli Kedi Uykusu Teması ile Hazırlandı 🐾</p>
@@ -1775,31 +1825,60 @@
 
     let activeLang = 'tr';
 
-    function setLanguage(lang) {
+    function updateUrlLanguage(lang, replace = false) {
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        if (replace) {
+          window.history.replaceState({ lang }, '', url.toString());
+        } else {
+          window.history.pushState({ lang }, '', url.toString());
+        }
+      } catch (e) {
+        if (window.location.protocol !== 'file:') {
+          window.location.hash = lang;
+        }
+      }
+    }
+
+    function setLanguage(lang, updateUrl = true) {
+      if (lang !== 'tr' && lang !== 'en') lang = 'en';
       activeLang = lang;
+      try {
+        localStorage.setItem('hayto_site_lang', lang);
+      } catch (e) {}
+
       const dict = siteTranslations[lang];
       if (!dict) return;
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (dict[key]) {
-          el.innerHTML = dict[key];
+        const val = dict[key];
+        if (val && el.innerHTML !== val) {
+          el.innerHTML = val;
         }
       });
 
       document.querySelectorAll('[data-i18n-title]').forEach(el => {
         const key = el.getAttribute('data-i18n-title');
-        if (dict[key]) {
-          el.setAttribute('title', dict[key]);
+        const val = dict[key];
+        if (val && el.getAttribute('title') !== val) {
+          el.setAttribute('title', val);
         }
       });
 
-      document.getElementById('btnLangTR').classList.toggle('active', lang === 'tr');
-      document.getElementById('btnLangEN').classList.toggle('active', lang === 'en');
+      const btnTR = document.getElementById('btnLangTR');
+      const btnEN = document.getElementById('btnLangEN');
+      if (btnTR) btnTR.classList.toggle('active', lang === 'tr');
+      if (btnEN) btnEN.classList.toggle('active', lang === 'en');
       document.documentElement.lang = lang;
 
-      // Also switch screenshot deck to match site language
+      // Switch screenshot deck to match site language
       switchScreenshotDeck(lang);
+
+      if (updateUrl) {
+        updateUrlLanguage(lang, false);
+      }
     }
 
     function switchScreenshotDeck(lang) {
@@ -1819,13 +1898,53 @@
       }
     }
 
-    document.getElementById('btnLangTR').addEventListener('click', () => setLanguage('tr'));
-    document.getElementById('btnLangEN').addEventListener('click', () => setLanguage('en'));
+    document.getElementById('btnLangTR').addEventListener('click', (e) => {
+      e.preventDefault();
+      setLanguage('tr', true);
+    });
+    document.getElementById('btnLangEN').addEventListener('click', (e) => {
+      e.preventDefault();
+      setLanguage('en', true);
+    });
 
-    // Check browser or saved language preference, default to TR if starts with tr, else EN
-    const userPref = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    const defaultSiteLang = userPref.startsWith('tr') ? 'tr' : 'en';
-    setLanguage(defaultSiteLang);
+    // Detect language: 1) URL query param ?lang= 2) URL hash #tr / #en 3) localStorage 4) browser navigator
+    function detectInitialLanguage() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get('lang');
+        if (urlLang === 'tr' || urlLang === 'en') return { lang: urlLang, fromUrl: true };
+
+        const hash = window.location.hash.toLowerCase();
+        if (hash === '#tr' || hash === '#/tr') return { lang: 'tr', fromUrl: true };
+        if (hash === '#en' || hash === '#/en') return { lang: 'en', fromUrl: true };
+
+        const saved = localStorage.getItem('hayto_site_lang');
+        if (saved === 'tr' || saved === 'en') return { lang: saved, fromUrl: false };
+      } catch (e) {}
+
+      const userPref = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      return { lang: userPref.startsWith('tr') ? 'tr' : 'en', fromUrl: false };
+    }
+
+    const initial = detectInitialLanguage();
+    if (initial.lang !== 'tr') {
+      setLanguage(initial.lang, false);
+    } else {
+      activeLang = 'tr';
+    }
+    // Link sonuna dil parametresini ekle (?lang=tr veya ?lang=en)
+    updateUrlLanguage(initial.lang, true);
+
+    // Tarayıcı Geri / İleri (Back/Forward) geçmişi desteği
+    window.addEventListener('popstate', () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const langInUrl = params.get('lang');
+        if (langInUrl === 'tr' || langInUrl === 'en') {
+          setLanguage(langInUrl, false);
+        }
+      } catch (e) {}
+    });
 
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => {
@@ -1835,28 +1954,28 @@
       });
     });
 
-    // Mockup Interactive Tabs
+    // Mockup Interactive Tabs (Uses textContent to prevent forced reflows)
     document.querySelectorAll('.mockup-tab.suspended').forEach(tab => {
       tab.addEventListener('click', () => {
         tab.classList.remove('suspended');
         const span = tab.querySelector('span:first-child');
-        const originalText = span ? span.innerText : tab.innerText;
+        const originalText = span ? span.textContent : tab.textContent;
         const wakeMsg = siteTranslations[activeLang].tabWake || '⚡ Uyanış!';
         if (span) {
-          span.innerText = wakeMsg;
+          span.textContent = wakeMsg;
         } else {
-          tab.innerText = wakeMsg;
+          tab.textContent = wakeMsg;
         }
         setTimeout(() => {
           if (span) {
-            span.innerText = originalText.replace('🐱', '🌐').replace('(Kedi Uykusunda)', '(Uyanık)').replace('(Cat Napping)', '(Awake)');
+            span.textContent = originalText.replace('🐱', '🌐').replace('(Kedi Uykusunda)', '(Uyanık)').replace('(Cat Napping)', '(Awake)');
           }
         }, 1200);
       });
     });
   </script>
 
-  <!-- HaYTooL Pulse Canlı Kullanıcı Sayacı -->
+  <!-- HaYTooL Pulse Canlı Kullanıcı Sayacı (Deferred / Non-critical) -->
   <script>
   (function() {
       var PULSE_URL = 'https://hayto-telemetry.korazhayto.workers.dev/api/ping';
@@ -1888,8 +2007,26 @@
               }).catch(function() {});
           } catch(e) {}
       }
-      sendPulse();
-      setInterval(sendPulse, 2 * 60 * 1000);
+
+      function schedulePulse() {
+          if ('requestIdleCallback' in window) {
+              requestIdleCallback(function() {
+                  sendPulse();
+                  setInterval(sendPulse, 2 * 60 * 1000);
+              }, { timeout: 3500 });
+          } else {
+              setTimeout(function() {
+                  sendPulse();
+                  setInterval(sendPulse, 2 * 60 * 1000);
+              }, 3000);
+          }
+      }
+
+      if (document.readyState === 'complete') {
+          schedulePulse();
+      } else {
+          window.addEventListener('load', schedulePulse, { once: true });
+      }
   })();
   </script>
 </body>
