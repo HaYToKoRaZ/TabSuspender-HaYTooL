@@ -38,4 +38,3 @@ Allow: /
 
 # Sitemaps & LLM Context
 Sitemap: https://haytokoraz.github.io/TabSuspender-HaYTooL/sitemap.xml
-Sitemap: https://haytool.online/TabSuspender-HaYTooL/sitemap.xml
