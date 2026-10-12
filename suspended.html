@@ -114,6 +114,26 @@
             padding: 0;
         }
 
+        /* Accessibility & Focus Rings (UI-UX-Pro-Max & WCAG 2.1 AA) */
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             display: flex;
@@ -127,6 +147,8 @@
             padding: 24px;
             cursor: pointer; /* Whole screen acts as click-to-wake */
             transition: background-color 0.25s ease, color 0.25s ease;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         #suspended-content {
