@@ -15,6 +15,7 @@ TabSuspender HaYTooL is an open-source Chromium extension (Chrome, Edge, Brave, 
 
 ## Links & Distribution
 - **Official Website:** https://haytokoraz.github.io/TabSuspender-HaYTooL/
+- **Chrome Web Store:** https://chromewebstore.google.com/detail/tabsuspender-haytool/jdobamnoklijnglcdbadcbefhncmnkad
 - **Microsoft Edge Add-ons:** https://microsoftedge.microsoft.com/addons/detail/oiiaihdhfoepcipblaiggcbignahmbeg
 - **GitHub Repository:** https://github.com/HaYToKoRaZ/TabSuspender-HaYTooL
 - **Developer:** HaYTo
