@@ -339,9 +339,10 @@ function getTranslation(lang, key) {
     return translations[activeLang][key] || (translations['en'][key] || key);
 }
 
-// Export for service worker/window contexts
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { translations, getTranslation };
+// Export for ES modules and attach to global window/self
+if (typeof globalThis !== 'undefined') {
+    globalThis.translations = translations;
+    globalThis.getTranslation = getTranslation;
 }
 
 export { translations, getTranslation };

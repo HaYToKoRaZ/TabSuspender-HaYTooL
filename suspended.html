@@ -296,7 +296,9 @@
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
+            min-height: 44px;
         }
 
         .btn-restore:hover {
@@ -314,6 +316,10 @@
             cursor: pointer;
             color: var(--btn-text);
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
         }
 
         #whitelistBtn:hover {
@@ -367,7 +373,7 @@
         <p id="restoreHint">Click anywhere to restore this tab.</p>
     </div>
 
-    <script src="i18n.js"></script>
+    <script type="module" src="core/i18n.js"></script>
     <script src="suspended.js"></script>
 </body>
 </html>
