@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "3.4.6",
+  "version": "3.4.7",
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "icons": {
@@ -25,8 +25,7 @@
     "storage",
     "contextMenus",
     "scripting",
-    "activeTab",
-    "alarms"
+    "activeTab"
   ],
   "commands": {
     "suspend-current-tab": {

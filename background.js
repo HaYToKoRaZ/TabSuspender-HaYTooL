@@ -40,7 +40,7 @@ async function initializeApp() {
             getTranslation
         );
         suspensionService.updateBadge();
-        Logger.info('ServiceWorker', 'TabSuspender HaYTooL initialized successfully (v3.4.6 Modular).');
+        Logger.info('ServiceWorker', 'TabSuspender HaYTooL initialized successfully (v3.4.7 Modular).');
     } catch (err) {
         Logger.error('ServiceWorker', 'Failed to initialize application:', err);
     }
